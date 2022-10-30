@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Samedi",
+    "start_time": "20H00",
+    "end_time": "22H00",
+    "pk_activity": "1"
+  },
+  {
+    "name": "Mardi",
+    "start_time": "20H00",
+    "end_time": "22H00",
+    "pk_activity": "2"
+  }
+]
