@@ -2,12 +2,13 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 import "semantic-ui-css/semantic.min.css";
-import { Image, Grid, Header, Container } from 'semantic-ui-react';
+import { Image, Grid, Header, Container, Label, Icon } from 'semantic-ui-react';
 
 // import './activityStyles.scss';
 
 function Activity() {
   return (
+    <Container>
     <Grid centered style={{marginTop: '3em'}}>
       <Grid.Row>
         <Header as='h1'>Piano</Header>
@@ -18,14 +19,24 @@ function Activity() {
       <Grid.Column mobile={16} tablet={8} computer={4}>
         <Container style={{textAlign: 'center'}}> 
         20 avenue de la République<br/>
-        69000 Lyon<br/>
-        150 € par trimestre<br/>
-        Mixte<br/>
-        Tous niveaux<br/>
-        Lundi 18h00 - 20h00<br/>
+        69000 Lyon<br/><br/>
+          <Label.Group color='teal'>
+            <Label className='label' as='a'>
+            150 € par trimestre
+            </Label>
+            <Label as='a'>
+            Mixte
+            </Label>
+            <Label as='a'>
+            Tous niveaux
+            </Label>
+            <Label as='a'>
+            Lundi 18h00 - 20h00
+            </Label>
+            </Label.Group>
         <Header as='h3' size='small'>Informations de contact</Header>
-        doremi@gmail.com<br/>
-        0625417885
+        <Icon name='mail'/>doremi@gmail.com<br/>
+        <Icon name='phone'/>0625417885
         </Container>
       </Grid.Column>
       <Grid.Row>
@@ -36,11 +47,11 @@ function Activity() {
       </Grid.Row>
       <Grid.Row>
        <Grid.Column width={12} computer={8}>
-       <Header as='h2' size='medium'>L'association</Header>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis minima numquam eaque velit doloremque iste deserunt nam, porro voluptate quod eos voluptatibus laboriosam exercitationem, aut aperiam earum fugiat aliquam laudantium.
-        </Grid.Column>
+       <Header as='h2' size='medium'>L'association : Do Ré Mi</Header>
+       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam explicabo obcaecati omnis nam odio repellendus consequuntur tempore. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam explicabo obcaecati omnis nam odio repellendus consequuntur tempore. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam explicabo obcaecati omnis nam odio repellendus consequuntur tempore. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam explicabo obcaecati omnis nam odio repellendus consequuntur tempore.        </Grid.Column>
       </Grid.Row>
     </Grid>
+    </Container>
   );
 }
 Activity.propTypes = {};
