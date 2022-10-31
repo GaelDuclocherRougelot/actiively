@@ -1,0 +1,38 @@
+ @use 'src/styles/vars';
+
+.appheader {
+    width: 100%;
+    background-color: vars.$darker-color;
+    padding: 1.3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-title {
+        font-size: 2em;
+    }
+
+    &-login {
+        background-color: vars.$inner-color;
+        padding: 0.5em 0.7em;
+        border-radius: 10px;
+        border: transparent;
+
+        &:hover {
+            background-color: darken(vars.$inner-color, 10%);
+        }
+    }
+}
+
+// Login button will become an icon on mobile
+@media screen and (max-width: 500px) {
+    .appheader-login {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 501px) {
+    .appheader-login-mobile {
+        display: none;
+    }
+}
