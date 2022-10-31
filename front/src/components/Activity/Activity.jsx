@@ -9,7 +9,7 @@ import { Image, Grid, Header, Container, Label, Icon } from 'semantic-ui-react';
 function Activity() {
   return (
     <Container>
-    <Grid centered style={{marginTop: '3em'}}>
+    <Grid centered>
       <Grid.Row>
         <Header as='h1'>Piano</Header>
       </Grid.Row>
@@ -48,7 +48,7 @@ function Activity() {
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column width={12} computer={8}>
+        <Grid.Column mobile={12} computer={8}>
         <Header as='h2' size='medium'>L'association : Do Ré Mi</Header>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam explicabo obcaecati omnis nam odio repellendus consequuntur tempore. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam explicabo obcaecati omnis nam odio repellendus consequuntur tempore. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam explicabo obcaecati omnis nam odio repellendus consequuntur tempore. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam explicabo obcaecati omnis nam odio repellendus consequuntur tempore.        </Grid.Column>
       </Grid.Row>

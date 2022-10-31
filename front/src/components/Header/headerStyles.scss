@@ -1,25 +1,32 @@
  @use 'src/styles/vars';
 
 .appheader {
-    width: 100%;
-    background-color: vars.$darker-color;
-    padding: 1.3rem;
+    background-color: vars.$primary-color;
+    color: vars.$secondary-color;
+    padding: 1.3em 3em;
+    margin-bottom: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0px;
+    z-index: 1;
 
     &-title {
         font-size: 2em;
+        font-weight: bold;
     }
 
     &-login {
-        background-color: vars.$inner-color;
+        background-color: vars.$secondary-color;
+        color: vars.$primary-color;
+        font-weight: bold;
         padding: 0.5em 0.7em;
         border-radius: 10px;
         border: transparent;
 
         &:hover {
-            background-color: darken(vars.$inner-color, 10%);
+            background-color: darken(vars.$secondary-color, 10%);
         }
     }
 }
