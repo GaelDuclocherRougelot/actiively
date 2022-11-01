@@ -1,20 +1,17 @@
 import React from "react";
 import {Icon} from 'semantic-ui-react'
-import './formInscription.css';
+import './registration.scss';
 
-function formInscription() {
+function registration () {
     return (
         <div className="container">
-            <section className=" section-1">
-            <h1>Design + text </h1>
-            </section>
-
-            <section className="section-2">
-                <h1 className="section-title">inscription</h1>
-                    <form class="ui form">
+                <h1 className="container-title">inscription</h1>
+                    <form class="ui form container-form">
                         
                         <div class="field">
-                            <label className="label-form">Nom</label>
+                            <label className="label-form">Nom  
+                            <Icon disabled name='user' size='large' className="icon" />
+                            </label>
                             <input placeholder="Nom..."/>
                         </div>
                             
@@ -26,18 +23,22 @@ function formInscription() {
                         </div>
 
                         <div class="field">
-                            <label>Mot de passe</label>
+                            <label>Mot de passe
+                            <Icon disabled name='key' size='large' className="icon" />
+                            </label>
                             <input placeholder="Mot de passe..."/>
                         </div>
 
                         <div class="field">
-                            <label>confirmer le mot de passe</label>
+                            <label>confirmer le mot de passe
+                            <Icon disabled name='key' size='large' className="icon" />
+                            </label>
                             <input placeholder="confirmer le mot de passe..."/>
                         </div>
 
                         <div class="field">
                             <label> Numéro de téléphone 
-                                <Icon disabled name='phone' size='large' className="icon" />
+                            <Icon disabled name='phone' size='large' className="icon" />
                             </label>
                             <input placeholder="06..."/>
                         </div>
@@ -59,12 +60,11 @@ function formInscription() {
                         <button class="ui button" type="submit"> envoyer</button>
                         </div>
                             
-                            
+     
                     </form>
-            </section>
         
         </div>
     );
     }
 
-    export default formInscription;
+    export default React.memo(registration);
