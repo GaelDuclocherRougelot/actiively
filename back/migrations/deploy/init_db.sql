@@ -9,10 +9,10 @@ CREATE TABLE
         password character varying(128) NOT NULL,
         description text NOT NULL,
         contact_email character varying(256) NOT NULL,
-        phone_number integer
+        phone_number character varying(128)
     );
 
-    CREATE TABLE
+CREATE TABLE
     "day" (
         code_day INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
         name character varying(128) NOT NULL,
