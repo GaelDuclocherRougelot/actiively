@@ -1,0 +1,19 @@
+const client = require('../../config/db');
+
+module.exports = {
+
+    async findByPk(id){
+        const result = await client.query(`
+            SELECT 
+                a.name, a.address, a.zip_code, d.name as day, d.start_time, d.end_time, a.price, a.price_type, a.gender, a.level, a.description,
+                json_build_object('email', o.contact_email, 'phone', o.phone_number, 'organism_description', o.description) as organism_infos 
+            FROM activity a
+                JOIN day d ON pk_activity = code_activity
+                JOIN organism o ON pk_activity = code_activity
+            WHERE code_activity = ($1)
+            LIMIT 1
+        `, [id]);
+
+        return result.rows
+    }
+}
