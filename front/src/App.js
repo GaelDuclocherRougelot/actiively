@@ -4,11 +4,10 @@ import Footer from './components/Footer/Footer';
 import Home from './components/Home/home';
 import Registration from './components/Registration/registration';
 import Login from './components/Login/login';
-
-
-import { Routes, Route } from 'react-router-dom';
-
 import './styles/index.scss'
+
+
+import { Routes, Route} from 'react-router-dom';
 
 function App() {
   return (
@@ -32,7 +31,10 @@ function App() {
           path="/login"
           element={<Login />}
         />
+        
       </Routes>
+      
+
       <Footer />
     </div>
   );

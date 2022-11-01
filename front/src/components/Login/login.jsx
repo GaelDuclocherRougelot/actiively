@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { Link } from "react-router-dom";
 import Sport from'../../images/Sport.svg';
 import './login.scss';
+
 
 function login () {
     return(
@@ -24,10 +26,12 @@ function login () {
             <div class="field">
                 <button class="ui button" type="submit"> connexion</button>
             </div>
-        </form>
-        
-        </div>
 
+        </form>
+            <div> 
+                <Link to="/register" className='link'> Pas encore inscrit ?</Link>
+            </div>
+        </div>
     </div>
   
     )

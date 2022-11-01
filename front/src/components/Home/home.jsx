@@ -5,7 +5,7 @@ function home() {
   return (
     <div className="home">
     <header>
-      <h2 class='home-title'> Atiively </h2>
+      <h2 class='home-title'> Actiively </h2>
       <h3 class='home-subtitle'> Lorem Ipsum is simply dummy text of the printing and typesetting industry.  </h3>
     </header>
     

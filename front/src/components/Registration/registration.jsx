@@ -67,13 +67,11 @@ function registration () {
                         <div class="field">
                         <button class="ui button" type="submit"> envoyer</button>
                         </div>
-                            
-     
-                    </form>
+                    </form>   
             </div>
         
+
         </div>
     );
     }
-
     export default React.memo(registration);
