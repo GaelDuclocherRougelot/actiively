@@ -1,6 +1,3 @@
 # Dependencies
 ./node_modules
 .env
-# Sqitch
-./migrations/sqitch.plan
-./migrations/sqitch.conf
