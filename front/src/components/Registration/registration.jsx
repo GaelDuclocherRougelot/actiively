@@ -1,11 +1,19 @@
 import React from "react";
 import {Icon} from 'semantic-ui-react'
+import Sport from'../../images/Sport.svg';
+
 import './registration.scss';
 
 function registration () {
     return (
         <div className="container">
+             <div className='container-image'>
+                <img src={Sport} alt="Sport" className='image' /> 
+             </div>
+            <div className='container-form'>
+                
                 <h1 className="container-title">inscription</h1>
+                
                     <form class="ui form container-form">
                         
                         <div class="field">
@@ -62,6 +70,7 @@ function registration () {
                             
      
                     </form>
+            </div>
         
         </div>
     );
