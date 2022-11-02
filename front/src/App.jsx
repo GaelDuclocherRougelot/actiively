@@ -1,11 +1,12 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Home from './components/Home/home';
 import Activity from './components/Activity/Activity';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import Home from './components/Home/home';
 import Registration from './components/Registration/registration';
 import Login from './components/Login/login';
+
 import './styles/index.scss';
 
 function App() {
@@ -13,14 +14,13 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
+      <Route
+          path="/"
+          element={<Home />}
+        />
         <Route
           path="/activity/:id"
           element={<Activity />}
-        />
-
-        <Route
-          path="/"
-          element={<Home />}
         />
         <Route
           path="/register"
@@ -30,9 +30,7 @@ function App() {
           path="/login"
           element={<Login />}
         />
-
       </Routes>
-
       <Footer />
     </div>
   );
