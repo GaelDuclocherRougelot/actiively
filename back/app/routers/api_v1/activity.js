@@ -7,11 +7,19 @@ const controllerHandler = require('../../helpers/controllerHandler');
 router
     .route('/:id')
     /** 
-     * GET api/v1/:id
+     * GET api/v1/activity:id
+     * @summary 
+     * @tags Get
+     * @param {number} request.params.id id activity id required
+     * @return {Get} 200 - success response - application/json
+     * @return {ApiError} 400 - Bad request response - application/json
     */
     .get(controllerHandler(controller.getOneActivty))
 router
     .route('/search')
     .post(controllerHandler(controller.getAllByKeyword))
+router
+    .route('/search/filtered')
+    .post(controllerHandler(controller.getAllByFilter))
 
 module.exports = router;
