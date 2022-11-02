@@ -1,9 +1,9 @@
-import Activity from "./components/Activity/Activity";
+import { Routes, Route } from 'react-router-dom';
+import Activity from './components/Activity/Activity';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import { Routes, Route } from 'react-router-dom';
 
-import './styles/index.scss'
+import './styles/index.scss';
 
 function App() {
   return (
