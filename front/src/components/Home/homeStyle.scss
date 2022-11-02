@@ -1,0 +1,53 @@
+@use 'src/styles/vars';
+
+
+.home {
+    display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+
+    &-title {
+    font-size: 3em;
+    font-weight: bold;
+    display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-end;
+	align-content: center;
+    }
+    &-subtitle{
+        font-size: 1em;
+        font-weight: bold;
+        padding: 1em;
+        
+    }
+}
+
+.field {
+    display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+    align-items: center;
+    align-content:  space-around;
+
+    
+}
+.ui.color1.button {
+    background-color: #00b5ad;
+    color: #fff;
+  }
+
+  
+
+.text-home{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+
+}
