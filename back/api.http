@@ -9,20 +9,11 @@
 GET {{endpoint}}/activity/2
 
 ### search by keyword / zip_code ###
+#returns a list of activity cards
 POST {{ endpoint }}/activity/search
 content-type: application/json
 
 {
     "keyword": "Tenn%",
     "zip_code": "75016"
-}
-
-### search by filter ###
-POST {{ endpoint }}/activity/search/filtered
-content-type: application/json
-
-{
-    "keyword": "Tenn%",
-    "zip_code": "75016",
-    "dayIds": ["1", "2"]
 }

@@ -18,8 +18,5 @@ router
 router
     .route('/search')
     .post(controllerHandler(controller.getAllByKeyword))
-router
-    .route('/search/filtered')
-    .post(controllerHandler(controller.getAllByFilter))
 
 module.exports = router;

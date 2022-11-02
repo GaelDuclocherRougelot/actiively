@@ -7,15 +7,8 @@ module.exports = {
     },
 
     async getAllByKeyword(req, res){
-        const activities = await activityDatamapper.findByKeyword(req.body.keyword, req.body.zip_code);
+        const activities = await activityDatamapper.findByKeyword(req.body);
         return res.json(activities);
-    },
-
-    async getAllByFilter(req, res){
-        console.log(req.body);
-        const filteredActivities = await activityDatamapper.findAllByFilter(req.body);
-        return res.json(filteredActivities);
-    },
-
+    }
 
 }

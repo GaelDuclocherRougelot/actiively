@@ -20,23 +20,13 @@ module.exports = {
         return result.rows[0]
     },
 
-    async findByKeyword(keyword, zip_code){
+    async findByKeyword(q){
         const result = await client.query(`
             SELECT a.code_activity, a.name, a.zip_code, d.name as day, a.price, a.price_type from "activity" a
             JOIN day d ON pk_activity = code_activity
             WHERE a.name SIMILAR TO ($1)
             AND a.zip_code = ($2)
-        `, [keyword, zip_code]);
+        `, [q.keyword, q.zip_code]);
         return result.rows
-    },
-    // async findAllByFilter(q){ // avec Slonik peut etre
-    //     const result = await client.query(`
-    //         SELECT a.code_activity, a.name, a.zip_code, d.name as day, a.price, a.price_type from "activity" a
-    //         JOIN day d ON pk_activity = code_activity
-    //         WHERE a.name SIMILAR TO ($1)
-    //         AND a.zip_code = ($2)
-    //         AND d.code_day = ANY(${sql.array(q.dayIds, 'int4')}
-    //     `, [q.keyword, q.zip_code, q.dayIds]);
-    //     return result.rows
-    // }
+    }
 }
