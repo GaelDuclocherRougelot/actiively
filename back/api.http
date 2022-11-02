@@ -5,5 +5,14 @@
 ################################################################################
 @endpoint = http://localhost:{{$dotenv PORT}}/api/v1
 
-###
-GET {{endpoint}}/activity/1
+### GET ONE ACTIVITY ###
+GET {{endpoint}}/activity/2
+
+### search by keyword / zip_code ###
+POST {{ endpoint }}/activity/search
+content-type: application/json
+
+{
+    "keyword": "Tenn%",
+    "zip_code": "75016"
+}

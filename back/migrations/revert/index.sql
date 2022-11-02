@@ -2,8 +2,8 @@
 
 BEGIN;
 
--- DROP INDEX index_organism;
+DROP INDEX index_organism;
 
--- DROP INDEX index_activity;
+DROP INDEX index_activity;
 
 COMMIT;
