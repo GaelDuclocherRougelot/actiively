@@ -7,6 +7,8 @@ import Footer from './components/Footer/Footer';
 import Registration from './components/Registration/registration';
 import Login from './components/Login/login';
 
+import data from './data/data';
+
 import './styles/index.scss';
 
 function App() {
@@ -20,7 +22,11 @@ function App() {
         />
         <Route
           path="/activity/:id"
-          element={<Activity />}
+          element={(
+            <Activity
+              data={data}
+            />
+        )}
         />
         <Route
           path="/register"
