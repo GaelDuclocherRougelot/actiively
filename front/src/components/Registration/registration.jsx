@@ -1,77 +1,85 @@
-import React from "react";
-import {Icon} from 'semantic-ui-react'
-import Sport from'../../images/Sport.svg';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React from 'react';
+import { Icon } from 'semantic-ui-react';
+import Sport from '../../images/Sport.svg';
 
 import './registration.scss';
 
-function registration () {
-    return (
-        <div className="container">
-             <div className='container-image'>
-                <img src={Sport} alt="Sport" className='image' /> 
-             </div>
-            <div className='container-form'>
-                
-                <h1 className="container-title">inscription</h1>
-                
-                    <form class="ui form container-form">
-                        
-                        <div class="field">
-                            <label className="label-form">Nom  
-                            <Icon disabled name='user' size='large' className="icon" />
-                            </label>
-                            <input placeholder="Nom..."/>
-                        </div>
-                            
-                        <div class="field">
-                            <label>email de connexion
-                            <Icon disabled name='mail' size='large' className="icon" />
-                            </label>
-                            <input placeholder="MonOrganisme@gmail.com..."/>
-                        </div>
+function registration() {
+  return (
+    <div className="container">
+      <div className="container-image">
+        <img src={Sport} alt="Sport" className="image" />
+      </div>
+      <div className="container-form">
 
-                        <div class="field">
-                            <label>Mot de passe
-                            <Icon disabled name='key' size='large' className="icon" />
-                            </label>
-                            <input placeholder="Mot de passe..."/>
-                        </div>
+        <h1 className="container-title">Inscription</h1>
 
-                        <div class="field">
-                            <label>confirmer le mot de passe
-                            <Icon disabled name='key' size='large' className="icon" />
-                            </label>
-                            <input placeholder="confirmer le mot de passe..."/>
-                        </div>
+        <form className="ui form container-form">
 
-                        <div class="field">
-                            <label> Numéro de téléphone 
-                            <Icon disabled name='phone' size='large' className="icon" />
-                            </label>
-                            <input placeholder="06..."/>
-                        </div>
+          <div className="field">
+            <label className="label-form">
+              Nom
+              <Icon disabled name="user" size="large" className="icon" />
+            </label>
+            <input placeholder="Nom..." />
+          </div>
 
-                        <div class="field">
-                            <label>Email de Contact
-                            <Icon disabled name='mail' size='large' className="icon" />
-                            </label>
-                            <input placeholder="MonOrganisme@gmail.com..."/>
-                        </div>
-                        <div class="field">
-                            <label>Description
-                            <Icon disabled name='pencil' size='large' className="icon" />
-                            </label>
-                            <textarea placeholder="Ma super association..."/>
-                        </div>
-                        
-                        <div class="field">
-                        <button class="ui button" type="submit"> envoyer</button>
-                        </div>
-                    </form>   
-            </div>
-        
+          <div className="field">
+            <label>
+              E-mail de connexion
+              <Icon disabled name="mail" size="large" className="icon" />
+            </label>
+            <input placeholder="MonOrganisme@gmail.com..." />
+          </div>
 
-        </div>
-    );
-    }
-    export default React.memo(registration);
+          <div className="field">
+            <label>
+              Mot de passe
+              <Icon disabled name="key" size="large" className="icon" />
+            </label>
+            <input placeholder="Mot de passe..." />
+          </div>
+
+          <div className="field">
+            <label>
+              Confirmer le mot de passe
+              <Icon disabled name="key" size="large" className="icon" />
+            </label>
+            <input placeholder="confirmer le mot de passe..." />
+          </div>
+
+          <div className="field">
+            <label>
+              {' '}
+              Numéro de téléphone
+              <Icon disabled name="phone" size="large" className="icon" />
+            </label>
+            <input placeholder="06..." />
+          </div>
+
+          <div className="field">
+            <label>
+              E-mail de contact
+              <Icon disabled name="mail" size="large" className="icon" />
+            </label>
+            <input placeholder="MonOrganisme@gmail.com..." />
+          </div>
+          <div className="field">
+            <label>
+              Description
+              <Icon disabled name="pencil" size="large" className="icon" />
+            </label>
+            <textarea placeholder="Ma super association..." />
+          </div>
+
+          <div className="field">
+            <button className="ui button" type="submit">Envoyer</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  );
+}
+export default React.memo(registration);

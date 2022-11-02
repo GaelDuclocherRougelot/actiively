@@ -21,7 +21,7 @@
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-      "max-len": ["warn", { "code": 150, "ignoreComments": true }],
+      "max-len": ["warn", { "code": 250, "ignoreComments": true }],
       "brace-style": ["error", "stroustrup"],
       "no-param-reassign": [
         "error",
