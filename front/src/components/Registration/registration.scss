@@ -1,0 +1,29 @@
+@use 'src/styles/vars';
+
+.container {
+    display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+
+    &-title {
+        font-size: 2rem;
+        font-weight: 600;
+        padding-bottom: 1em;
+    }
+
+    &-form{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        align-content: center; 
+    }
+}
+
+.icon {
+    padding-left: 1em;
+}
