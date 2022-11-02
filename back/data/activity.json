@@ -22,5 +22,17 @@
         "gender": "Mixte",
         "level" : "Confirmé",
         "pk_organism": "theorganization2@gmail.com"
+    },
+    {
+        "name": "Football - Organization 1" ,
+        "description" : "Foot blablabla",
+        "address" : "30 rue du Football",
+        "zip_code" : "75016",
+        "city" : "Paris",
+        "price" : "30",
+        "price_type": "La scéance",
+        "gender": "Mixte",
+        "level" : "Intermédiaire",
+        "pk_organism": "sindresorhus@gmail.com"
     }
 ]

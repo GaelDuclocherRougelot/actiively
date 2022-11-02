@@ -27,7 +27,7 @@ CREATE TABLE
         name character varying(128) NOT NULL,
         description text NOT NULL,
         address text NOT NULL,
-        zip_code integer NOT NULL,
+        zip_code character varying(16) NOT NULL,
         city character varying(128) NOT NULL,
         price numeric NOT NULL,
         price_type character varying(128) NOT NULL,

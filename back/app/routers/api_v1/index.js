@@ -13,7 +13,7 @@
  const organismRouter = require('./organism');
  const { apiController } = require('../../controllers/v1');
  
-//  const { ApiError } = require('../../helpers/errorHandler');
+const customApiError = require('../../errors/apiErrors');
  
  const router = express.Router();
  
@@ -26,7 +26,7 @@
  router.use('/organism', organismRouter);
  
  router.use(() => {
-     throw new ApiError('API Route not found', { statusCode: 404 });
+     throw new customApiError('API Route not found', { status: 404 });
  });
  
  module.exports = router;
