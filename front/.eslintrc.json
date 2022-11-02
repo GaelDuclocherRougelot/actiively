@@ -20,7 +20,6 @@
     "rules": {
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
-        "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "max-len": ["warn", { "code": 150, "ignoreComments": true }],
         "brace-style": ["error", "stroustrup"],
@@ -40,5 +39,4 @@
         "react/destructuring-assignment": "warn",
         "no-unused-vars": "warn"
     }
-}
 }
