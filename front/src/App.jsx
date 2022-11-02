@@ -1,13 +1,12 @@
-import Activity from "./components/Activity/Activity";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Activity from './components/Activity/Activity';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/home';
 import Registration from './components/Registration/registration';
 import Login from './components/Login/login';
-import './styles/index.scss'
-
-
-import { Routes, Route} from 'react-router-dom';
+import './styles/index.scss';
 
 function App() {
   return (
@@ -19,21 +18,20 @@ function App() {
           element={<Activity />}
         />
 
-         <Route
+        <Route
           path="/"
           element={<Home />}
         />
-         <Route
+        <Route
           path="/register"
           element={<Registration />}
         />
-         <Route
+        <Route
           path="/login"
           element={<Login />}
         />
-        
+
       </Routes>
-      
 
       <Footer />
     </div>
