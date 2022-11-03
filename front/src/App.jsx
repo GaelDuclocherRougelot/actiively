@@ -8,6 +8,8 @@ import Registration from './components/Registration/registration';
 import Login from './components/Login/login';
 import NotFound from './components/NotFound/NotFound';
 import ActivityList from './components/ActivityList/ActivityList';
+import Profil from './components/Profil/profil';
+import ModifProfil from './components/ModifProfil/modifProfil';
 
 import data from './data/data';
 import results from './data/results';
@@ -46,6 +48,14 @@ function App() {
         <Route
           path="/login"
           element={<Login />}
+        />
+        <Route
+          path="/organism/:id/profil"
+          element={<Profil />}
+        />
+        <Route
+          path="/organism/:id/profil/modif"
+          element={<ModifProfil />}
         />
         <Route
           path="*"

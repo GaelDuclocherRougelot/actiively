@@ -4,14 +4,12 @@
   flex-direction: column;
   text-align: center;
   margin:auto;
- 
 }
 
 /* This is to be able to style image;*/
 .image {
   width:15rem;
   height:15rem;
-
 }
 /* This is to be able to position image;*/
 .imagestyle {
@@ -20,10 +18,10 @@
 
 /* This is to be able to style the title;*/
 .post-title {
-  color: #D4A373;
-  font-size: 1.6rem;
-  text-align: center;
-  
+  color: #00b5ad;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;  
 }
 
 /* This is to be able to style the code zip;*/

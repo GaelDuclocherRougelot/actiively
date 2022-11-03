@@ -11,11 +11,11 @@ export default {
   price_type: 'La séance',
   gender: 'Mixte',
   level: 'Confirmé',
-  description: 'Danse blablabla',
+  description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem laborum rerum, deleniti iure praesentium, culpa adipisci explicabo voluptates, veritatis quidem sed sequi amet sapiente aliquid corrupti quasi est provident porro.',
   organism_infos: {
     email: 'email@sindresorhus.com',
     phone_number: '0702035896',
-    organism_description: 'description of organization',
+    organism_description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem laborum rerum, deleniti iure praesentium, culpa adipisci explicabo voluptates, veritatis quidem sed sequi amet sapiente aliquid corrupti quasi est provident porro?. Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem laborum rerum, deleniti iure praesentium, culpa adipisci explicabo voluptates, veritatis quidem sed sequi amet sapiente aliquid corrupti quasi est provident porro?',
   },
 };
 

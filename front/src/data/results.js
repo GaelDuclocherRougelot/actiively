@@ -5,7 +5,7 @@ export default [{
   zip_code: '75016',
   city: 'Paris',
   day: 'Mardi',
-  price: '15',
+  price: 15,
   price_type: 'La séance',
 },
 {
@@ -15,7 +15,7 @@ export default [{
   zip_code: '75016',
   city: 'Paris',
   day: 'Jeudi',
-  price: '30',
+  price: 30,
   price_type: 'La séance',
 },
 ];

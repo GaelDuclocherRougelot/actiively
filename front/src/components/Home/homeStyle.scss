@@ -10,19 +10,15 @@
 	align-content: center;
 
     &-title {
-    font-size: 3em;
+    font-size: 2em;
     font-weight: bold;
     display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: flex-end;
 	align-content: center;
-    }
-    &-subtitle{
-        font-size: 1em;
-        font-weight: bold;
-        padding: 1em;
-        
+    padding-bottom: 4rem;
+    padding-top: 1rem;
     }
 }
 
@@ -32,22 +28,22 @@
 	justify-content: center;
     align-items: center;
     align-content:  space-around;
-
-    
 }
+
 .ui.color1.button {
     background-color: #00b5ad;
     color: #fff;
-  }
+}
 
-  
+.home-image {
+    width: 120%;
+    display: block;
+    margin: 0 auto;
+}
 
-.text-home{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-
-
+.attribution {
+    font-size: 1rem;
+    position: fixed;
+    bottom: 3rem;
+    right: 1rem;
 }
