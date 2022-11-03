@@ -13,18 +13,18 @@ function Activity({
     <Container>
       <Grid centered>
         <Grid.Row>
-          <Header as="h1">{data.activityName}</Header>
+          <Header as="h1">{data.name}</Header>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column mobile={12} tablet={8} computer={4}>
-            <Image src={data.imageUrl} alt={data.activityName} />
+            <Image src={data.image_url} alt={data.name} />
           </Grid.Column>
           <Grid.Column mobile={16} tablet={8} computer={4}>
             <Container style={{ textAlign: 'center' }}>
               <br />
               {data.address}
               <br />
-              {data.zipCode}
+              {data.zip_code}
               {' '}
               {data.city}
               <br />
@@ -33,7 +33,9 @@ function Activity({
                 <Label as="a">
                   {data.price}
                   {' '}
-                  {data.priceType}
+                  €
+                  {' '}
+                  {data.price_type}
                 </Label>
                 <Label as="a">
                   {data.gender}
@@ -44,26 +46,26 @@ function Activity({
                 <Label as="a">
                   {data.day}
                   {' '}
-                  {data.startTime}
+                  {data.start_time}
                   {' '}
                   -
                   {' '}
-                  {data.endTime}
+                  {data.end_time}
                 </Label>
               </Label.Group>
               <Header as="h3" size="small">Informations de contact</Header>
               <Icon name="mail" />
-              {data.email}
+              {data.organism_infos.email}
               <br />
               <Icon name="phone" />
-              {data.phoneNumber}
+              {data.organism_infos.phone_number}
             </Container>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column mobile={12} computer={8}>
             <Header as="h2" size="medium">L&apos;activité</Header>
-            {data.activityDescription}
+            {data.description}
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
@@ -73,7 +75,7 @@ function Activity({
               {' '}
               {data.organismName}
             </Header>
-            {data.organismDescription}
+            {data.organism_infos.organism_description}
             {' '}
 
           </Grid.Column>
@@ -85,23 +87,23 @@ function Activity({
 
 Activity.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
-    activityName: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    image_url: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
-    zipCode: PropTypes.string.isRequired,
+    zip_code: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    priceType: PropTypes.string.isRequired,
+    price_type: PropTypes.string.isRequired,
     gender: PropTypes.string.isRequired,
     level: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     organismName: PropTypes.string.isRequired,
-    phoneNumber: PropTypes.string.isRequired,
-    activityDescription: PropTypes.string.isRequired,
-    organismDescription: PropTypes.string.isRequired,
+    phone_number: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    organism_description: PropTypes.string.isRequired,
     day: PropTypes.string.isRequired,
-    startTime: PropTypes.string.isRequired,
-    endTime: PropTypes.string.isRequired,
+    start_time: PropTypes.string.isRequired,
+    end_time: PropTypes.string.isRequired,
   }).isRequired).isRequired,
 };
 

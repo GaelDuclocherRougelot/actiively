@@ -12,6 +12,12 @@
     top: 0px;
     z-index: 1;
 
+    &-icon {
+        &:hover {
+            color: darken(vars.$secondary-color, 10%);
+        }
+    }
+
     &-title {
         font-size: 2em;
         font-weight: bold;

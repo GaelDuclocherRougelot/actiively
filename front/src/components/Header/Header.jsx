@@ -6,11 +6,15 @@ import './headerStyles.scss';
 function Header() {
   return (
     <header className="appheader">
-      <FontAwesomeIcon icon={faLightbulb} size="3x" />
+      <a href="/">
+        <FontAwesomeIcon className="appheader-icon" icon={faLightbulb} size="3x" />
+      </a>
       <h1 className="appheader-title">Actiively</h1>
       {/* Login button will become an icon on mobile */}
-      <button type="button" className="appheader-login">Connexion</button>
-      <FontAwesomeIcon icon={faUser} size="2x" className="appheader-login-mobile" />
+      <a href="/login">
+        <button type="button" className="appheader-login">Connexion</button>
+        <FontAwesomeIcon icon={faUser} size="2x" className="appheader-login-mobile" />
+      </a>
     </header>
   );
 }
