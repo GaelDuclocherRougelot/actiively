@@ -9,6 +9,7 @@
         "price_type": "La scéance",
         "gender": "Mixte",
         "level" : "Débutant",
+        "image_url" : "link",
         "pk_organism": "sindresorhus@gmail.com"
     },
     {
@@ -21,6 +22,7 @@
         "price_type": "La scéance",
         "gender": "Mixte",
         "level" : "Confirmé",
+        "image_url" : "link",
         "pk_organism": "theorganization2@gmail.com"
     },
     {
@@ -33,6 +35,7 @@
         "price_type": "La scéance",
         "gender": "Mixte",
         "level" : "Intermédiaire",
+        "image_url" : "link",
         "pk_organism": "sindresorhus@gmail.com"
     }
 ]

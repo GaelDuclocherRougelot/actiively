@@ -33,7 +33,8 @@ CREATE TABLE
         price_type character varying(128) NOT NULL,
         gender character varying(128) NOT NULL,
         level character varying(128) NOT NULL,
-        pk_organism character varying(128) NOT NULL
+        pk_organism character varying(128) NOT NULL,
+        image_url TEXT NOT NULL
     );
 
 

@@ -77,9 +77,9 @@ const days = require('./data/days.json');
             // Pour aller chercher une donnée qui nous manque
             text: `
                 INSERT INTO activity
-                (name, description, address, zip_code, city, price, price_type, gender, level, pk_organism)
-                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, (
-                   SELECT email FROM organism WHERE email = $10
+                (name, description, address, zip_code, city, price, price_type, gender, level, image_url, pk_organism)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,(
+                   SELECT email FROM organism WHERE email = $11
                 )) RETURNING *
             `,
             values: [
@@ -92,6 +92,7 @@ const days = require('./data/days.json');
                 acti.price_type,
                 acti.gender,
                 acti.level,
+                acti.image_url,
                 acti.pk_organism
             ]
         };

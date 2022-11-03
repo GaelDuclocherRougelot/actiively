@@ -14,7 +14,13 @@
 const debug = require('debug')('SQL:log');
 const { Pool } = require('pg');
 
-const pool = new Pool();
+const pool = new Pool({
+    host: 'gaelduclocherrougelot-server.eddi.cloud', // or 'localhost'
+    user: 'actiively', // db user
+    max: 20,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 2000,
+  });
 
 module.exports = {
     // On expose quand même le client original "au cas ou"
