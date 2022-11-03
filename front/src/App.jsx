@@ -6,6 +6,8 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Registration from './components/Registration/registration';
 import Login from './components/Login/login';
+import NotFound from './components/NotFound/NotFound';
+import ActivityList from './components/ActivityList/ActivityList';
 
 import data from './data/data';
 
@@ -19,6 +21,10 @@ function App() {
         <Route
           path="/"
           element={<Home />}
+        />
+        <Route
+          path="/activity"
+          element={<ActivityList />}
         />
         <Route
           path="/activity/:id"
@@ -35,6 +41,10 @@ function App() {
         <Route
           path="/login"
           element={<Login />}
+        />
+        <Route
+          path="*"
+          element={<NotFound />}
         />
       </Routes>
       <Footer />
