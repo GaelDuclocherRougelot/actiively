@@ -1,19 +1,20 @@
 /* eslint-disable max-len */
 export default {
   name: 'Danse - Organization 2',
+  image_url: 'https://images.unsplash.com/photo-1519925610903-381054cc2a1c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
   address: '23 rue de la danse',
-  zip_code: '29200',
+  zip_code: '75016',
   day: 'Mardi',
   start_time: '20H00',
   end_time: '22H00',
   price: '15',
-  price_type: 'La scéance',
+  price_type: 'La séance',
   gender: 'Mixte',
   level: 'Confirmé',
   description: 'Danse blablabla',
   organism_infos: {
     email: 'email@sindresorhus.com',
-    phone_number: '070203',
+    phone_number: '0702035896',
     organism_description: 'description of organization',
   },
 };

@@ -10,6 +10,7 @@ import NotFound from './components/NotFound/NotFound';
 import ActivityList from './components/ActivityList/ActivityList';
 
 import data from './data/data';
+import results from './data/results';
 
 import './styles/index.scss';
 
@@ -24,7 +25,11 @@ function App() {
         />
         <Route
           path="/activity"
-          element={<ActivityList />}
+          element={(
+            <ActivityList
+              results={results}
+            />
+          )}
         />
         <Route
           path="/activity/:id"
@@ -32,7 +37,7 @@ function App() {
             <Activity
               data={data}
             />
-        )}
+          )}
         />
         <Route
           path="/register"

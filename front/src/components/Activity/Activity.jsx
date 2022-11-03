@@ -54,11 +54,11 @@ function Activity({
                 </Label>
               </Label.Group>
               <Header as="h3" size="small">Informations de contact</Header>
-              <Icon name="mail" />
               {data.organism_infos.email}
+              <Icon name="mail" />
               <br />
-              <Icon name="phone" />
               {data.organism_infos.phone_number}
+              <Icon name="phone" />
             </Container>
           </Grid.Column>
         </Grid.Row>

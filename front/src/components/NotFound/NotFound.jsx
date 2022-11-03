@@ -1,10 +1,14 @@
 import React from 'react';
+import ImageNotFound from '../../images/ErrorPage.svg';
 
 import './notFoundStyles.scss';
 
 function NotFound() {
   return (
-    <h1>404 Page Not Found</h1>
+    <div>
+      <img src={ImageNotFound} alt="Page non trouvée" className="notFound_image" />
+      <a href="https://storyset.com/web" className="attribution">Web illustrations by Storyset</a>
+    </div>
   );
 }
 
