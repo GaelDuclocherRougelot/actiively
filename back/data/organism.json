@@ -1,0 +1,18 @@
+[
+    {
+        "email": "sindresorhus@gmail.com",
+        "name": "Organization 1",
+        "password": "1291480",
+        "description": "description of organization",
+        "contact_email": "email@sindresorhus.com",
+        "phone_number": "070203"
+    },
+    {
+        "email": "theorganization2@gmail.com",
+        "name": "Organization 2",
+        "password": "129209584",
+        "description": "description of organization",
+        "contact_email": "emailorganisms@gmail.com",
+        "phone_number": "07200"
+    }
+]

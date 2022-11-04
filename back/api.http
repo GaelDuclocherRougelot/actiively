@@ -1,0 +1,19 @@
+################################################################################
+# Fichier de test des routes HTTP de l'API
+# Nécessite l'extension REST Client pour VSCode
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+################################################################################
+@endpoint = http://localhost:3001/api/v1
+
+### GET ONE ACTIVITY ###
+GET {{endpoint}}/activity/2
+
+### search by keyword / zip_code ###
+#returns a list of activity cards
+POST {{ endpoint }}/activity/search
+content-type: application/json
+
+{
+    "keyword": "%",
+    "zip_code": "75016%"
+}

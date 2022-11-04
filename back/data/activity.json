@@ -1,0 +1,41 @@
+[
+    {
+        "name": "Tennis - Organization 1" ,
+        "description" : "Tennis blablabla",
+        "address" : "12 rue du Tennis",
+        "zip_code" : "75016",
+        "city" : "Paris",
+        "price" : "20",
+        "price_type": "La scéance",
+        "gender": "Mixte",
+        "level" : "Débutant",
+        "image_url" : "link",
+        "pk_organism": "sindresorhus@gmail.com"
+    },
+    {
+        "name": "Danse - Organization 2" ,
+        "description" : "Danse blablabla",
+        "address" : "23 rue de la danse",
+        "zip_code" : "29200",
+        "city" : "Brest",
+        "price" : "15",
+        "price_type": "La scéance",
+        "gender": "Mixte",
+        "level" : "Confirmé",
+        "image_url" : "link",
+        "pk_organism": "theorganization2@gmail.com"
+    },
+    {
+        "name": "Football - Organization 1" ,
+        "description" : "Foot blablabla",
+        "address" : "30 rue du Football",
+        "zip_code" : "75016",
+        "city" : "Paris",
+        "price" : "30",
+        "price_type": "La scéance",
+        "gender": "Mixte",
+        "level" : "Intermédiaire",
+        "image_url" : "link",
+        "pk_organism": "sindresorhus@gmail.com"
+    }
+]
