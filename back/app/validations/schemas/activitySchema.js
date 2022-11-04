@@ -4,7 +4,7 @@ module.exports = joi.object({
     name: joi.string().min(3).max(128).required(),
     description: joi.string().required(),
     address: joi.string().required(),
-    zip_code: joi.integer().required().pattern(new RegExp('/^(?:0[1-9]|[1-9]\d)\d{3}$/gm')),
+    zip_code: joi.integer().required().pattern(new RegExp('^[0-9]{2,5}(%)$')),
     city: joi.string().required().min(3).max(128),
     price: joi.float().required().min(0.1),
     price_type: joi.string().required().min(3).max(128),

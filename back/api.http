@@ -15,5 +15,5 @@ content-type: application/json
 
 {
     "keyword": "%",
-    "zip_code": "7%"
+    "zip_code": "75016%"
 }
