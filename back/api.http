@@ -6,7 +6,7 @@
 @endpoint = http://localhost:3001/api/v1
 
 ### GET ONE ACTIVITY ###
-GET {{endpoint}}/activity/2
+GET {{endpoint}}/activity/1
 
 ### search by keyword / zip_code ###
 #returns a list of activity cards
@@ -15,5 +15,5 @@ content-type: application/json
 
 {
     "keyword": "%",
-    "zip_code": "%"
+    "zip_code": "75%"
 }
