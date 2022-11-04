@@ -1,0 +1,19 @@
+.header {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+    &-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #000;
+        margin: 0;
+    }
+}
+
+.ui.color1.button {
+    background-color: #00b5ad;
+    color: #fff;
+  }
