@@ -107,7 +107,7 @@ function ModifProfil() {
               />
             </div>
 
-            <Button type="submit"> Modifier</Button>
+            <Button type="submit" className="ui color1 button"> Modifier</Button>
           </form>
         </div>
       </div>

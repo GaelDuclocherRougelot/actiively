@@ -10,3 +10,16 @@
     bottom: 3rem;
     right: 1rem;
 }
+
+@media screen and (max-width: 1000px) {
+    .notFound_image {
+        width: 50%;;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .notFound_image {
+        width: 80%;
+        margin-top: 10rem;
+    }
+}
