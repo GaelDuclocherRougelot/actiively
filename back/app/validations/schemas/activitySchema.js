@@ -10,6 +10,6 @@ module.exports = joi.object({
     price_type: joi.string().required().min(3).max(128),
     gender: joi.string().required().min(3).max(128),
     level: joi.string().required().min(3).max(128),
-    pk_organism: joi.string().required().pattern(new RegExp('^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$')).min(3).max(128)
+    pk_organism: joi.string().required().pattern(new RegExp('(.+)@(.+){2,}\.(.+){2,}'))
 
 })
