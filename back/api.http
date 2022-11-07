@@ -23,10 +23,10 @@ POST {{ endpoint }}/organism/register
 Content-Type: application/json
 
 {
-        "email": "test2@test.com",
+        "email": "test7@test.com",
         "name": "Organization test register",
         "password": "Tests1234!",
         "description": "description of organization",
-        "contact_email": "test2@test.com",
+        "contact_email": "test6@test.com",
         "phone_number": "0702030405"
 }

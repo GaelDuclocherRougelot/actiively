@@ -17,10 +17,10 @@ module.exports = {
 
         return organismQuery.rows[0];
     },
-    async findAllEmails() {
-        const organisms = await client.query(`
-            SELECT email FROM "organism"
-        `);
-        return organisms.rows
+    async findOneEmail(email) {
+        const organism = await client.query(`
+            SELECT email FROM "organism" WHERE email = $1
+        `,[email]);
+        return organism.rows
     }
 }

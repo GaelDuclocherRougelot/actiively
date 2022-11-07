@@ -6,7 +6,6 @@ const controllerHandler = require('../../helpers/controllerHandler');
 const controller = require('../../controllers/v1/organismController');
 
 
-
 router
     .route('/register')
     .post(validator(registerSchema),controllerHandler(controller.register))
