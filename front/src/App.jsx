@@ -13,9 +13,6 @@ import ActivityList from './components/ActivityList/ActivityList';
 import Profil from './components/Profil/profil';
 import ModifProfil from './components/ModifProfil/modifProfil';
 
-// import data from './data/data';
-// import results from './data/results';
-
 import './styles/index.scss';
 
 function App() {
@@ -34,7 +31,7 @@ function App() {
     })
       .then((res) => {
         setResults(res.data);
-        console.log('results: ', res.data);
+        // console.log('results: ', res.data);
       });
   };
 

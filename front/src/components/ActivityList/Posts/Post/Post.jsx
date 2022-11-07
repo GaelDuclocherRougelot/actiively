@@ -51,7 +51,7 @@ Post.propTypes = {
   image_url: PropTypes.string.isRequired,
   zip_code: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  price: PropTypes.string.isRequired,
   price_type: PropTypes.string.isRequired,
   organismName: PropTypes.string.isRequired,
   day: PropTypes.string.isRequired,
