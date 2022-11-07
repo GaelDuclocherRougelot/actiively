@@ -23,6 +23,8 @@ function Activity() {
       // Update states with results
       setActivity(response.data);
       setOrganism(response.data.organism_infos);
+      // console.log(response.data);
+      // console.log(response.data.organism_infos);
     }
     catch (error) {
       console.log(error);
