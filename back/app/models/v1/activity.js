@@ -12,7 +12,7 @@ module.exports = {
                 json_build_object('email', o.contact_email,'name', o.name, 'phone_number', o.phone_number, 'organism_description', o.description) as organism_infos 
             FROM activity a
                 JOIN day d ON pk_activity = code_activity
-                JOIN organism o ON pk_activity = code_activity
+                JOIN organism o ON pk_organism = o.email
             WHERE code_activity = ($1)
             LIMIT 1
         `, [id]);
