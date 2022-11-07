@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import Home from './components/Home/home';
@@ -21,6 +21,7 @@ import './styles/index.scss';
 function App() {
   const [keyword, setkeyword] = useState('');
   const [results, setResults] = useState([]);
+  const navigate = useNavigate();
 
   const postData = () => {
     if (!keyword.keyword && !keyword.zip_code) {
@@ -52,6 +53,7 @@ function App() {
       keyword: act,
       zip_code: key,
     });
+    navigate('/activity');
   };
 
   return (
