@@ -18,6 +18,7 @@ import './styles/index.scss';
 function App() {
   const [keyword, setkeyword] = useState('');
   const [results, setResults] = useState([]);
+  // To enable redirection
   const navigate = useNavigate();
 
   const postData = () => {
@@ -50,6 +51,7 @@ function App() {
       keyword: act,
       zip_code: key,
     });
+    // Redirection to results page on click on Submit
     navigate('/activity');
   };
 
