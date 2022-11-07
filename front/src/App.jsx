@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home/home';
 import Activity from './components/Activity/Activity';
@@ -17,6 +17,12 @@ import results from './data/results';
 import './styles/index.scss';
 
 function App() {
+  const [token, setToken] = useState();
+
+  if (!token) {
+    return <Login setToken={setToken} />;
+  }
+
   return (
     <div className="App">
       <Header />

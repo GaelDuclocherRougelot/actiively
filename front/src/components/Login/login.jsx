@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Sport from '../../images/Sport.svg';
 import './login.scss';
 
-function login() {
+function Login({
+  setToken,
+}) {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
   return (
     <div className="container">
       <div className="container-image">
@@ -16,10 +22,10 @@ function login() {
         </div>
         <form className="ui form container-form">
           <div className="field">
-            <input placeholder="adresse mail" />
+            <input type="email" placeholder="adresse mail" onChange={(event) => setEmail(event.target.value)} />
           </div>
           <div className="field">
-            <input placeholder="mot de passe" />
+            <input type="password" placeholder="mot de passe" onChange={(event) => setPassword(event.target.value)} />
           </div>
 
           <div className="field">
@@ -36,4 +42,8 @@ function login() {
   );
 }
 
-export default React.memo(login);
+Login.propTypes = {
+  setToken: PropTypes.func.isRequired,
+};
+
+export default React.memo(Login);
