@@ -5,7 +5,7 @@ import { Button, Icon } from 'semantic-ui-react';
 import Sport from '../../images/Sport3.svg';
 import './profil.scss';
 
-function profil() {
+function Profil() {
   return (
     <div className="container">
       <div className="container-image">
@@ -14,7 +14,7 @@ function profil() {
       <div className="container">
         <div className="container-form">
           <div className="random">
-            <h1 className="container-title">Modifier mon profil</h1>
+            <h1 className="container-title">Mon profil</h1>
             <p className="cancel-modif">
               <Link to="/organism/:id/profil/modif" className="link">
                 <Button
@@ -48,4 +48,4 @@ function profil() {
   );
 }
 
-export default React.memo(profil);
+export default React.memo(Profil);

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import {
+  Routes, Route, useNavigate, Navigate,
+} from 'react-router-dom';
 import axios from 'axios';
 
 import Home from './components/Home/home';
@@ -12,8 +14,20 @@ import NotFound from './components/NotFound/NotFound';
 import ActivityList from './components/ActivityList/ActivityList';
 import Profil from './components/Profil/profil';
 import ModifProfil from './components/ModifProfil/modifProfil';
+import useToken from './components/Hooks/useToken';
 
 import './styles/index.scss';
+
+// // Token stored in session
+// function setToken(userToken) {
+//   sessionStorage.setItem('token', JSON.stringify(userToken));
+// }
+
+// function getToken() {
+//   const tokenString = sessionStorage.getItem('token');
+//   const userToken = JSON.parse(tokenString);
+//   return userToken?.token;
+// }
 
 function App() {
   const [keyword, setkeyword] = useState('');
@@ -21,12 +35,18 @@ function App() {
   // To enable redirection
   const navigate = useNavigate();
 
-  const [token, setToken] = useState();
+  const { token, setToken } = useToken();
+  // const token = getToken();
+  // const [token, setToken] = useState();
   // if (!token) {
   //   return <Login setToken={setToken} />;
   // }
   // console.log('App:', token);
 
+  const [isLogged, setIsLogged] = useState(false);
+  console.log('App', isLogged);
+
+  // Search Feature
   const postData = () => {
     if (!keyword.keyword && !keyword.zip_code) {
       return;
@@ -63,7 +83,9 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header
+        isLogged={isLogged}
+      />
       <Routes>
         <Route
           path="/"
@@ -97,12 +119,19 @@ function App() {
             <Login
               token={token}
               setToken={setToken}
+              setIsLogged={setIsLogged}
             />
           )}
         />
         <Route
           path="/organism/:id/profil"
-          element={<Profil />}
+          // element={(
+          //   <Profil
+          //     setLogged={setLogged}
+          //   />
+          // )}
+          // Restricted page
+          element={isLogged ? <Profil /> : <Navigate replace to="/login" />}
         />
         <Route
           path="/organism/:id/profil/modif"
