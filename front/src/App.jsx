@@ -21,7 +21,7 @@ function App() {
   const navigate = useNavigate();
 
   const postData = () => {
-    if (!keyword.keyword && !keyword.zip_code) {
+    if (!keyword.keyword || !keyword.zip_code) {
       return;
     }
 
