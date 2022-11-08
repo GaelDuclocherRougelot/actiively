@@ -23,7 +23,7 @@ function login() {
           </div>
 
           <div className="field">
-            <button className="ui button" type="submit">Connexion</button>
+            <button className="ui color1 button" type="submit">Connexion</button>
           </div>
 
         </form>

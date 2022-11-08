@@ -1,5 +1,6 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 import 'semantic-ui-css/semantic.min.css';
 import {
@@ -7,62 +8,107 @@ import {
 } from 'semantic-ui-react';
 
 function Activity() {
+  const [activity, setActivity] = useState({});
+  const [organism, setOrganism] = useState({});
+
+  // Used params to add id to URL when sending an axios request
+  let id = useParams();
+  // Transformed result to number to match format set in the Back
+  id = Number(id.id);
+
+  // Request to API to get data for an Activity with an id in URL
+  const fetchActivity = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3001/api/v1/activity/${id}`);
+      // Update states with results
+      setActivity(response.data);
+      setOrganism(response.data.organism_infos);
+      // console.log(response.data);
+      // console.log(response.data.organism_infos);
+    }
+    catch (error) {
+      console.log(error);
+    }
+  };
+
+  // useEffect so that data is fetched on mount
+  useEffect(
+    () => {
+      fetchActivity();
+    },
+    [],
+  );
+
+  // console.log(activity);
+  // console.log(organism);
+
   return (
     <Container>
       <Grid centered>
         <Grid.Row>
-          <Header as="h1">Piano</Header>
+          <Header as="h1">{activity.name}</Header>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column mobile={12} tablet={8} computer={4}>
-            <Image src="https://images.unsplash.com/photo-1513883049090-d0b7439799bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
+            <Image src={activity.image_url} alt={activity.name} />
           </Grid.Column>
           <Grid.Column mobile={16} tablet={8} computer={4}>
             <Container style={{ textAlign: 'center' }}>
               <br />
-              20 avenue de la République
+              {activity.address}
               <br />
-              69000 Lyon
+              {activity.zip_code}
+              {' '}
+              {activity.city}
               <br />
               <br />
               <Label.Group color="teal">
                 <Label as="a">
-                  150 € par trimestre
+                  {activity.price}
+                  {' '}
+                  €
+                  {' '}
+                  {activity.price_type}
                 </Label>
                 <Label as="a">
-                  Mixte
+                  {activity.gender}
                 </Label>
                 <Label as="a">
-                  Tous niveaux
+                  {activity.level}
                 </Label>
                 <Label as="a">
-                  Lundi 18h00 - 20h00
+                  {activity.day}
+                  {' '}
+                  {activity.start_time}
+                  {' '}
+                  -
+                  {' '}
+                  {activity.end_time}
                 </Label>
               </Label.Group>
               <Header as="h3" size="small">Informations de contact</Header>
+              {organism.email}
               <Icon name="mail" />
-              doremi@gmail.com
               <br />
+              {organism.phone_number}
               <Icon name="phone" />
-              0625417885
             </Container>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column mobile={12} computer={8}>
             <Header as="h2" size="medium">L&apos;activité</Header>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis minima numquam eaque velit doloremque iste deserunt nam, porro voluptate quod eos voluptatibus laboriosam exercitationem, aut aperiam earum fugiat aliquam laudantium.
+            {activity.description}
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column mobile={12} computer={8}>
-            <Header as="h2" size="medium">L&apos;association : Do Ré Mi</Header>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Quisquam explicabo obcaecati omnis nam odio repellendus consequuntur tempore.
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Quisquam explicabo obcaecati omnis nam odio repellendus consequuntur tempore.
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Quisquam explicabo obcaecati omnis nam odio repellendus consequuntur tempore. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam explicabo obcaecati omnis nam odio repellendus consequuntur tempore.
+            <Header as="h2" size="medium">
+              L&apos;association :
+              {' '}
+              {organism.name}
+            </Header>
+            {organism.organism_description}
             {' '}
 
           </Grid.Column>
@@ -71,8 +117,5 @@ function Activity() {
     </Container>
   );
 }
-Activity.propTypes = {};
-
-Activity.defaultProps = {};
 
 export default React.memo(Activity);

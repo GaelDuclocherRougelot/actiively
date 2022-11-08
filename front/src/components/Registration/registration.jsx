@@ -74,7 +74,7 @@ function registration() {
           </div>
 
           <div className="field">
-            <button className="ui button" type="submit">Envoyer</button>
+            <button className="ui color1 button" type="submit">Envoyer</button>
           </div>
         </form>
       </div>

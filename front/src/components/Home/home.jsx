@@ -1,55 +1,93 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState } from 'react';
+
+import PropTypes from 'prop-types';
+import Home from '../../images/Home.svg';
+
 import './homeStyle.scss';
 
-function home() {
+function HomePage({
+  handle,
+}) {
+  const [state, setState] = useState({ keyword: '', zip_code: '' });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setState((prevState) => ({
+      ...prevState,
+      keyword: state.keyword,
+      zip_code: state.zip_code,
+    }));
+    // handle(e, state)
+  };
+  // const handleSubmit = () => {
+  //  handle(state)
+  // }
+
   return (
     <div className="home">
       <header>
-        <h2 className="home-title"> Actiively </h2>
-        <h3 className="home-subtitle"> Lorem Ipsum is simply dummy text of the printing and typesetting industry.  </h3>
+        <h1 className="home-title"> Trouvez l&apos;activité qui vous correspond</h1>
       </header>
 
       <section className="form-home">
         <div>
-          <form className="ui large form">
+          <form className="ui large form" onSubmit={handleSubmit}>
             <div className="equal width fields">
               <div className="field color2">
-                <label>nom de l&apos;activité</label>
-                <input placeholder="Judo..." />
+                <label>Nom de l&apos;activité</label>
+                <input
+                  placeholder="Judo..."
+                  value={state.keyword}
+                  onChange={handleChange}
+                  name="keyword"
+                />
               </div>
 
               <div className="field color2">
-                <label>code postal</label>
-                <input placeholder="69003..." />
+                <label>Code postal</label>
+                <input
+                  placeholder="69003..."
+                  value={state.zip_code}
+                  onChange={handleChange}
+                  name="zip_code"
+                />
               </div>
             </div>
-            <button className="ui color1 button field-submit" type="submit">
+            <button
+              className="ui color1 button field-submit"
+              type="submit"
+              onClick={(e) => handle(e, state)}
+            >
               {' '}
               <i className="icon search"> </i>
             </button>
             <div className="ui hidden divider" />
           </form>
         </div>
-
       </section>
-      <section className="text-home">
-        <p>
-          Contrary to popular belief, Lorem Ipsum is not simply random text.
-          {' '}
-          <br />
-          It has roots in a piece of classical Latin literature from 45 BC, making
-          {' '}
-          <br />
-          it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,
-          {' '}
-          <br />
-          looked up one of the more obscure Latin words
-        </p>
+
+      <section className="image-section">
+        <img src={Home} alt="accueil" className="home-image" />
+        <a href="https://storyset.com/health" className="attribution">Health illustrations by Storyset</a>
       </section>
     </div>
 
   );
 }
 
-export default React.memo(home);
+HomePage.propTypes = {
+  handle: PropTypes.func.isRequired,
+};
+
+HomePage.defaultProps = {};
+
+export default React.memo(HomePage);
