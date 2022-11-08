@@ -9,6 +9,11 @@ const router = express.Router();
 router.use('/api/v1', apiRouterV1);
 router.use('/home', apiRouterV1);
 
+router.use('/login', (req, res) => {
+    res.send({
+      token: 'test123'
+    });
+  });
 
 router.use((err, _, response, next) => {
     console.log(err);

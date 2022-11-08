@@ -19,9 +19,10 @@ import './styles/index.scss';
 function App() {
   const [token, setToken] = useState();
 
-  if (!token) {
-    return <Login setToken={setToken} />;
-  }
+  // if (!token) {
+  //   return <Login setToken={setToken} />;
+  // }
+  console.log('App:', token);
 
   return (
     <div className="App">
@@ -53,7 +54,12 @@ function App() {
         />
         <Route
           path="/login"
-          element={<Login />}
+          element={(
+            <Login
+              token={token}
+              setToken={setToken}
+            />
+          )}
         />
         <Route
           path="/organism/:id/profil"
