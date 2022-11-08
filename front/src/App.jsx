@@ -25,7 +25,7 @@ function App() {
   // if (!token) {
   //   return <Login setToken={setToken} />;
   // }
-  console.log('App:', token);
+  // console.log('App:', token);
 
   const postData = () => {
     if (!keyword.keyword && !keyword.zip_code) {

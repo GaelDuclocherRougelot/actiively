@@ -12,6 +12,7 @@ function Login({
   const navigate = useNavigate();
 
   async function loginUser(credentials) {
+    console.log('creds:', credentials);
     return fetch('http://localhost:3001/login', {
       method: 'POST',
       headers: {
