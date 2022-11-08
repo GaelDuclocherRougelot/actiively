@@ -9,6 +9,7 @@ import './postStyles.css';
 function Post({
   code_activity,
   name,
+  organismName,
   image_url,
   zip_code,
   city,
@@ -23,6 +24,7 @@ function Post({
           <img className="image" alt={name} src={image_url} />
         </Link>
         <p className="post-title">{name}</p>
+        <p className="post-organism">{organismName}</p>
         <strong className="post-zip">
           {zip_code}
           {' '}
@@ -49,30 +51,10 @@ Post.propTypes = {
   image_url: PropTypes.string.isRequired,
   zip_code: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  price: PropTypes.string.isRequired,
   price_type: PropTypes.string.isRequired,
   organismName: PropTypes.string.isRequired,
   day: PropTypes.string.isRequired,
-
-  // result: PropTypes.arrayOf(PropTypes.shape({
-  //   name: PropTypes.string.isRequired,
-  //   image_url: PropTypes.string.isRequired,
-  //   address: PropTypes.string.isRequired,
-  //   zip_code: PropTypes.string.isRequired,
-  //   city: PropTypes.string.isRequired,
-  //   price: PropTypes.number.isRequired,
-  //   price_type: PropTypes.string.isRequired,
-  //   gender: PropTypes.string.isRequired,
-  //   level: PropTypes.string.isRequired,
-  //   email: PropTypes.string.isRequired,
-  //   organismName: PropTypes.string.isRequired,
-  //   phone_number: PropTypes.string.isRequired,
-  //   description: PropTypes.string.isRequired,
-  //   organism_description: PropTypes.string.isRequired,
-  //   day: PropTypes.string.isRequired,
-  //   start_time: PropTypes.string.isRequired,
-  //   end_time: PropTypes.string.isRequired,
-  // }).isRequired).isRequired,
 };
 
 Post.defaultProps = {};
