@@ -6,5 +6,5 @@ module.exports = joi.object({
     password: joi.string().min(3).max(128).required().pattern(new RegExp('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$')),
     description: joi.string(),
     contact_email: joi.string().pattern(new RegExp('(.+)@(.+){2,}\.(.+){2,}')).min(3).max(128),
-    phone_number: joi.string().pattern(new RegExp('^((\\+|00)33\\s?|0)[67](\\s?\\d{2}){4}$'))
+    phone_number: joi.string().pattern(new RegExp('^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$'))
 });
