@@ -1,4 +1,5 @@
 const CustomApiError = require('../errors/apiErrors');
+
 /**
  * validation of the current user schema,
  * if ok returns next() and go to the controller.
