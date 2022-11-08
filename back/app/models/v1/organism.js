@@ -22,5 +22,12 @@ module.exports = {
             SELECT email FROM "organism" WHERE email = $1
         `,[email]);
         return organism.rows
+    },
+
+    async findOneOrganism(email) {
+        const organism = await client.query(`
+            SELECT * FROM "organism" WHERE email = $1
+        `,[email]);
+        return organism.rows[0]
     }
 }
