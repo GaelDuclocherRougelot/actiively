@@ -11,9 +11,6 @@ const controller = require('../../controllers/v1/organismController');
 const {validateToken} = require('../../middlewares/JWT');
 
 
-const app = express();
-
-
 router
     .route('/register')
     .post(validator(registerSchema),controllerHandler(controller.register))
@@ -25,5 +22,9 @@ router
 router
     .route('/profile')
     .get(validateToken,controllerHandler(controller.profile))
+
+router
+    .route('/activities')
+    .get(validateToken,controllerHandler(controller.getOrganismActivities))
 
 module.exports = router;

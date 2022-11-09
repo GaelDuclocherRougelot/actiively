@@ -29,5 +29,14 @@ module.exports = {
             SELECT * FROM "organism" WHERE email = $1
         `,[email]);
         return organism.rows[0]
+    },
+
+    async findActivitiesByOrganism(email) {
+        const activities = await client.query(`
+            SELECT * FROM "activity"
+            JOIN "organism" o ON pk_organism = o.email
+            WHERE o.email = $1
+        `,[email]);
+        return activities.rows
     }
 }

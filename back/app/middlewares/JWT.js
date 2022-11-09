@@ -15,11 +15,15 @@ const validateToken = (req, res, next) => {
     }
 
     try {
-        const validToken = verify(accessToken, jwtSecret);
-        if(validToken){
-            req.authenticated = true;
-            return next();
-        }
+        const validToken = verify(accessToken, jwtSecret, (err, decodedToken) => {
+            if(err){
+                throw new Error(err)
+            }else {
+                req.decodedToken = decodedToken;
+                req.authenticated = true;
+                return next();
+            }
+        });
 
     } catch (err) {
         res.json({error: err})

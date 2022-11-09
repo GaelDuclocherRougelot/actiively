@@ -42,4 +42,6 @@ Content-Type: application/json
 
 ### Get profile of my organization ###
 GET {{endpoint}}/organism/profile
-Content-Type: application/json
+
+### Get list of events of my organization ###
+GET {{endpoint}}/organism/activities

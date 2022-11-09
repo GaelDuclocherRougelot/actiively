@@ -33,6 +33,7 @@ module.exports = {
 
     async login(req, res) {
         const { email, password } = req.body;
+        
 
         try {
             const organism = await organismDatamapper.findOneOrganism(email);
@@ -47,13 +48,16 @@ module.exports = {
                         maxAge: 300000,
                         httpOnly: true
                     });
-
+                    
+                    
                     res.json({"message": "LOGGED IN"})
+                    
 
                 }else {
                     throw new Error('Wrong password and email combination!')
                 }
             });
+            req.user = organism
 
         } catch (err) {
             res.json({error: 'Wrong password and email combination'})
@@ -62,8 +66,19 @@ module.exports = {
     },
 
     async profile(req, res) {
-        // const organism = await organismDatamapper.findOneOrganism(req.body.email);
-        res.json({message: 'PROFILE', connected: req.authenticated});
+        const organism = await organismDatamapper.findOneOrganism(req.decodedToken.email);
+
+        res.json({message: 'PROFILE', connected: req.authenticated, user: organism});
+    },
+
+    async getOrganismActivities(req, res) {
+        const activities = await organismDatamapper.findActivitiesByOrganism(req.decodedToken.email);
+        try {
+            res.json(activities);
+        } catch (error) {
+            res.json({error: error.message});
+            throw new customApiError(err.message, 400);
+        }
     }
             
 }
