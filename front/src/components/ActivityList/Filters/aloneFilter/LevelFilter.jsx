@@ -16,8 +16,6 @@ function LevelFilter({
   SecondLevelSelect(selectSecondLevel);
   ThirdLevelSelect(selectThirdLevel);
 
-
-
   const handleChangeFirstLevel = (e) => {
     if (e.target.checked) {
       setSelectFirstLevel('Tous niveaux');

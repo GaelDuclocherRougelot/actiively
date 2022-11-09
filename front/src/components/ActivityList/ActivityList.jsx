@@ -19,9 +19,11 @@ function ActivityList({
   const [checkSecondLevel, setCheckSecondtLevel] = useState('');
   const [checkThirdLevel, setCeckThirdLevel] = useState('');
 
+  const [checkFirstGender, setCheckFirstGender] = useState('');
+  const [checkSecondGender, setCheckSecondGender] = useState('');
+  const [checkThirdGender, setCeckThirdGender] = useState('');
 
-
-  // function of filter's day
+  // function fo day's filter
 
   const handleMonday = (slectMonday) => {
     setCheckMonday(slectMonday);
@@ -45,7 +47,7 @@ function ActivityList({
     setCheckSunday(selectSunday);
   };
 
-  // function of filter's levl
+  // function of levl'sfilter
   const handleFirstLevel = (selectFirstLevel) => {
     setCheckFirstLevel(selectFirstLevel);
   };
@@ -55,6 +57,19 @@ function ActivityList({
   const handleThirdLevel = (selectThirdLevel) => {
     setCeckThirdLevel(selectThirdLevel);
   };
+
+  // function of gender's filters
+  const handleFirstGender = (selectFirstGender) => {
+    setCheckFirstGender(selectFirstGender);
+  };
+  const handleSecondGender = (selectSecondGender) => {
+    setCheckSecondGender(selectSecondGender);
+  };
+  const handleThirdGender = (selectThirdGender) => {
+    setCeckThirdGender(selectThirdGender);
+  };
+
+  // function for choice the right array:
   const arr = results;
   const day1 = checkMonday;
   const day2 = checkTuesday;
@@ -63,15 +78,14 @@ function ActivityList({
   const day5 = checkFriday;
   const day6 = checSaturday;
   const day7 = checkSunday;
-  const Gendre1 = '';
-  const Gendre2 = '';
-  const Gendre3 = '';
+  const gender1 = checkFirstGender;
+  const gender2 = checkSecondGender;
+  const gender3 = checkThirdGender;
   const level1 = checkFirstLevel;
   const level2 = checkSecondLevel;
   const level3 = checkThirdLevel;
 
   function data(table) {
-    let rightData;
     const isdayfiltrenotactive = (
       day1 === ''
     && day2 === ''
@@ -83,16 +97,16 @@ function ActivityList({
     );
 
     const gendrefiltrenotactive = (
-      Gendre1 === ''
-    && Gendre2 === ''
-    && Gendre3 === ''
+      gender1 === ''
+    && gender2 === ''
+    && gender3 === ''
     );
     const levelfiltrenotactive = (
       level1 === ''
     && level2 === ''
     && level3 === ''
     );
-
+    let rightData;
     rightData = table.filter((el) => {
       const isvalid = (isdayfiltrenotactive || (
         el.day === day1
@@ -104,9 +118,9 @@ function ActivityList({
     || el.day === day7
       ))
 && (gendrefiltrenotactive || (
-  el.Gendre === Gendre1
-    || el.Gendre === Gendre2
-    || el.Gendre === Gendre3
+  el.gender === gender1
+    || el.gender === gender2
+    || el.gender === gender3
 ))
 && (levelfiltrenotactive || (
   el.level === level1
@@ -119,6 +133,7 @@ function ActivityList({
   }
 
   const result = data(arr);
+  
 
   return (
     <div>
@@ -134,6 +149,9 @@ function ActivityList({
           FirstLevel={handleFirstLevel}
           SecondLevel={handleSecondLevel}
           ThirdLevel={handleThirdLevel}
+          FirstGender={handleFirstGender}
+          SecondGender={handleSecondGender}
+          ThirdGender={handleThirdGender}
         />
         <PostsList
           results={result}

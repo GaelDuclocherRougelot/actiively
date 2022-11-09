@@ -15,9 +15,11 @@ function FiltersList({
   FirstLevel,
   SecondLevel,
   ThirdLevel,
+  FirstGender,
+  SecondGender,
+  ThirdGender,
 }) {
-
-  // for day
+  // function fo day's filter
   const handleMonday = (slectMonday) => {
     Monday(slectMonday);
   };
@@ -40,16 +42,27 @@ function FiltersList({
     Sunday(selectSunday);
   };
 
-
-// for LEVEL
-  const handleFirstFilter = (selectFirstLevel) => {
+  // function of levl'sfilter
+  const handleFirstLevel = (selectFirstLevel) => {
     FirstLevel(selectFirstLevel);
   };
-  const handleSecondFilter = (selectSecondLevel) => {
+  const handleSecondLevel = (selectSecondLevel) => {
     SecondLevel(selectSecondLevel);
   };
-  const handleThirdFilter = (selectThirdLevel) => {
+  const handleThirdLevel = (selectThirdLevel) => {
     ThirdLevel(selectThirdLevel);
+  };
+
+  // function of gender'sfilter
+
+  const handleFirstGender = (selectFirstGender) => {
+    FirstGender(selectFirstGender);
+  };
+  const handleSecondGender = (selectSecondGender) => {
+    SecondGender(selectSecondGender);
+  };
+  const handleThirdGender = (selectThirdGender) => {
+    ThirdGender(selectThirdGender);
   };
 
   return (
@@ -65,12 +78,15 @@ function FiltersList({
         SundaySelect={handleSunday}
       />
       <LevelFilter
-        FirstLevelSelect={handleFirstFilter}
-        SecondLevelSelect={handleSecondFilter}
-        ThirdLevelSelect={handleThirdFilter}
-
+        FirstLevelSelect={handleFirstLevel}
+        SecondLevelSelect={handleSecondLevel}
+        ThirdLevelSelect={handleThirdLevel}
       />
-      <GenderFilter />
+      <GenderFilter
+        FirstGenderSelect={handleFirstGender}
+        SecondGenderSelect={handleSecondGender}
+        ThirdGenderSelect={handleThirdGender}
+      />
     </div>
   );
 }
