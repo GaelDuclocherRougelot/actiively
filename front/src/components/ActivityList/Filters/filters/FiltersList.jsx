@@ -5,65 +5,69 @@ import GenderFilter from '../aloneFilter/GenderFilter';
 import './filtersStyles.scss';
 
 function FiltersList({
-  Lundi,
-  Mardi,
-  Mercredi,
-  Jeudi,
-  Vendredi,
-  Samedi,
-  Dimanche,
-  firstLevel,
-  secondFilter,
-  thirdFilter,
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+  Sunday,
+  FirstLevel,
+  SecondLevel,
+  ThirdLevel,
 }) {
-  const handleCheckLundi = (checkLundi) => {
-    Lundi(checkLundi);
+
+  // for day
+  const handleMonday = (slectMonday) => {
+    Monday(slectMonday);
   };
-  const handleCheckMardi = (checkMardi) => {
-    Mardi(checkMardi);
+  const handleTuesday = (selectTuesday) => {
+    Tuesday(selectTuesday);
   };
-  const handleCheckMercredi = (checkMercredi) => {
-    Mercredi(checkMercredi);
+  const handleWednesday = (selectWednsday) => {
+    Wednesday(selectWednsday);
   };
-  const handleCheckJeudi = (checkJeudi) => {
-    Jeudi(checkJeudi);
+  const handleThursday = (selectThursday) => {
+    Thursday(selectThursday);
   };
-  const handleCheckVendredi = (checkVendredi) => {
-    Vendredi(checkVendredi);
+  const handleFriday = (selectFriday) => {
+    Friday(selectFriday);
   };
-  const handleCheckSamedi = (checkSamedi) => {
-    Samedi(checkSamedi);
+  const handleSaturday = (selectSaturday) => {
+    Saturday(selectSaturday);
   };
-  const handleCheckDimanche = (checkDimanche) => {
-    Dimanche(checkDimanche);
+  const handleSunday = (selectSunday) => {
+    Sunday(selectSunday);
   };
 
-  const handleFirstFilter = (checkFirstLevel) => {
-    firstLevel(checkFirstLevel);
+
+// for LEVEL
+  const handleFirstFilter = (selectFirstLevel) => {
+    FirstLevel(selectFirstLevel);
   };
-  const handleSecondFilter = (checkSecondLevel) => {
-    secondFilter(checkSecondLevel);
+  const handleSecondFilter = (selectSecondLevel) => {
+    SecondLevel(selectSecondLevel);
   };
-  const handleThirdFilter = (checkThirdLevel) => {
-    thirdFilter(checkThirdLevel);
+  const handleThirdFilter = (selectThirdLevel) => {
+    ThirdLevel(selectThirdLevel);
   };
 
   return (
     <div className="filters-container">
       <button type="button" className="filters-styles">Filtres</button>
       <DayFilter
-        Lundii={handleCheckLundi}
-        Mardii={handleCheckMardi}
-        Mercredii={handleCheckMercredi}
-        Jeudii={handleCheckJeudi}
-        Vendredii={handleCheckVendredi}
-        Samedii={handleCheckSamedi}
-        Dimanchei={handleCheckDimanche}
+        MondaySelect={handleMonday}
+        TuesdaySelect={handleTuesday}
+        WednesdaySelect={handleWednesday}
+        ThursdaySelect={handleThursday}
+        FridaySelect={handleFriday}
+        SaturdaySelect={handleSaturday}
+        SundaySelect={handleSunday}
       />
       <LevelFilter
-        firstLevel={handleFirstFilter}
-        secondFilter={handleSecondFilter}
-        thirdFilter={handleThirdFilter}
+        FirstLevelSelect={handleFirstFilter}
+        SecondLevelSelect={handleSecondFilter}
+        ThirdLevelSelect={handleThirdFilter}
 
       />
       <GenderFilter />

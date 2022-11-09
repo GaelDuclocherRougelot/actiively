@@ -4,92 +4,91 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 function DayFilter({
-  Lundii,
-  Mardii,
-  Mercredii,
-  Jeudii,
-  Vendredii,
-  Samedii,
-  Dimanchei,
+  MondaySelect,
+  TuesdaySelect,
+  WednesdaySelect,
+  ThursdaySelect,
+  FridaySelect,
+  SaturdaySelect,
+  SundaySelect,
 }) {
-  const [checkLundi, setCheckLundi] = useState('');
-  const [checkMardi, setCheckMardi] = useState('');
-  const [checkMercredi, setCheckMercredi] = useState('');
-  const [checkJeudi, setCheckJeudi] = useState('');
-  const [checkVendredi, setCheckVendredi] = useState('');
-  const [checkSamedi, setCheckSamedi] = useState('');
-  const [checkDimanche, setCheckDimanche] = useState('');
+  const [slectMonday, setSlectMonday] = useState('');
+  const [selectTuesday, setSelectTuesday] = useState('');
+  const [selectWednsday, setSelectWednsday] = useState('');
+  const [selectThursday, setSelectThursday] = useState('');
+  const [selectFriday, setSelectFriday] = useState('');
+  const [selectSaturday, setSlectSaturday] = useState('');
+  const [selectSunday, setSelectSunday] = useState('');
 
   
-  Lundii(checkLundi);
-  Mardii(checkMardi);
+  MondaySelect(slectMonday);
+  TuesdaySelect(selectTuesday);
+  WednesdaySelect(selectWednsday);
+  ThursdaySelect(selectThursday);
+  FridaySelect(selectFriday);
+  SaturdaySelect(selectSaturday);
+  SundaySelect(selectSunday);
 
-  Mercredii(checkMercredi);
-  Jeudii(checkJeudi);
-  Vendredii(checkVendredi);
-  Samedii(checkSamedi);
-  Dimanchei(checkDimanche);
-
-  const handleChangeLundi = (e) => {
+  const handleChangeMonday = (e) => {
     if (e.target.checked) {
-      setCheckLundi('Lundi');
+      setSlectMonday('Lundi');
     }
     else {
-      setCheckLundi('');
+      setSlectMonday('');
     }
   };
 
-  const handleChangeMardi = (e) => {
+  const handleChangeTuesday = (e) => {
     if (e.target.checked) {
-      setCheckMardi('Mardi');
+      setSelectTuesday('Mardi');
     }
     else {
-      setCheckMardi('');
+      setSelectTuesday('');
     }
   };
 
-  const handleChangeMercredi = (e) => {
+  const handleChangeWednesday = (e) => {
     if (e.target.checked) {
-      setCheckMercredi('Mercredi');
+      setSelectWednsday('Mercredi');
     }
     else {
-      setCheckMercredi('');
+      setSelectWednsday('');
     }
   };
 
-  const handleChangeJeudi = (e) => {
+  const handleChangeThursday = (e) => {
     if (e.target.checked) {
-      setCheckJeudi('Jeudi');
+      setSelectThursday('Jeudi');
     }
     else {
-      setCheckJeudi('');
+      setSelectThursday('');
     }
   };
 
-  const handleChangeVendredi = (e) => {
+  const handleChangeFriday = (e) => {
     if (e.target.checked) {
-      setCheckVendredi('Vendredi');
+      setSelectFriday('Vendredi');
     }
     else {
-      setCheckVendredi('');
+      setSelectFriday('');
     }
   };
 
-  const handleChangeSamedi = (e) => {
+  const handleChangeSaturday = (e) => {
     if (e.target.checked) {
-      setCheckSamedi('Samedi');
+      setSlectSaturday('Samedi');
     }
     else {
-      setCheckSamedi('');
+      setSlectSaturday('');
     }
   };
 
-  const handleChangeDimanche = (e) => {
+  const handleChangeSunday = (e) => {
     if (e.target.checked) {
-      setCheckDimanche('Dimanche');
+      setSelectSunday('Dimanche');
     }
     else {
-      setCheckDimanche('');
+      setSelectSunday('');
     }
   };
 
@@ -105,7 +104,7 @@ function DayFilter({
                 type="checkbox"
                 value="1"
                 id="opt-in"
-                onChange={handleChangeLundi}
+                onChange={handleChangeMonday}
               />
               <span>Lundi</span>
             </label>
@@ -118,7 +117,7 @@ function DayFilter({
               type="checkbox"
               value="1"
               id="opt-in"
-              onChange={handleChangeMardi}
+              onChange={handleChangeTuesday}
             />
             <span>Mardi</span>
           </label>
@@ -130,7 +129,7 @@ function DayFilter({
               type="checkbox"
               value="1"
               id="opt-in"
-              onChange={handleChangeMercredi}
+              onChange={handleChangeWednesday}
             />
             <span>Mercredi</span>
           </label>
@@ -141,7 +140,7 @@ function DayFilter({
               type="checkbox"
               value="1"
               id="opt-in"
-              onChange={handleChangeJeudi}
+              onChange={handleChangeThursday}
             />
             <span>Jeudi</span>
           </label>
@@ -152,7 +151,7 @@ function DayFilter({
               type="checkbox"
               value="1"
               id="opt-in"
-              onChange={handleChangeVendredi}
+              onChange={handleChangeFriday}
             />
             <span>Vendredi</span>
           </label>
@@ -164,7 +163,7 @@ function DayFilter({
               type="checkbox"
               value="1"
               id="opt-in"
-              onChange={handleChangeSamedi}
+              onChange={handleChangeSaturday}
             />
             <span>Samedi</span>
           </label>
@@ -175,7 +174,7 @@ function DayFilter({
               type="checkbox"
               value="1"
               id="opt-in"
-              onChange={handleChangeDimanche}
+              onChange={handleChangeSunday}
             />
             <span>Dimanche</span>
           </label>

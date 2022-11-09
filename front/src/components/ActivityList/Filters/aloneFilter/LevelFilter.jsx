@@ -4,44 +4,44 @@ import { useState } from 'react';
 import './levelFilterStyles.css';
 
 function LevelFilter({
-  firstLevel,
-  secondFilter,
-  thirdFilter,
+  FirstLevelSelect,
+  SecondLevelSelect,
+  ThirdLevelSelect,
 }) {
-  const [checkFirstLevel, setCheckFirstLevel] = useState('');
-  const [checkSecondLevel, setCheckSecondtLevel] = useState('');
-  const [checkThirdLevel, setCeckThirdLevel] = useState('');
+  const [selectFirstLevel, setSelectFirstLevel] = useState('');
+  const [selectSecondLevel, setSelectSecondtLevel] = useState('');
+  const [selectThirdLevel, setSelectThirdLevel] = useState('');
 
-  firstLevel(checkFirstLevel);
-  secondFilter(checkSecondLevel);
-  thirdFilter(checkThirdLevel);
+  FirstLevelSelect(selectFirstLevel);
+  SecondLevelSelect(selectSecondLevel);
+  ThirdLevelSelect(selectThirdLevel);
 
 
 
   const handleChangeFirstLevel = (e) => {
     if (e.target.checked) {
-      setCheckFirstLevel('Débutant');
+      setSelectFirstLevel('Tous niveaux');
     }
     else {
-      setCheckFirstLevel('');
+      setSelectFirstLevel('');
     }
   };
 
   const handleChangeSecondeFilter = (e) => {
     if (e.target.checked) {
-      setCheckSecondtLevel('Confirmé');
+      setSelectSecondtLevel('Débutant');
     }
     else {
-      setCheckSecondtLevel('');
+      setSelectSecondtLevel('');
     }
   };
 
   const handleChangeThirdFilter = (e) => {
     if (e.target.checked) {
-      setCeckThirdLevel('Tous niveaux');
+      setSelectThirdLevel('Confirmé');
     }
     else {
-      setCeckThirdLevel('');
+      setSelectThirdLevel('');
     }
   };
 
