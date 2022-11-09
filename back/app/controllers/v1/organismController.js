@@ -1,4 +1,7 @@
 const organismDatamapper =  require('../../models/v1/organism');
+const activityDatamapper =  require('../../models/v1/activity');
+const dayDatamapper = require('../../models/v1/day');
+
 const customApiError = require('../../errors/apiErrors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -83,8 +86,18 @@ module.exports = {
 
     async postOneActivity(req, res) {
         try {
-            await organismDatamapper.createActivity(req.body, req.decodedToken.email);
-            res.json({message: `Activity ${req.body.name} created`});
+            const activityExist = await activityDatamapper.findByName(req.body.name);
+            if(activityExist) {
+                res.json({error: `Activity ${activityExist.name} already exists`});
+                throw new Error(`Activity ${activityExist.name} already exists`);
+            }else {
+                await organismDatamapper.createActivity(req.body, req.decodedToken.email);
+                const currActivity = await activityDatamapper.findByName(req.body.name);
+
+                await dayDatamapper.createDay(req.body.day, currActivity.code_activity);
+                res.json({message: `Activity ${req.body.name} created`});
+            }
+            
         } catch (err) {
             res.json({error: err.message});
             throw new customApiError(err.message, 400);

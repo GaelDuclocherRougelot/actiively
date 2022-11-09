@@ -37,5 +37,21 @@ module.exports = {
             AND a.zip_code SIMILAR TO ($2)
         `, [q.keyword, q.zip_code]);
         return result.rows
-    }
+    },
+
+        /**
+     * Get one activity by name
+     * @param {integer} id
+     */
+         async findByName(name){
+            const result = await client.query(`
+                SELECT 
+                    a.name, a.code_activity
+                FROM activity a
+                WHERE a.name = ($1)
+                LIMIT 1
+            `, [name]);
+    
+            return result.rows[0]
+        },
 }

@@ -17,7 +17,7 @@ const validateToken = (req, res, next) => {
     try {
         const validToken = verify(accessToken, jwtSecret, (err, decodedToken) => {
             if(err){
-                throw new Error(err)
+                throw new Error('Bad access_token')
             }else {
                 req.decodedToken = decodedToken;
                 req.authenticated = true;
@@ -26,7 +26,7 @@ const validateToken = (req, res, next) => {
         });
 
     } catch (err) {
-        res.json({error: err})
+        res.json({error: err.message})
         throw new customApiError(err.message, 400)
     }
 };

@@ -1,5 +1,9 @@
 const joi = require('joi');
-
+const daySchema = joi.object({
+    name: joi.string().required(),
+    start_time: joi.string().required(),
+    end_time: joi.string().required()
+});
 module.exports = joi.object({
     name: joi.string().min(3).max(128).required(),
     description: joi.string().required(),
@@ -10,5 +14,6 @@ module.exports = joi.object({
     price_type: joi.string().required().min(3).max(128),
     gender: joi.string().required().min(3).max(128),
     level: joi.string().required().min(3).max(128),
-    image_url: joi.string().required()
+    image_url: joi.string().required(),
+    day: daySchema
 })
