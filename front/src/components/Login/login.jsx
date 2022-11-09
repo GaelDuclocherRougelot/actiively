@@ -5,39 +5,82 @@ import PropTypes from 'prop-types';
 import Sport from '../../images/Sport.svg';
 import './login.scss';
 
+// // Post request to Back to send email + password
+// async function loginUser(credentials) {
+//   console.log('creds:', credentials);
+//   const response = await axios.post('http://localhost:3001/api/v1/organism/login', {
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(credentials),
+//   });
+//   console.log(response);
+//   return response.data;
+// }
+
 function Login({
   setToken,
   setIsLogged,
 }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [errMsg, setErrMsg] = useState('');
+
   const navigate = useNavigate();
 
-  // Post request to Back to send email + password
-  async function loginUser(credentials) {
-    console.log('creds:', credentials);
-    const response = await axios.post('http://localhost:3001/login', {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(credentials),
-    });
-    return response.data;
-  }
-
-  // On Submit get token thanks to loginUser function + redirect to profile
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const token = await loginUser({
-      email,
-      password,
-    });
-    console.log('Login:', token);
-    setToken(token);
-    const login = true;
-    setIsLogged(login);
-    navigate('/organism/1/profil');
+    try {
+      const response = await axios.post(
+        'http://localhost:3001/api/v1/organism/login',
+        JSON.stringify({ email, password }),
+        {
+          headers: { 'Content-Type': 'application/json' },
+        },
+        { withCredentials: true },
+      );
+      console.log('response:', response.data);
+      const { token } = response.data;
+      console.log('token login :', token);
+      setToken(token);
+      const login = true;
+      setIsLogged(login);
+      // navigate('/organism/1/profil');
+      navigate('/');
+    }
+    catch (err) {
+      if (!err?.response) {
+        setErrMsg('No Server Response');
+      }
+      else if (err.response?.status === 400) {
+        setErrMsg('Missing Username or Password');
+      }
+      else if (err.response?.status === 401) {
+        setErrMsg('Unauthorized');
+      }
+      else {
+        setErrMsg('Login Failed');
+      }
+      console.log(errMsg);
+    }
   };
+
+  // // On Submit get token thanks to loginUser function + redirect to profile
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   console.log('handleSubmit', email, password);
+  //   const token = await loginUser({
+  //     email,
+  //     password,
+  //   });
+  //   console.log('after handleSubmit', email, password);
+
+  // console.log('Login:', token);
+  // setToken(token);
+  // const login = true;
+  // setIsLogged(login);
+  // navigate('/organism/1/profil');
+  // };
 
   return (
     <div className="container">

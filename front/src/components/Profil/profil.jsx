@@ -13,7 +13,7 @@ function Profil() {
   // Request to API to get data for an Activity with an id in URL
   const fetchOrganism = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/v1/profile');
+      const response = await axios.get('http://localhost:3001/api/v1/organism/profile');
       // Update state with results
       setOrganism(response.data);
       // console.log(response.data);

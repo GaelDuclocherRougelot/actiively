@@ -14,6 +14,35 @@ POST {{ endpoint }}/activity/search
 content-type: application/json
 
 {
-    "keyword": "Judo%",
+    "keyword": "%",
     "zip_code": "75%"
 }
+
+### Register an organism ###
+POST {{ endpoint }}/organism/register
+Content-Type: application/json
+
+{
+        "email": "test19@test.com",
+        "name": "Organization test register",
+        "password": "Tests1234!",
+        "confirm_password" : "Tests1234!",
+        "description": "description of organization",
+        "contact_email": "test19@test.com",
+        "phone_number": "0724926658"
+}
+
+### Login an organization ###
+POST {{endpoint}}/organism/login
+Content-Type: application/json
+
+{
+    "email": "test19@test.com",
+    "password": "Tests1234!"
+}
+
+### Get profile of my organization ###
+GET {{endpoint}}/organism/profile
+
+### Get list of events of my organization ###
+GET {{endpoint}}/organism/activities

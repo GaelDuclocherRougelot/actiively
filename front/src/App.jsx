@@ -18,30 +18,33 @@ import useToken from './components/Hooks/useToken';
 
 import './styles/index.scss';
 
-// // Token stored in session
-// function setToken(userToken) {
-//   sessionStorage.setItem('token', JSON.stringify(userToken));
-// }
-
-// function getToken() {
-//   const tokenString = sessionStorage.getItem('token');
-//   const userToken = JSON.parse(tokenString);
-//   return userToken?.token;
-// }
-
 function App() {
   const [keyword, setkeyword] = useState('');
   const [results, setResults] = useState([]);
   // To enable redirection
   const navigate = useNavigate();
 
+  // // Token stored in session
+  // function setToken(userToken) {
+  //   localStorage.setItem('token', JSON.stringify(userToken));
+  // }
+
+  // function getToken() {
+  //   const tokenString = localStorage.getItem('token');
+  //   const userToken = JSON.parse(tokenString);
+  //   console.log('userToken de getToken :', userToken);
+  //   // return userToken?.token;
+  //   return userToken;
+  // }
+
   const { token, setToken } = useToken();
-  // const token = getToken();
+  console.log('App token:', token);
+  // const appToken = getToken();
+  // console.log('App token:', appToken);
   // const [token, setToken] = useState();
   // if (!token) {
   //   return <Login setToken={setToken} />;
   // }
-  // console.log('App:', token);
 
   const [isLogged, setIsLogged] = useState(false);
   console.log('App login status :', isLogged);
@@ -117,7 +120,7 @@ function App() {
           path="/login"
           element={(
             <Login
-              token={token}
+              // token={token}
               setToken={setToken}
               setIsLogged={setIsLogged}
             />
