@@ -36,7 +36,7 @@ function Header({
 }
 
 Header.propTypes = {
-  isLogged: PropTypes.func.isRequired,
+  isLogged: PropTypes.bool.isRequired,
 };
 
 export default React.memo(Header);

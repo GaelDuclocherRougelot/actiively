@@ -44,7 +44,7 @@ function App() {
   // console.log('App:', token);
 
   const [isLogged, setIsLogged] = useState(false);
-  console.log('App', isLogged);
+  console.log('App login status :', isLogged);
 
   // Search Feature
   const postData = () => {
@@ -125,13 +125,11 @@ function App() {
         />
         <Route
           path="/organism/:id/profil"
-          // element={(
-          //   <Profil
-          //     setLogged={setLogged}
-          //   />
-          // )}
+          element={(
+            <Profil />
+          )}
           // Restricted page
-          element={isLogged ? <Profil /> : <Navigate replace to="/login" />}
+          // element={isLogged ? <Profil /> : <Navigate replace to="/login" />}
         />
         <Route
           path="/organism/:id/profil/modif"
