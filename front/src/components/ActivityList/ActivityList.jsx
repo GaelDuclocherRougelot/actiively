@@ -21,6 +21,12 @@ function ActivityList({
   const [SamediCheked, setSamediCheked] = useState('')
   const [DimancheCheked, setDimancheCheked] = useState('')
   
+  const [checkFirstLevel, setCheckFirstLevel] = useState('');
+  const [checkSecondLevel, setCheckSecondtLevel] = useState('');
+  const [checkThirdLevel, setCeckThirdLevel] = useState('');
+  console.log("ici",checkFirstLevel)
+  console.log("ici",checkSecondLevel)
+  console.log("ici",checkThirdLevel)
 
 
   const handleLundiFilter = (checkLundi) => {setLundiCheked(checkLundi)};
@@ -30,14 +36,10 @@ function ActivityList({
   const handleVendrediFilter = (checkVendredi) => {setVendrediCheked(checkVendredi)}; 
   const handleSamediFilter = (checkSamedi) => {setSamediCheked(checkSamedi)}; 
   const handleDimancheFilter = (checkDimanche) => {setDimancheCheked(checkDimanche)}; 
- console.log(LundiCheked)
- console.log("je suis MArdi",MardiCheked)
- console.log(MercrediCheked)
- console.log(JeudiCheked)
- console.log(VendrediCheked)
- console.log(SamediCheked)
- console.log(DimancheCheked)
 
+  const handleFirstFilter = (checkFirstLevel) => {setCheckFirstLevel(checkFirstLevel)}; 
+  const handleSecondFilter = (heckSecondLeve) => {setCheckSecondtLevel(heckSecondLeve)}; 
+  const handleThirdFilter = (checkThirdLevel) => {setCeckThirdLevel(checkThirdLevel)}; 
   const arr = results;
   let Jours1 = LundiCheked
   let Jours2 = MardiCheked
@@ -49,12 +51,12 @@ function ActivityList({
   let Gendre1 = "" 
   let Gendre2 = "" 
   let Gendre3 = "" 
-  let Niveau1 = "" 
+  let Niveau1 = ""
   let Niveau2 = ""
-  let Niveau3 = ""  
+  let Niveau3 = ""
 
   let result = data(arr);
-  console.log(result)
+  console.log("verifier les données", result)
 
 
   function data (table) {
@@ -100,9 +102,9 @@ el.Gendre === Gendre3
 ))
 &&
 (levelfiltrenotactive ||(
-el.Niveau === Niveau1 ||
-el.Niveau === Niveau2 ||
-el.Niveau === Niveau3
+el.level === Niveau1 ||
+el.level === Niveau2 ||
+el.level === Niveau3
 ))
 return isvalid;
 }
@@ -123,6 +125,9 @@ console.log(rightData)
         Vendredi = {handleVendrediFilter}
         Samedi = {handleSamediFilter}
         Dimanche = {handleDimancheFilter}
+        firstLevel={handleFirstFilter}
+        secondFilter={handleSecondFilter}
+        thirdFilter={handleThirdFilter}
         />
         <PostsList
           results={result}

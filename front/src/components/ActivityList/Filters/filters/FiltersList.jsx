@@ -4,7 +4,7 @@ import LevelFilter from '../aloneFilter/LevelFilter';
 import GenderFilter from '../aloneFilter/GenderFilter';
 import './filtersStyles.scss';
 
-function FiltersList({ 
+function FiltersList({
   Lundi,
   Mardi,
   Mercredi,
@@ -12,16 +12,41 @@ function FiltersList({
   Vendredi,
   Samedi,
   Dimanche,
+  firstLevel,
+  secondFilter,
+  thirdFilter,
 }) {
-  const handleCheckLundi = (checkLundi) => { Lundi(checkLundi) }
-  const handleCheckMardi = (checkMardi) => {Mardi(checkMardi)}
-  const handleCheckMercredi = (checkMercredi) => {Mercredi(checkMercredi)}
-  const handleCheckJeudi = (checkJeudi) => {Jeudi(checkJeudi)}
-  const handleCheckVendredi = (checkVendredi) => {Vendredi(checkVendredi)}
-  const handleCheckSamedi = (checkSamedi) => {Samedi(checkSamedi)}
-  const handleCheckDimanche = (checkDimanche) => {Dimanche(checkDimanche)}
+  const handleCheckLundi = (checkLundi) => {
+    Lundi(checkLundi);
+  };
+  const handleCheckMardi = (checkMardi) => {
+    Mardi(checkMardi);
+  };
+  const handleCheckMercredi = (checkMercredi) => {
+    Mercredi(checkMercredi);
+  };
+  const handleCheckJeudi = (checkJeudi) => {
+    Jeudi(checkJeudi);
+  };
+  const handleCheckVendredi = (checkVendredi) => {
+    Vendredi(checkVendredi);
+  };
+  const handleCheckSamedi = (checkSamedi) => {
+    Samedi(checkSamedi);
+  };
+  const handleCheckDimanche = (checkDimanche) => {
+    Dimanche(checkDimanche);
+  };
 
-
+  const handleFirstFilter = (checkFirstLevel) => {
+    firstLevel(checkFirstLevel);
+  };
+  const handleSecondFilter = (checkSecondLevel) => {
+    secondFilter(checkSecondLevel);
+  };
+  const handleThirdFilter = (checkThirdLevel) => {
+    thirdFilter(checkThirdLevel);
+  };
 
   return (
     <div className="filters-container">
@@ -35,7 +60,12 @@ function FiltersList({
         Samedii={handleCheckSamedi}
         Dimanchei={handleCheckDimanche}
       />
-      <LevelFilter />
+      <LevelFilter
+        firstLevel={handleFirstFilter}
+        secondFilter={handleSecondFilter}
+        thirdFilter={handleThirdFilter}
+
+      />
       <GenderFilter />
     </div>
   );

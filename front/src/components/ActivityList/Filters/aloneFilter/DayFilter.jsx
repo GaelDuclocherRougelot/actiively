@@ -19,9 +19,8 @@ function DayFilter({
   const [checkVendredi, setCheckVendredi] = useState('');
   const [checkSamedi, setCheckSamedi] = useState('');
   const [checkDimanche, setCheckDimanche] = useState('');
-console.log('clique sur filtre page day filtre',checkLundi)
-console.log('clique sur filtre page day filtre',checkMardi)
-console.log('clique sur filtre page day filtre',checkMercredi)
+
+  
   Lundii(checkLundi);
   Mardii(checkMardi);
 
