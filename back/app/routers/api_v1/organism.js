@@ -3,6 +3,7 @@ const router = express.Router();
 
 const registerSchema = require('../../validations/schemas/organismSchema');
 const loginSchema = require('../../validations/schemas/loginSchema');
+const createActivitySchema = require('../../validations/schemas/activitySchema');
 const validator = require('../../validations/validator')
 
 const controllerHandler = require('../../helpers/controllerHandler');
@@ -26,5 +27,9 @@ router
 router
     .route('/activities')
     .get(validateToken,controllerHandler(controller.getOrganismActivities))
+
+router
+    .route('/create')
+    .post(validateToken,validator(createActivitySchema),controllerHandler(controller.postOneActivity))
 
 module.exports = router;

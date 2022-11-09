@@ -79,6 +79,16 @@ module.exports = {
             res.json({error: error.message});
             throw new customApiError(err.message, 400);
         }
+    },
+
+    async postOneActivity(req, res) {
+        try {
+            await organismDatamapper.createActivity(req.body, req.decodedToken.email);
+            res.json({message: `Activity ${req.body.name} created`});
+        } catch (err) {
+            res.json({error: err.message});
+            throw new customApiError(err.message, 400);
+        }
     }
             
 }
