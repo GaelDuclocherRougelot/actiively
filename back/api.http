@@ -23,10 +23,43 @@ POST {{ endpoint }}/organism/register
 Content-Type: application/json
 
 {
-        "email": "test8@test.com",
-        "name": "Organization test register",
+        "email": "hiphop.masters@gmail.com",
+        "name": "Hip-Hop Masters",
         "password": "Tests1234!",
-        "description": "description of organization",
-        "contact_email": "test6@test.com",
-        "phone_number": "0702030405"
+        "confirm_password": "Tests1234!",
+        "description": "Le meilleur du hip hop sur Nantes",
+        "contact_email": "hiphop.masters@gmail.com",
+        "phone_number": "0725626678"
+}
+
+### Login an organization ###
+POST {{endpoint}}/organism/login
+Content-Type: application/json
+
+{
+    "email": "hiphop.masters@gmail.com",
+    "password": "Tests1234!"
+}
+
+### Get profile of my organization ###
+GET {{endpoint}}/organism/profile
+
+### Get list of events of my organization ###
+GET {{endpoint}}/organism/activities
+
+### Create a new activity for my organization ###
+POST {{endpoint}}/organism/create
+Content-Type: application/json
+
+{
+    "name": "HipHop Dance",
+    "description": "Sit amet consectetur adipisicing elit. Quisquam explicabo obcaecati omnis nam odio repellendus consequuntur tempore voluptatibus, magni nisi dicta dolorem, maxime nesciunt.",
+    "address": "4 avenue du port",
+    "zip_code": "44000",
+    "city": "Nantes",
+    "price": "150",
+    "price_type": "par an",
+    "gender": "Mixte",
+    "level": "Tous niveaux",
+    "image_url": "https://images.unsplash.com/photo-1548123378-bde4eca81d2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
 }

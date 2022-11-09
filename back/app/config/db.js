@@ -15,7 +15,7 @@ const debug = require('debug')('SQL:log');
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    host: 'localhost', // or 'localhost'
+    host: 'gaelduclocherrougelot-server.eddi.cloud', // or 'localhost'
     user: 'actiively', // db user
     max: 20,
     idleTimeoutMillis: 30000,
