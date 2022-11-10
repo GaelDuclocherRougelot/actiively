@@ -133,7 +133,6 @@ function ActivityList({
   }
 
   const result = data(arr);
-  
 
   return (
     <div>

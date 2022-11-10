@@ -7,11 +7,9 @@ function GenderFilter({
   SecondGenderSelect,
   ThirdGenderSelect,
 }) {
-
   const [selectFirstGender, setSelectFirstGender] = useState('');
   const [selectSecondGender, setSelectSecondtGender] = useState('');
   const [selectThirdGender, setSelectThirdGender] = useState('');
-
 
   FirstGenderSelect(selectFirstGender);
   SecondGenderSelect(selectSecondGender);
