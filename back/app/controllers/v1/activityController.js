@@ -76,6 +76,18 @@ module.exports = {
             res.json({"error": err.message});
             throw new customApiError(err.message, 400);
         }
+    },
+
+    async updateOneActivity(req, res) {
+        const updateBody = req.body
+        const activityId = req.params.id
+        try {
+            await activityDatamapper.updateActivity(updateBody, req.decodedToken.email, activityId);
+                res.json({message: `Activity with id ${activityId} updated`});
+        } catch (err) {
+            res.json({error: err.message});
+            throw new customApiError(err.message, 400);
+        }
     }
 
 }

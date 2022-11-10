@@ -36,4 +36,8 @@ router
     .route('/activity/:id/delete')
     .get(validateToken,controllerHandler(activitiesController.deleteOneActivity))
 
+router
+    .route('/activity/:id/edit')
+    .patch(validateToken,controllerHandler(activitiesController.updateOneActivity))
+
 module.exports = router;

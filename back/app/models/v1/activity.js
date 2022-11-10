@@ -109,4 +109,36 @@ module.exports = {
     
             return activityQuery.rows[0];
         },
+
+        async updateActivity(activity, pk_organism, code_activity) {
+            
+            await client.query(`
+                UPDATE activity
+                    SET name= COALESCE(NULLIF($1,''), name),
+                        description= COALESCE(NULLIF($2, ''), description),
+                        address= COALESCE(NULLIF($3,''), address),
+                        zip_code= COALESCE(NULLIF($4,''), zip_code),
+                        city= COALESCE(NULLIF($5,''), city),
+                        price= COALESCE(NULLIF($6,''), price),
+                        price_type= COALESCE(NULLIF($7,''), price_type),
+                        gender= COALESCE(NULLIF($8,''), gender),
+                        level= COALESCE(NULLIF($9,''), level),
+                        image_url= COALESCE(NULLIF($10,''), image_url)
+                    WHERE pk_organism = $11
+                    AND code_activity = $12
+            `,[
+                activity.name,
+                activity.description, 
+                activity.address, 
+                activity.zip_code,
+                activity.city,
+                activity.price,
+                activity.price_type,
+                activity.gender,
+                activity.level,
+                activity.image_url,
+                pk_organism,
+                code_activity
+            ]);
+        }
 }
