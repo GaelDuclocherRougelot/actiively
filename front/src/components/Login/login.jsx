@@ -42,11 +42,11 @@ function Login({
       console.log('response:', response.data);
       const { token } = response.data;
       console.log('token login :', token);
+      console.log('res.data.token :', response.data.token);
       setToken(token);
       const login = true;
       setIsLogged(login);
-      // navigate('/organism/1/profil');
-      navigate('/');
+      navigate('/organism/profile');
     }
     catch (err) {
       if (!err?.response) {

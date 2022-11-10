@@ -18,6 +18,18 @@ import useToken from './components/Hooks/useToken';
 
 import './styles/index.scss';
 
+// function setToken(userToken) {
+//   localStorage.setItem('token', JSON.stringify(userToken));
+// }
+
+// function getToken() {
+//   const tokenString = localStorage.getItem('token');
+//   const userToken = JSON.parse(tokenString);
+//   console.log('userToken de getToken :', userToken);
+//   // return userToken?.token;
+//   return userToken;
+// }
+
 function App() {
   const [keyword, setkeyword] = useState('');
   const [results, setResults] = useState([]);
@@ -45,6 +57,9 @@ function App() {
   // if (!token) {
   //   return <Login setToken={setToken} />;
   // }
+
+  // const storedJwt = localStorage.getItem('token');
+  // const [token, setToken] = useState(storedJwt || null);
 
   const [isLogged, setIsLogged] = useState(false);
   console.log('App login status :', isLogged);
@@ -127,9 +142,11 @@ function App() {
           )}
         />
         <Route
-          path="/organism/:id/profil"
+          path="/organism/profile"
           element={(
-            <Profil />
+            <Profil
+              token={token}
+            />
           )}
           // Restricted page
           // element={isLogged ? <Profil /> : <Navigate replace to="/login" />}

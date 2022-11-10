@@ -37,7 +37,7 @@ POST {{endpoint}}/organism/login
 Content-Type: application/json
 
 {
-    "email": "test19@test.com",
+    "email": "basket.club@gmail.com",
     "password": "Tests1234!"
 }
 

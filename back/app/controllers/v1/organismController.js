@@ -33,7 +33,7 @@ module.exports = {
 
     async login(req, res) {
         const { email, password } = req.body;
-        console.log("req.body:", req.body);
+        // console.log("req.body:", req.body);
 
         try {
             console.log("request received");
@@ -49,7 +49,7 @@ module.exports = {
                         maxAge: 300000,
                         httpOnly: true
                     });
-                    console.log('token :', accessToken);
+                    // console.log('token :', accessToken);
                     
                     // res.json({"message": "LOGGED IN"})
                     res.send({
@@ -70,6 +70,7 @@ module.exports = {
     },
 
     async profile(req, res) {
+        console.log('access decodedToken:', req.decodedToken.email);
         const organism = await organismDatamapper.findOneOrganism(req.decodedToken.email);
 
         res.json({message: 'PROFILE', connected: req.authenticated, user: organism});

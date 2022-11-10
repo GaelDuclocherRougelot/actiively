@@ -1,22 +1,32 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 import { Button, Icon } from 'semantic-ui-react';
 import Sport from '../../images/Sport3.svg';
 import './profil.scss';
 
-function Profil() {
+function Profil({
+  token,
+}) {
   const [organism, setOrganism] = useState({});
+  console.log('Profil token :', token);
 
   // Request to API to get data for an Activity with an id in URL
   const fetchOrganism = async () => {
+    console.log('fetchOrganism on Profile Front');
     try {
-      const response = await axios.get('http://localhost:3001/api/v1/organism/profile');
+      const response = await axios.get('http://localhost:3001/api/v1/organism/profile', {
+        headers: {
+          authorization: token,
+        },
+        withCredentials: true,
+      });
       // Update state with results
-      setOrganism(response.data);
-      // console.log(response.data);
+      setOrganism(response.data.user);
+      console.log('response de profil en front:', response.data.user);
     }
     catch (error) {
       console.log(error);
@@ -58,34 +68,38 @@ function Profil() {
         <div className="organism-infos-body">
           <div className="organism-field">
             <h2>Nom</h2>
-            <p>Les Raquettes</p>
-            {/* <p>{organism_name}</p> */}
+            {/* <p>Les Raquettes</p> */}
+            <p>{organism.name}</p>
           </div>
           <div className="organism-field">
             <h2>Email de connexion</h2>
-            <p>monique.pro@gmail.com</p>
-            {/* <p>{organism_email}</p> */}
+            {/* <p>monique.pro@gmail.com</p> */}
+            <p>{organism.email}</p>
           </div>
           <div className="organism-field">
             <h2>Numero de téléphone</h2>
-            <p>0689820214</p>
-            {/* <p>{organism_phone_number}</p> */}
+            {/* <p>0689820214</p> */}
+            <p>{organism.phone_number}</p>
           </div>
           <div className="organism-field">
             <h2>Email de contact</h2>
-            <p>raquettes@gmail.com</p>
-            {/* <p>{organism_contact_email}</p> */}
+            {/* <p>raquettes@gmail.com</p> */}
+            <p>{organism.contact_email}</p>
           </div>
           <div className="organism-field">
             <h2>Description </h2>
             {/* eslint-disable-next-line max-len */}
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum a doloremque reiciendis libero fugit officia blanditiis accusamus sed iste itaque laudantium, necessitatibus exercitationem quaerat, quos fugiat. Voluptatum libero fugiat maxime? </p>
-            {/* <p>{organism_description}</p> */}
+            {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum a doloremque reiciendis libero fugit officia blanditiis accusamus sed iste itaque laudantium, necessitatibus exercitationem quaerat, quos fugiat. Voluptatum libero fugiat maxime? </p> */}
+            <p>{organism.description}</p>
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+Profil.propTypes = {
+  token: PropTypes.string.isRequired,
+};
 
 export default React.memo(Profil);
