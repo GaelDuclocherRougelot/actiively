@@ -41,7 +41,7 @@ module.exports = {
 
         /**
      * Get one activity by name
-     * @param {integer} id
+     * @param {string} name
      */
          async findByName(name){
             const result = await client.query(`
