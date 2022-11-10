@@ -41,3 +41,15 @@
 .organism-field h2 {
     font-weight: bold;
 }
+
+
+@media screen and (max-width: 800px) {
+    .organism-page-container {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .organism-section {
+        width: 75%;
+    }
+}

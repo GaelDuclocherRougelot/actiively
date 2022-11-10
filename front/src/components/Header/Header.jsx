@@ -14,8 +14,10 @@ function Header({
 }) {
   const navigate = useNavigate();
 
+  // Logout Feature
   const handleLogout = () => {
     setToken(null);
+    localStorage.clear(); // Remove token from localStorage in browser
     setIsLogged(false);
     navigate('/');
   };
@@ -37,11 +39,11 @@ function Header({
         </Link>
         )}
 
-        {/* If logged, show profile and logout button */}
+        {/* If logged, show profile and logout buttons */}
         {isLogged && (
         <Link to="/organism/profile" className="appheader-profile">
           <button type="button" className="appheader-button">Mon profil</button>
-          <FontAwesomeIcon icon={faArrowRightFromBracket} size="2x" className="appheader-button-mobile" />
+          <FontAwesomeIcon icon={faUser} size="2x" className="appheader-button-mobile" />
         </Link>
         )}
         {isLogged && (

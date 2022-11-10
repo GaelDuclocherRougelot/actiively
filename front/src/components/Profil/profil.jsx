@@ -20,11 +20,9 @@ function Profil({
         headers: {
           authorization: token,
         },
-        // withCredentials: true,
       });
-      // Update state with results
+      // Give data to state
       setOrganism(response.data.user);
-      console.log('response de profil en front:', response.data.user);
     }
     catch (error) {
       console.log(error);
@@ -69,15 +67,15 @@ function Profil({
             <p>{organism.name}</p>
           </div>
           <div className="organism-field">
-            <h2>Email de connexion</h2>
+            <h2>E-mail de connexion</h2>
             <p>{organism.email}</p>
           </div>
           <div className="organism-field">
-            <h2>Numero de téléphone</h2>
+            <h2>Numéro de téléphone</h2>
             <p>{organism.phone_number}</p>
           </div>
           <div className="organism-field">
-            <h2>Email de contact</h2>
+            <h2>E-mail de contact</h2>
             <p>{organism.contact_email}</p>
           </div>
           <div className="organism-field">

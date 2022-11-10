@@ -27,10 +27,7 @@ function App() {
   // Login Feature
   // Hook created to manage token
   const { token, setToken } = useToken();
-  console.log('App token:', token);
-
   const [isLogged, setIsLogged] = useState(false);
-  console.log('App login status :', isLogged);
 
   // Search Feature
   const postData = () => {
