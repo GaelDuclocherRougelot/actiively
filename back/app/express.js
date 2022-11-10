@@ -12,13 +12,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
 // removing cors for easy access
-// app.use(cors(process.env.CODE_LENGTH ?? '*'));
-let corsOptions = {
-    origin: 'http://localhost:3000',
-    credentials: true,
-  }
+app.use(cors(process.env.CODE_LENGTH ?? '*'));
+// let corsOptions = {
+//     origin: 'http://localhost:3000',
+//     credentials: true,
+//   }
   
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(router);
 

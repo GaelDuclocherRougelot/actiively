@@ -33,7 +33,6 @@ module.exports = {
 
     async login(req, res) {
         const { email, password } = req.body;
-        // console.log("req.body:", req.body);
 
         try {
             console.log("request received");

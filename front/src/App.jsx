@@ -18,48 +18,16 @@ import useToken from './components/Hooks/useToken';
 
 import './styles/index.scss';
 
-// function setToken(userToken) {
-//   localStorage.setItem('token', JSON.stringify(userToken));
-// }
-
-// function getToken() {
-//   const tokenString = localStorage.getItem('token');
-//   const userToken = JSON.parse(tokenString);
-//   console.log('userToken de getToken :', userToken);
-//   // return userToken?.token;
-//   return userToken;
-// }
-
 function App() {
   const [keyword, setkeyword] = useState('');
   const [results, setResults] = useState([]);
   // To enable redirection
   const navigate = useNavigate();
 
-  // // Token stored in session
-  // function setToken(userToken) {
-  //   localStorage.setItem('token', JSON.stringify(userToken));
-  // }
-
-  // function getToken() {
-  //   const tokenString = localStorage.getItem('token');
-  //   const userToken = JSON.parse(tokenString);
-  //   console.log('userToken de getToken :', userToken);
-  //   // return userToken?.token;
-  //   return userToken;
-  // }
-
+  // Login Feature
+  // Hook created to manage token
   const { token, setToken } = useToken();
   console.log('App token:', token);
-  // const appToken = getToken();
-  // console.log('App token:', appToken);
-  // const [token, setToken] = useState();
-  // if (!token) {
-  //   return <Login setToken={setToken} />;
-  // }
-
-  // const storedJwt = localStorage.getItem('token');
-  // const [token, setToken] = useState(storedJwt || null);
 
   const [isLogged, setIsLogged] = useState(false);
   console.log('App login status :', isLogged);
@@ -135,7 +103,6 @@ function App() {
           path="/login"
           element={(
             <Login
-              // token={token}
               setToken={setToken}
               setIsLogged={setIsLogged}
             />
@@ -143,13 +110,8 @@ function App() {
         />
         <Route
           path="/organism/profile"
-          element={(
-            <Profil
-              token={token}
-            />
-          )}
           // Restricted page
-          // element={isLogged ? <Profil /> : <Navigate replace to="/login" />}
+          element={isLogged ? <Profil token={token} /> : <Navigate replace to="/login" />}
         />
         <Route
           path="/organism/:id/profil/modif"

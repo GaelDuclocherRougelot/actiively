@@ -16,21 +16,31 @@ function Header({
         <FontAwesomeIcon className="appheader-icon" icon={faLightbulb} size="3x" />
       </Link>
       <h1 className="appheader-title">Actiively</h1>
+
       {/* Login button will become an icon on mobile */}
-      {/* If not logged, show login button */}
-      {!isLogged && (
-      <Link to="/login">
-        <button type="button" className="appheader-button">Connexion</button>
-        <FontAwesomeIcon icon={faUser} size="2x" className="appheader-button-mobile" />
-      </Link>
-      )}
-      {/* If logged, show logout button */}
-      {isLogged && (
+      <div className="appheader-buttons">
+        {/* If not logged, show login button */}
+        {!isLogged && (
+        <Link to="/login">
+          <button type="button" className="appheader-button">Connexion</button>
+          <FontAwesomeIcon icon={faUser} size="2x" className="appheader-button-mobile" />
+        </Link>
+        )}
+
+        {/* If logged, show profile and logout button */}
+        {isLogged && (
+        <Link to="/organism/profile" className="appheader-profile">
+          <button type="button" className="appheader-button">Mon profil</button>
+          <FontAwesomeIcon icon={faArrowRightFromBracket} size="2x" className="appheader-button-mobile" />
+        </Link>
+        )}
+        {isLogged && (
         <div className="appheader-logout">
           <button type="button" className="appheader-button">Déconnexion</button>
           <FontAwesomeIcon icon={faArrowRightFromBracket} size="2x" className="appheader-button-mobile" />
         </div>
-      )}
+        )}
+      </div>
     </header>
   );
 }

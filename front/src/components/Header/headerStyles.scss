@@ -23,6 +23,10 @@
         font-weight: bold;
     }
 
+    &-buttons {
+        display: flex;
+    }
+
     &-button {
         background-color: vars.$secondary-color;
         color: vars.$primary-color;
@@ -30,6 +34,7 @@
         padding: 0.5em 0.7em;
         border-radius: 10px;
         border: transparent;
+        margin-left: 1rem;
 
         &:hover {
             background-color: darken(vars.$secondary-color, 10%);

@@ -12,17 +12,15 @@ function Profil({
   token,
 }) {
   const [organism, setOrganism] = useState({});
-  console.log('Profil token :', token);
 
-  // Request to API to get data for an Activity with an id in URL
+  // Request to API to get profile data of an organism depending on token
   const fetchOrganism = async () => {
-    console.log('fetchOrganism on Profile Front');
     try {
       const response = await axios.get('http://localhost:3001/api/v1/organism/profile', {
         headers: {
           authorization: token,
         },
-        withCredentials: true,
+        // withCredentials: true,
       });
       // Update state with results
       setOrganism(response.data.user);
@@ -68,28 +66,22 @@ function Profil({
         <div className="organism-infos-body">
           <div className="organism-field">
             <h2>Nom</h2>
-            {/* <p>Les Raquettes</p> */}
             <p>{organism.name}</p>
           </div>
           <div className="organism-field">
             <h2>Email de connexion</h2>
-            {/* <p>monique.pro@gmail.com</p> */}
             <p>{organism.email}</p>
           </div>
           <div className="organism-field">
             <h2>Numero de téléphone</h2>
-            {/* <p>0689820214</p> */}
             <p>{organism.phone_number}</p>
           </div>
           <div className="organism-field">
             <h2>Email de contact</h2>
-            {/* <p>raquettes@gmail.com</p> */}
             <p>{organism.contact_email}</p>
           </div>
           <div className="organism-field">
             <h2>Description </h2>
-            {/* eslint-disable-next-line max-len */}
-            {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum a doloremque reiciendis libero fugit officia blanditiis accusamus sed iste itaque laudantium, necessitatibus exercitationem quaerat, quos fugiat. Voluptatum libero fugiat maxime? </p> */}
             <p>{organism.description}</p>
           </div>
         </div>
