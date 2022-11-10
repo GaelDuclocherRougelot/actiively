@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -65,7 +66,7 @@ function App() {
             <Home
               handle={handleClick}
             />
-        )}
+          )}
         />
         <Route
           path="/activity"
