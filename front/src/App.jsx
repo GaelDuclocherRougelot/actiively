@@ -1,5 +1,8 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 import Home from './components/Home/home';
 import Activity from './components/Activity/Activity';
 import Header from './components/Header/Header';
@@ -11,19 +14,59 @@ import ActivityList from './components/ActivityList/ActivityList';
 import Profil from './components/Profil/profil';
 import ModifProfil from './components/ModifProfil/modifProfil';
 
-import data from './data/data';
-import results from './data/results';
-
 import './styles/index.scss';
 
 function App() {
+  const [keyword, setkeyword] = useState('');
+  const [results, setResults] = useState([]);
+  // To enable redirection
+  const navigate = useNavigate();
+
+  const postData = () => {
+    if (!keyword.keyword || !keyword.zip_code) {
+      return;
+    }
+
+    axios.post('http://localhost:3001/api/v1/activity/search', {
+      keyword: keyword.keyword,
+      zip_code: keyword.zip_code,
+    })
+      .then((res) => {
+        setResults(res.data);
+        // console.log('results: ', res.data);
+      });
+  };
+
+  useEffect(
+    () => {
+      postData();
+    },
+    [keyword],
+  );
+
+  const handleClick = (e, activity) => {
+    e.preventDefault();
+    const act = `${activity.keyword}%`;
+    const key = `${activity.zip_code}%`;
+    setkeyword({
+      keyword: act,
+      zip_code: key,
+    });
+    // Redirection to results page on click on Submit
+    navigate('/activity');
+  };
+
   return (
     <div className="App">
       <Header />
       <Routes>
         <Route
           path="/"
-          element={<Home />}
+          element={(
+            <Home
+              handle={handleClick}
+            />
+          )}
         />
         <Route
           path="/activity"
@@ -36,9 +79,7 @@ function App() {
         <Route
           path="/activity/:id"
           element={(
-            <Activity
-              data={data}
-            />
+            <Activity />
           )}
         />
         <Route
