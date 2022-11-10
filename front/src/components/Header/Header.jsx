@@ -4,12 +4,22 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './headerStyles.scss';
 
 function Header({
   isLogged,
+  setIsLogged,
+  setToken,
 }) {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setToken(null);
+    setIsLogged(false);
+    navigate('/');
+  };
+
   return (
     <header className="appheader">
       <Link to="/">
@@ -36,7 +46,7 @@ function Header({
         )}
         {isLogged && (
         <div className="appheader-logout">
-          <button type="button" className="appheader-button">Déconnexion</button>
+          <button type="button" className="appheader-button" onClick={handleLogout}>Déconnexion</button>
           <FontAwesomeIcon icon={faArrowRightFromBracket} size="2x" className="appheader-button-mobile" />
         </div>
         )}
@@ -47,6 +57,8 @@ function Header({
 
 Header.propTypes = {
   isLogged: PropTypes.bool.isRequired,
+  setIsLogged: PropTypes.func.isRequired,
+  setToken: PropTypes.func.isRequired,
 };
 
 export default React.memo(Header);

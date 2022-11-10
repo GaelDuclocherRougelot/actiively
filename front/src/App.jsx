@@ -71,6 +71,8 @@ function App() {
     <div className="App">
       <Header
         isLogged={isLogged}
+        setIsLogged={setIsLogged}
+        setToken={setToken}
       />
       <Routes>
         <Route
