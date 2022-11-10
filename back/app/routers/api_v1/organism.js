@@ -8,7 +8,7 @@ const validator = require('../../validations/validator')
 
 const controllerHandler = require('../../helpers/controllerHandler');
 const controller = require('../../controllers/v1/organismController');
-
+const activitiesController = require('../../controllers/v1/activityController');
 const {validateToken} = require('../../middlewares/JWT');
 
 
@@ -26,10 +26,14 @@ router
 
 router
     .route('/activities')
-    .get(validateToken,controllerHandler(controller.getOrganismActivities))
+    .get(validateToken,controllerHandler(activitiesController.getOrganismActivities))
 
 router
     .route('/create')
-    .post(validateToken,validator(createActivitySchema),controllerHandler(controller.postOneActivity))
+    .post(validateToken,validator(createActivitySchema),controllerHandler(activitiesController.postOneActivity))
+
+router
+    .route('/activity/:id/delete')
+    .get(validateToken,controllerHandler(activitiesController.deleteOneActivity))
 
 module.exports = router;

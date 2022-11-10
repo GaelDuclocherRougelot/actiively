@@ -21,5 +21,12 @@ module.exports = {
         ]);
 
         return dayQuery.rows[0];
+    },
+
+    async deleteDay(pk_activity) {
+        await client.query(`
+            DELETE FROM "day"
+            WHERE "pk_activity" = $1
+        `, [pk_activity])
     }
 }
