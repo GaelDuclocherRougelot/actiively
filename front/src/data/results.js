@@ -5,6 +5,7 @@ export default [{
   zip_code: '75016',
   city: 'Paris',
   day: 'Mardi',
+  level:"jij"
   price: 15,
   price_type: 'La séance',
 },
@@ -15,6 +16,7 @@ export default [{
   zip_code: '75016',
   city: 'Paris',
   day: 'Jeudi',
+  level:"jij"
   price: 30,
   price_type: 'La séance',
 },
@@ -25,6 +27,7 @@ export default [{
   zip_code: '75012',
   city: 'Paris',
   day: 'Lundi',
+  level:"jij"
   price: 400,
   price_type: 'par an',
 },

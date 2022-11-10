@@ -1,4 +1,7 @@
 const organismDatamapper =  require('../../models/v1/organism');
+const activityDatamapper =  require('../../models/v1/activity');
+const dayDatamapper = require('../../models/v1/day');
+
 const customApiError = require('../../errors/apiErrors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -31,9 +34,9 @@ module.exports = {
 
     async login(req, res) {
         const { email, password } = req.body;
+        
 
         try {
-            console.log("request received");
             const organism = await organismDatamapper.findOneOrganism(email);
             const dbPassword = organism.password;
 
@@ -61,7 +64,6 @@ module.exports = {
     },
 
     async profile(req, res) {
-        console.log('access decodedToken:', req.decodedToken.email);
         const organism = await organismDatamapper.findOneOrganism(req.decodedToken.email);
 
         res.json({message: 'PROFILE', connected: req.authenticated, user: organism});
@@ -73,6 +75,26 @@ module.exports = {
             res.json(activities);
         } catch (error) {
             res.json({error: error.message});
+            throw new customApiError(err.message, 400);
+        }
+    },
+
+    async postOneActivity(req, res) {
+        try {
+            const activityExist = await activityDatamapper.findByName(req.body.name);
+            if(activityExist) {
+                res.json({error: `Activity ${activityExist.name} already exists`});
+                throw new Error(`Activity ${activityExist.name} already exists`);
+            }else {
+                await organismDatamapper.createActivity(req.body, req.decodedToken.email);
+                const currActivity = await activityDatamapper.findByName(req.body.name);
+
+                await dayDatamapper.createDay(req.body.day, currActivity.code_activity);
+                res.json({message: `Activity ${req.body.name} created`});
+            }
+            
+        } catch (err) {
+            res.json({error: err.message});
             throw new customApiError(err.message, 400);
         }
     }

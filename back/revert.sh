@@ -1,6 +1,4 @@
-psql -U actiively -d actiively -f ./revert/init_db.sql
-psql -U actiively -d actiively -f ./revert/references.sql
-psql -U actiively -d actiively -f ./revert/index.sql
-psql -U actiively -d actiively -f ./revert/domain.sql
-
-node ../../import_data.js
+psql -U actiively -d actiively -f ./init_db.sql
+psql -U actiively -d actiively -f ./references.sql
+psql -U actiively -d actiively -f ./index.sql
+psql -U actiively -d actiively -f ./domain.sql

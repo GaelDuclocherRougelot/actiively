@@ -28,14 +28,30 @@ module.exports = {
      * }
      * @returns lists of activities filtered by keyword and zip code
      */
-    async findByKeyword(q){
+     async findByKeyword(q){
         const result = await client.query(`
-            SELECT a.code_activity, a.name as activity_name, o.name as organism_name, a.zip_code, a.city, d.name as day, a.price, a.price_type, a.image_url from "activity" a
+            SELECT a.code_activity, a.name as activity_name, o.name as organism_name, a.zip_code, a.city, d.name as day, a.price, a.price_type, a.gender, a.level, a.image_url from "activity" a
             JOIN day d ON pk_activity = code_activity
             JOIN organism o ON pk_organism = o.email
             WHERE a.name SIMILAR TO ($1)
             AND a.zip_code SIMILAR TO ($2)
         `, [q.keyword, q.zip_code]);
         return result.rows
-    }
+    },
+
+        /**
+     * Get one activity by name
+     * @param {integer} id
+     */
+         async findByName(name){
+            const result = await client.query(`
+                SELECT 
+                    a.name, a.code_activity
+                FROM activity a
+                WHERE a.name = ($1)
+                LIMIT 1
+            `, [name]);
+    
+            return result.rows[0]
+        },
 }

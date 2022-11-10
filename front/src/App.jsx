@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import {
   Routes, Route, useNavigate, Navigate,
@@ -31,7 +32,7 @@ function App() {
 
   // Search Feature
   const postData = () => {
-    if (!keyword.keyword && !keyword.zip_code) {
+    if (!keyword.keyword || !keyword.zip_code) {
       return;
     }
 
@@ -78,7 +79,7 @@ function App() {
             <Home
               handle={handleClick}
             />
-        )}
+          )}
         />
         <Route
           path="/activity"
