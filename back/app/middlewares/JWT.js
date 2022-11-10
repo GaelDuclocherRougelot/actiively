@@ -9,7 +9,9 @@ const createTokens = (organism) => {
 }
 
 const validateToken = (req, res, next) => {
-    const accessToken = req.cookies.access_token
+    console.log('req.headers de validate :', req.headers.authorization)
+    const accessToken = req.headers.authorization
+
     if(!accessToken){
         return res.status(400).json({error: "User not Authenticated."});
     }

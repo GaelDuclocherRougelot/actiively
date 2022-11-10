@@ -23,13 +23,18 @@
         font-weight: bold;
     }
 
-    &-login {
+    &-buttons {
+        display: flex;
+    }
+
+    &-button {
         background-color: vars.$secondary-color;
         color: vars.$primary-color;
         font-weight: bold;
         padding: 0.5em 0.7em;
         border-radius: 10px;
         border: transparent;
+        margin-left: 1rem;
 
         &:hover {
             background-color: darken(vars.$secondary-color, 10%);
@@ -39,13 +44,30 @@
 
 // Login button will become an icon on mobile
 @media screen and (max-width: 500px) {
-    .appheader-login {
+    .appheader {
+        background-color: #00b5ad;
+        color: #fff;
+        padding: 1.3em 1em;
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+    }
+    
+    .appheader-button {
         display: none;
+    }
+
+    .appheader-profile {
+        margin-right: 1rem;
     }
 }
 
 @media screen and (min-width: 501px) {
-    .appheader-login-mobile {
+    .appheader-button-mobile {
         display: none;
     }
 }
