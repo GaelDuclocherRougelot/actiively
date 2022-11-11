@@ -15,6 +15,8 @@ import NotFound from './components/NotFound/NotFound';
 import ActivityList from './components/ActivityList/ActivityList';
 import Profil from './components/Profil/profil';
 import ModifProfil from './components/ModifProfil/modifProfil';
+import CreateActivity from './components/CreateActivity/createActivity';
+
 import useToken from './components/Hooks/useToken';
 
 import './styles/index.scss';
@@ -116,6 +118,10 @@ function App() {
         <Route
           path="/organism/:id/profil/modif"
           element={<ModifProfil />}
+        />
+        <Route
+          path="/organism/:id/create"
+          element={<CreateActivity />}
         />
         <Route
           path="*"
