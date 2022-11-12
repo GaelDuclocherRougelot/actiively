@@ -8,8 +8,6 @@ const bcrypt = require('bcrypt');
 const {createTokens} = require('../../middlewares/JWT');
 const cookieParser = require('cookie-parser');
 
-
-
 module.exports = {
     async register(req, res) {
         const { email, name, password, description, contact_email, phone_number } = req.body;
@@ -47,14 +45,11 @@ module.exports = {
                 if(match){
 
                     const accessToken = createTokens(organism);
-                    res.cookie("access_token", accessToken, {
-                        maxAge: 300000,
-                        httpOnly: true
-                    });
                     
-                    
-                    res.json({"message": "LOGGED IN"})
-                    
+                    res.send({
+                        authenticated: true,
+                        token: accessToken,
+                        message: "Authentication Successful."})                    
 
                 }else {
                     throw new Error('Wrong password and email combination!')

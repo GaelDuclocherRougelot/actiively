@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Post from '../Post/Post';
 import './postsListStyles.css';
 
@@ -18,6 +17,7 @@ function Posts({
         <div className="results-container">
           {results.map((post) => (
             <Post
+              key={post.code_activity}
               code_activity={post.code_activity}
               organismName={post.organism_name}
               name={post.activity_name}
@@ -38,13 +38,13 @@ function Posts({
 
 Posts.propTypes = {
   results: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
+    activity_name: PropTypes.string.isRequired,
     image_url: PropTypes.string.isRequired,
     zip_code: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     price_type: PropTypes.string.isRequired,
-    organismName: PropTypes.string.isRequired,
+    organism_name: PropTypes.string.isRequired,
     day: PropTypes.string.isRequired,
   }).isRequired).isRequired,
 };

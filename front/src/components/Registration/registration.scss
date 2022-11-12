@@ -23,7 +23,16 @@
         align-content: center; 
     }
 }
+.errors {
+    color: #bf1650;
+  }
 
-.icon {
-    padding-left: 1em;
-}
+.errors::before {
+    display: inline;
+    content: "⚠ ";
+  }
+
+
+
+
+  // requete axios 
