@@ -10,6 +10,11 @@ module.exports = {
         return res.json(activity);
     },
 
+    async getOneOrganismActivty(req, res){
+            const activity = await activityDatamapper.findActivityByOrganism(req.params.id, req.decodedToken.email);
+            return res.json(activity);
+    },
+
     async getAllByKeyword(req, res){
         const activities = await activityDatamapper.findByKeyword(req.body);
         return res.json(activities);
@@ -67,7 +72,7 @@ module.exports = {
     async deleteOneActivity(req, res){
         const currActivity = req.params.id;
         const activityToDelete = await activityDatamapper.findByPk(currActivity);
-        
+
         try {
             if(activityToDelete){
                 await dayDatamapper.deleteDay(currActivity, req.decodedToken.email);

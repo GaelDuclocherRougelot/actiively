@@ -41,6 +41,9 @@ Content-Type: application/json
     "password": "Tests1234!"
 }
 
+### Logout an organization ###
+GET {{endpoint}}/organism/logout
+
 ### Get profile of my organization ###
 GET {{endpoint}}/organism/profile
 
@@ -48,7 +51,7 @@ GET {{endpoint}}/organism/profile
 GET {{endpoint}}/organism/activities
 
 ### Get one activity of my organization ###
-GET {{endpoint}}/organism/activity/18
+GET {{endpoint}}/organism/activity/21
 
 ### Delete one activity of my organization ###
 GET {{endpoint}}/organism/activity/22/delete

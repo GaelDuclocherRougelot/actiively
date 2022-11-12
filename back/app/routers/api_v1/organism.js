@@ -21,16 +21,24 @@ router
     .post(validator(loginSchema),controllerHandler(controller.login))
 
 router
+    .route('/logout')
+    .get(validateToken,controllerHandler(controller.logout))
+
+router
     .route('/profile')
     .get(validateToken,controllerHandler(controller.profile))
 
 router
-    .route('/activities')
-    .get(validateToken,controllerHandler(activitiesController.getOrganismActivities))
-
-router
     .route('/create')
     .post(validateToken,validator(createActivitySchema),controllerHandler(activitiesController.postOneActivity))
+
+router
+    .route('/activities')
+    .get(validateToken,controllerHandler(activitiesController.getOrganismActivities))
+  
+router
+    .route('/activity/:id')
+    .get(validateToken,controllerHandler(activitiesController.getOneOrganismActivty))
 
 router
     .route('/activity/:id/delete')

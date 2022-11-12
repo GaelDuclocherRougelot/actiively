@@ -72,6 +72,16 @@ module.exports = {
         const organism = await organismDatamapper.findOneOrganism(req.decodedToken.email);
 
         res.json({message: 'PROFILE', connected: req.authenticated, user: organism});
+    },
+
+    async logout(req, res) {
+        try {
+            //TODO : logout with req.headers.authorization
+            res.json({message: 'Logged out'});
+        } catch (err) {
+            res.json({error: err.message})
+            throw new customApiError(err.message, 400)
+        }
     }
             
 }
