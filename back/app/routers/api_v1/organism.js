@@ -8,7 +8,7 @@ const validator = require('../../validations/validator')
 
 const controllerHandler = require('../../helpers/controllerHandler');
 const controller = require('../../controllers/v1/organismController');
-
+const activitiesController = require('../../controllers/v1/activityController');
 const {validateToken} = require('../../middlewares/JWT');
 
 
@@ -21,15 +21,31 @@ router
     .post(validator(loginSchema),controllerHandler(controller.login))
 
 router
+    .route('/logout')
+    .get(validateToken,controllerHandler(controller.logout))
+
+router
     .route('/profile')
     .get(validateToken,controllerHandler(controller.profile))
 
 router
-    .route('/activities')
-    .get(validateToken,controllerHandler(controller.getOrganismActivities))
+    .route('/create')
+    .post(validateToken,validator(createActivitySchema),controllerHandler(activitiesController.postOneActivity))
 
 router
-    .route('/create')
-    .post(validateToken,validator(createActivitySchema),controllerHandler(controller.postOneActivity))
+    .route('/activities')
+    .get(validateToken,controllerHandler(activitiesController.getOrganismActivities))
+  
+router
+    .route('/activity/:id')
+    .get(validateToken,controllerHandler(activitiesController.getOneOrganismActivty))
+
+router
+    .route('/activity/:id/delete')
+    .get(validateToken,controllerHandler(activitiesController.deleteOneActivity))
+
+router
+    .route('/activity/:id/edit')
+    .patch(validateToken,controllerHandler(activitiesController.updateOneActivity))
 
 module.exports = router;

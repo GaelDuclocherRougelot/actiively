@@ -69,33 +69,13 @@ module.exports = {
         res.json({message: 'PROFILE', connected: req.authenticated, user: organism});
     },
 
-    async getOrganismActivities(req, res) {
-        const activities = await organismDatamapper.findActivitiesByOrganism(req.decodedToken.email);
+    async logout(req, res) {
         try {
-            res.json(activities);
-        } catch (error) {
-            res.json({error: error.message});
-            throw new customApiError(err.message, 400);
-        }
-    },
-
-    async postOneActivity(req, res) {
-        try {
-            const activityExist = await activityDatamapper.findByName(req.body.name);
-            if(activityExist) {
-                res.json({error: `Activity ${activityExist.name} already exists`});
-                throw new Error(`Activity ${activityExist.name} already exists`);
-            }else {
-                await organismDatamapper.createActivity(req.body, req.decodedToken.email);
-                const currActivity = await activityDatamapper.findByName(req.body.name);
-
-                await dayDatamapper.createDay(req.body.day, currActivity.code_activity);
-                res.json({message: `Activity ${req.body.name} created`});
-            }
-            
+            //TODO : logout with req.headers.authorization
+            res.json({message: 'Logged out'});
         } catch (err) {
-            res.json({error: err.message});
-            throw new customApiError(err.message, 400);
+            res.json({error: err.message})
+            throw new customApiError(err.message, 400)
         }
     }
             

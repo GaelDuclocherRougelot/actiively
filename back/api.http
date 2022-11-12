@@ -23,13 +23,13 @@ POST {{ endpoint }}/organism/register
 Content-Type: application/json
 
 {
-        "email": "basket.club@gmail.com",
-        "name": "Basket club Nantes",
+        "email": "yoga.club@gmail.com",
+        "name": "Yoga Nantes",
         "password": "Tests1234!",
         "confirm_password": "Tests1234!",
-        "description": "Le meilleur du basket sur Nantes",
-        "contact_email": "basket.club@gmail.com",
-        "phone_number": "0734567854"
+        "description": "Organisme de yoga",
+        "contact_email": "yoga.club@gmail.com",
+        "phone_number": "0734564521"
 }
 
 ### Login an organization ###
@@ -37,9 +37,12 @@ POST {{endpoint}}/organism/login
 Content-Type: application/json
 
 {
-    "email": "basket.club@gmail.com",
+    "email": "yoga.club@gmail.com",
     "password": "Tests1234!"
 }
+
+### Logout an organization ###
+GET {{endpoint}}/organism/logout
 
 ### Get profile of my organization ###
 GET {{endpoint}}/organism/profile
@@ -47,24 +50,45 @@ GET {{endpoint}}/organism/profile
 ### Get list of events of my organization ###
 GET {{endpoint}}/organism/activities
 
+### Get one activity of my organization ###
+GET {{endpoint}}/organism/activity/21
+
+### Delete one activity of my organization ###
+GET {{endpoint}}/organism/activity/22/delete
+
 ### Create a new activity for my organization ###
 POST {{endpoint}}/organism/create
 Content-Type: application/json
 
 {
-    "name": "Basket",
+    "name": "Yoga",
     "description": "Sit amet consectetur adipisicing elit. Quisquam explicabo obcaecati omnis nam odio repellendus consequuntur tempore voluptatibus, magni nisi dicta dolorem, maxime nesciunt.",
-    "address": "14 rue de la fontaine",
+    "address": "30 rue du bois",
     "zip_code": "44000",
     "city": "Nantes",
-    "price": "200",
-    "price_type": "par an",
+    "price": "35",
+    "price_type": "la scéance",
     "gender": "Mixte",
-    "level": "Tous niveaux",
-    "image_url": "https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1190&q=80",
-    "day": {
-        "name": "Dimanche",
-        "start_time": "20h00",
-        "end_time": "22h00"
-    }
+    "level": "Confirmé",
+    "image_url": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1220&q=80",
+    "day": "Samedi",
+    "start_time": "18h00",
+    "end_time": "20h00"
+}
+
+### Update one activity of my organization ###
+PATCH {{endpoint}}/organism/activity/21/edit
+Content-Type: application/json
+
+{
+    "name": "Yoga",
+    "description": "",
+    "address": "",
+    "zip_code": "",
+    "city": "",
+    "price": "40",
+    "price_type": "",
+    "gender": "",
+    "level": "",
+    "image_url": ""
 }
