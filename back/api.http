@@ -48,37 +48,37 @@ GET {{endpoint}}/organism/profile
 GET {{endpoint}}/organism/activities
 
 ### Get one activity of my organization ###
-GET {{endpoint}}/organism/activity/1
+GET {{endpoint}}/organism/activity/18
 
 ### Delete one activity of my organization ###
-GET {{endpoint}}/organism/activity/20/delete
+GET {{endpoint}}/organism/activity/22/delete
 
 ### Create a new activity for my organization ###
 POST {{endpoint}}/organism/create
 Content-Type: application/json
 
 {
-    "name": "Basket - Cours personnalisé (Mardi)",
+    "name": "Yoga",
     "description": "Sit amet consectetur adipisicing elit. Quisquam explicabo obcaecati omnis nam odio repellendus consequuntur tempore voluptatibus, magni nisi dicta dolorem, maxime nesciunt.",
-    "address": "14 rue du temple",
+    "address": "30 rue du bois",
     "zip_code": "44000",
     "city": "Nantes",
     "price": "35",
     "price_type": "la scéance",
     "gender": "Mixte",
     "level": "Confirmé",
-    "image_url": "https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1190&q=80",
-    "day": "Mardi",
+    "image_url": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1220&q=80",
+    "day": "Samedi",
     "start_time": "18h00",
     "end_time": "20h00"
 }
 
 ### Update one activity of my organization ###
-PATCH {{endpoint}}/organism/activity/18/edit
+PATCH {{endpoint}}/organism/activity/21/edit
 Content-Type: application/json
 
 {
-    "name": "",
+    "name": "Yoga",
     "description": "",
     "address": "",
     "zip_code": "",

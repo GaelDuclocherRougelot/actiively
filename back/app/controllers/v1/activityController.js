@@ -66,16 +66,22 @@ module.exports = {
 
     async deleteOneActivity(req, res){
         const currActivity = req.params.id;
-
+        const activityToDelete = await activityDatamapper.findByPk(currActivity);
+        
         try {
+            if(activityToDelete){
                 await dayDatamapper.deleteDay(currActivity, req.decodedToken.email);
                 await activityDatamapper.deleteActivityByPk(currActivity, req.decodedToken.email);
-
-                res.json({message: `Activity with id (${currActivity}) deleted`});      
-        } catch (err) {
-            res.json({"error": err.message});
-            throw new customApiError(err.message, 400);
-        }
+                res.json({message: `Activity with id (${currActivity}) deleted`}); 
+            }else {
+                throw new Error(`Activity with id (${currActivity}) is not exists or already deleted`);
+            }
+                     
+            
+         } catch (err) {
+             res.json({"error": err.message});
+             throw new customApiError(err.message, 400);
+         }
     },
 
     async updateOneActivity(req, res) {

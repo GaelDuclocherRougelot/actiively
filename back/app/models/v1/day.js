@@ -23,10 +23,12 @@ module.exports = {
         return dayQuery.rows[0];
     },
 
-    async deleteDay(pk_activity) {
+    async deleteDay(pk_activity, email) {
         await client.query(`
             DELETE FROM "day"
-            WHERE "pk_activity" = $1
-        `, [pk_activity])
+            USING activity
+            WHERE pk_activity = $1
+            AND pk_organism = $2
+        `, [pk_activity, email])
     }
 }
