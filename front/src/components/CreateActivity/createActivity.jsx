@@ -45,7 +45,7 @@ function CreateActivity() {
             </div>
             <div className="container-form">
 
-                <h1 className="container-title">Inscription</h1>
+                <h1 className="container-title">Créer une activité</h1>
 
                 <form className="ui form container-form" onSubmit={handleSubmit(onSubmit)}>
 
@@ -253,7 +253,7 @@ function CreateActivity() {
                             type="submit"
                             className="ui color1 button"
                         >
-                            Envoyer
+                            Créer
 
                         </Button>
                     </div>

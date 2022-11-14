@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faUser } from '@fortawesome/free-regular-svg-icons';
-import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightFromBracket, faPencil } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import './headerStyles.scss';
 
@@ -36,6 +36,14 @@ function Header({
         <Link to="/login">
           <button type="button" className="appheader-button">Connexion</button>
           <FontAwesomeIcon icon={faUser} size="2x" className="appheader-button-mobile" />
+        </Link>
+        )}
+
+        {/* If logged, show profile and logout buttons */}
+        {isLogged && (
+        <Link to="/organism/create" className="appheader-profile">
+          <button type="button" className="appheader-button">Créer</button>
+          <FontAwesomeIcon size="2x" className="appheader-button-mobile" />
         </Link>
         )}
 

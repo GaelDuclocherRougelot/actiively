@@ -116,11 +116,11 @@ function App() {
           element={isLogged ? <Profil token={token} /> : <Navigate replace to="/login" />}
         />
         <Route
-          path="/organism/:id/profil/modif"
+          path="/organism/profile/modif"
           element={<ModifProfil />}
         />
         <Route
-          path="/organism/:id/create"
+          path="/organism/create"
           element={<CreateActivity />}
         />
         <Route
