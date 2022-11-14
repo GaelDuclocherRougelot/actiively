@@ -63,10 +63,12 @@ Post.propTypes = {
   gender: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   price_type: PropTypes.string.isRequired,
-  organismName: PropTypes.string.isRequired,
+  organismName: PropTypes.string,
   day: PropTypes.string.isRequired,
 };
 
-Post.defaultProps = {};
+Post.defaultProps = {
+  organismName: '',
+};
 
 export default React.memo(Post);

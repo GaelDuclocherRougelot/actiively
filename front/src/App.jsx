@@ -141,7 +141,6 @@ function App() {
           element={(
             <OrganismActivities
               token={token}
-              setIsLogged={setIsLogged}
             />
           )}
         />

@@ -42,12 +42,18 @@ function Header({
         {/* If logged, show profile and logout buttons */}
         {isLogged && (
         <Link to="/organism/create" className="appheader-profile">
-          <button type="button" className="appheader-button">Créer</button>
+          <button type="button" className="appheader-button">Ajouter une activité</button>
           <FontAwesomeIcon size="2x" className="appheader-button-mobile" />
         </Link>
         )}
 
-        {/* If logged, show profile and logout buttons */}
+        {isLogged && (
+        <Link to="/organism/activities" className="appheader-profile">
+          <button type="button" className="appheader-button">Mes activités</button>
+          <FontAwesomeIcon size="2x" className="appheader-button-mobile" />
+        </Link>
+        )}
+
         {isLogged && (
         <Link to="/organism/profile" className="appheader-profile">
           <button type="button" className="appheader-button">Mon profil</button>

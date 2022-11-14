@@ -8,21 +8,10 @@ import './organismActivitiesStyles.scss';
 
 function OrganismActivities({
   token,
-  // setIsLogged,
 }) {
   const [activities, setActivities] = useState([]);
 
-  // // Login still active on refresh
-  // useEffect(
-  //   () => {
-  //     if (token) {
-  //       setIsLogged(true);
-  //     }
-  //   },
-  //   [],
-  // );
-
-  // Request to API to get profile data of an organism depending on token
+  // Request to API to get activities of an organism
   const fetchActivities = async () => {
     try {
       const response = await axios.get('http://localhost:3001/api/v1/organism/activities', {
@@ -74,7 +63,6 @@ function OrganismActivities({
 
 OrganismActivities.propTypes = {
   token: PropTypes.string.isRequired,
-  // setIsLogged: PropTypes.func.isRequired,
 };
 
 export default React.memo(OrganismActivities);
