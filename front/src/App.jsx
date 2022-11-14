@@ -118,6 +118,7 @@ function App() {
             <Login
               setToken={setToken}
               setIsLogged={setIsLogged}
+              isLogged={isLogged}
             />
           )}
         />

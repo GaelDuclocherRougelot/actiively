@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -8,12 +8,23 @@ import './login.scss';
 function Login({
   setToken,
   setIsLogged,
+  isLogged,
 }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [errMsg, setErrMsg] = useState('');
 
   const navigate = useNavigate();
+
+  // To avoid bug on refresh, navigate to profile if logged in
+  useEffect(
+    () => {
+      if (isLogged) {
+        navigate('/organism/profile');
+      }
+    },
+    [],
+  );
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -91,6 +102,7 @@ function Login({
 Login.propTypes = {
   setToken: PropTypes.func.isRequired,
   setIsLogged: PropTypes.func.isRequired,
+  isLogged: PropTypes.bool.isRequired,
 };
 
 export default React.memo(Login);
