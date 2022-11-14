@@ -16,6 +16,8 @@ function Post({
   day,
   price,
   price_type,
+  level,
+  gender,
 }) {
   return (
     <div>
@@ -32,6 +34,12 @@ function Post({
         </strong>
         <strong className="post-zip">
           {day}
+        </strong>
+        <strong className="post-zip">
+          {level}
+        </strong>
+        <strong className="post-zip">
+          {gender}
         </strong>
         <p className="post-price">
           {price}
@@ -51,6 +59,8 @@ Post.propTypes = {
   image_url: PropTypes.string.isRequired,
   zip_code: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
+  level: PropTypes.string.isRequired,
+  gender: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   price_type: PropTypes.string.isRequired,
   organismName: PropTypes.string.isRequired,

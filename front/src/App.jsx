@@ -16,6 +16,7 @@ import ActivityList from './components/ActivityList/ActivityList';
 import Profil from './components/Profil/profil';
 import ModifProfil from './components/ModifProfil/modifProfil';
 import CreateActivity from './components/CreateActivity/createActivity';
+import OrganismActivities from './components/OrganismActivities/OrganismActivities';
 
 import useToken from './components/Hooks/useToken';
 
@@ -128,12 +129,21 @@ function App() {
           element={isLogged ? <Profil token={token} /> : <Navigate replace to="/login" />}
         />
         <Route
-          path="/organism/profile/modif"
+          path="/organism/profile/edit"
           element={<ModifProfil />}
         />
         <Route
           path="/organism/create"
           element={<CreateActivity />}
+        />
+        <Route
+          path="/organism/activities"
+          element={(
+            <OrganismActivities
+              token={token}
+              setIsLogged={setIsLogged}
+            />
+          )}
         />
         <Route
           path="*"
