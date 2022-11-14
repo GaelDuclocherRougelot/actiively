@@ -46,7 +46,6 @@ function App() {
     })
       .then((res) => {
         setResults(res.data);
-        // console.log('results: ', res.data);
       });
   };
 
