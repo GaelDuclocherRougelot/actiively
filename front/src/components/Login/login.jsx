@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -8,12 +8,23 @@ import './login.scss';
 function Login({
   setToken,
   setIsLogged,
+  isLogged,
 }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [errMsg, setErrMsg] = useState('');
 
   const navigate = useNavigate();
+
+  // To avoid bug on refresh, navigate to profile if logged in
+  useEffect(
+    () => {
+      if (isLogged) {
+        navigate('/organism/profile');
+      }
+    },
+    [],
+  );
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,10 +37,8 @@ function Login({
         },
         { withCredentials: true },
       );
-      // console.log('response:', response.data);
+      console.log('response:', response.data);
       const { token } = response.data;
-      // console.log('token login :', token);
-      // console.log('res.data.token :', response.data.token);
       setToken(token);
       const login = true;
       setIsLogged(login);
@@ -37,19 +46,19 @@ function Login({
     }
     catch (err) {
       if (!err?.response) {
-        setErrMsg('No Server Response');
+        setErrMsg('Le serveur ne répond pas');
         console.log(errMsg);
       }
-      else if (err.response?.status === 400) {
-        setErrMsg('Missing Username or Password');
-        console.log(errMsg);
-      }
-      else if (err.response?.status === 401) {
-        setErrMsg('Unauthorized');
-        console.log(errMsg);
-      }
+      // else if (err.response?.status === 400) {
+      //   setErrMsg('Missing Username or Password');
+      //   console.log(errMsg);
+      // }
+      // else if (err.response?.status === 401) {
+      //   setErrMsg('Unauthorized');
+      //   console.log(errMsg);
+      // }
       else {
-        setErrMsg('Login Failed');
+        setErrMsg('Les identifiants ne correspondent pas. Veuillez réessayer.');
         console.log(errMsg);
       }
     }
@@ -64,6 +73,9 @@ function Login({
       <div className="container-form">
         <div>
           <h2 className="form-title"> Connexion organisme</h2>
+        </div>
+        <div>
+          <h2 className="form-error">{errMsg}</h2>
         </div>
         <form className="ui form container-form" onSubmit={handleSubmit}>
           <div className="field">
@@ -90,6 +102,7 @@ function Login({
 Login.propTypes = {
   setToken: PropTypes.func.isRequired,
   setIsLogged: PropTypes.func.isRequired,
+  isLogged: PropTypes.bool.isRequired,
 };
 
 export default React.memo(Login);

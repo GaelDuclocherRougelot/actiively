@@ -31,6 +31,7 @@ function App() {
   // Hook created to manage token
   const { token, setToken } = useToken();
   const [isLogged, setIsLogged] = useState(false);
+  console.log(isLogged);
 
   // Search Feature
   const postData = () => {
@@ -53,6 +54,16 @@ function App() {
       postData();
     },
     [keyword],
+  );
+
+  // Login still active on refresh
+  useEffect(
+    () => {
+      if (token) {
+        setIsLogged(true);
+      }
+    },
+    [],
   );
 
   const handleClick = (e, activity) => {
@@ -107,6 +118,7 @@ function App() {
             <Login
               setToken={setToken}
               setIsLogged={setIsLogged}
+              isLogged={isLogged}
             />
           )}
         />

@@ -57,7 +57,7 @@ function Header({
         {isLogged && (
         <div className="appheader-logout">
           <button type="button" className="appheader-button" onClick={handleLogout}>Déconnexion</button>
-          <FontAwesomeIcon icon={faArrowRightFromBracket} size="2x" className="appheader-button-mobile" />
+          <FontAwesomeIcon icon={faArrowRightFromBracket} size="2x" className="appheader-button-mobile" onClick={handleLogout} />
         </div>
         )}
       </div>
