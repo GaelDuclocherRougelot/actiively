@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DayFilter from '../aloneFilter/DayFilter';
 import LevelFilter from '../aloneFilter/LevelFilter';
 import GenderFilter from '../aloneFilter/GenderFilter';
@@ -19,6 +19,13 @@ function FiltersList({
   SecondGender,
   ThirdGender,
 }) {
+
+  const [hiden, ishiden] = useState('false');
+
+  console.log('im', hiden);
+  const handleChangeFilter = () => {
+    ishiden(!hiden);
+  };
   // function fo day's filter
   const handleMonday = (slectMonday) => {
     Monday(slectMonday);
@@ -67,7 +74,16 @@ function FiltersList({
 
   return (
     <div className="filters-container">
-      <button type="button" className="filters-styles">Filtres</button>
+      <button
+        type="button"
+        className="filters-styles"
+        onClick={handleChangeFilter}
+      >
+        Filtres
+      </button>
+      
+    {!hiden && (
+      <div className="filters-container"> 
       <DayFilter
         MondaySelect={handleMonday}
         TuesdaySelect={handleTuesday}
@@ -87,6 +103,8 @@ function FiltersList({
         SecondGenderSelect={handleSecondGender}
         ThirdGenderSelect={handleThirdGender}
       />
+      </div>
+    )}
     </div>
   );
 }
