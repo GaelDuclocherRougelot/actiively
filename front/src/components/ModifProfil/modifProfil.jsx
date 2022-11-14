@@ -23,7 +23,7 @@ function ModifProfil() {
           <div className="random">
             <h1 className="container-title">Modifier mon profil</h1>
             <p className="cancel-modif">
-              <Link to="/organism/:id/profil" className="link">
+              <Link to="/organism/profile" className="link">
                 <Button
                   animated="vertical"
                   className="ui color1 button"
