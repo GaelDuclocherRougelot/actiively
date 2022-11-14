@@ -37,7 +37,7 @@ POST {{endpoint}}/organism/login
 Content-Type: application/json
 
 {
-    "email": "yoga.club@gmail.com",
+    "email": "basket.club@gmail.com",
     "password": "Tests1234!"
 }
 
@@ -77,11 +77,11 @@ Content-Type: application/json
 }
 
 ### Update one activity of my organization ###
-PATCH {{endpoint}}/organism/activity/21/edit
+PATCH {{endpoint}}/organism/activity/19/edit
 Content-Type: application/json
 
 {
-    "name": "Yoga",
+    "name": "",
     "description": "",
     "address": "",
     "zip_code": "",
@@ -89,6 +89,9 @@ Content-Type: application/json
     "price": "40",
     "price_type": "",
     "gender": "",
-    "level": "",
-    "image_url": ""
+    "level": "Débutant",
+    "image_url": "",
+    "day": "",
+    "start_time": "",
+    "end_time": ""
 }

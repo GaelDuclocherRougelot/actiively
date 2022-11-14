@@ -45,8 +45,11 @@ module.exports = {
                 if(match){
 
                     const accessToken = createTokens(organism);
-                    
-                    res.send({
+                    // res.cookie("access_token",accessToken, {
+                    //     maxAge: 30000,
+                    //     httpOnly: true
+                    // }); //! To delete after tests
+                    res.json({
                         authenticated: true,
                         token: accessToken,
                         message: "Authentication Successful."})                    

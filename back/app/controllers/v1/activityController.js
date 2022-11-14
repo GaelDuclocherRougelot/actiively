@@ -90,10 +90,27 @@ module.exports = {
     },
 
     async updateOneActivity(req, res) {
-        const updateBody = req.body
         const activityId = req.params.id
+        const activityToUpdate = {
+            name: req.body.name,
+            description: req.body.description,
+            address: req.body.address,
+            zip_code: req.body.zip_code,
+            city: req.body.city,
+            price: req.body.price,
+            price_type: req.body.price_type,
+            gender: req.body.gender,
+            level: req.body.level,
+            image_url: req.body.image_url
+        };
+        const dayToUpdate = {
+            name: req.body.day,
+            start_time: req.body.start_time,
+            end_time: req.body.end_time
+        };
         try {
-            await activityDatamapper.updateActivity(updateBody, req.decodedToken.email, activityId);
+            await activityDatamapper.updateActivity(activityToUpdate, req.decodedToken.email, activityId);
+            await dayDatamapper.updateDay(dayToUpdate, activityId);
                 res.json({message: `Activity with id ${activityId} updated`});
         } catch (err) {
             res.json({error: err.message});
