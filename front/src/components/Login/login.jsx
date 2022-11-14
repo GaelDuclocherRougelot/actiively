@@ -26,10 +26,8 @@ function Login({
         },
         { withCredentials: true },
       );
-      // console.log('response:', response.data);
+      console.log('response:', response.data);
       const { token } = response.data;
-      // console.log('token login :', token);
-      // console.log('res.data.token :', response.data.token);
       setToken(token);
       const login = true;
       setIsLogged(login);
@@ -37,19 +35,19 @@ function Login({
     }
     catch (err) {
       if (!err?.response) {
-        setErrMsg('No Server Response');
+        setErrMsg('Le serveur ne répond pas');
         console.log(errMsg);
       }
-      else if (err.response?.status === 400) {
-        setErrMsg('Missing Username or Password');
-        console.log(errMsg);
-      }
-      else if (err.response?.status === 401) {
-        setErrMsg('Unauthorized');
-        console.log(errMsg);
-      }
+      // else if (err.response?.status === 400) {
+      //   setErrMsg('Missing Username or Password');
+      //   console.log(errMsg);
+      // }
+      // else if (err.response?.status === 401) {
+      //   setErrMsg('Unauthorized');
+      //   console.log(errMsg);
+      // }
       else {
-        setErrMsg('Login Failed');
+        setErrMsg('Les identifiants ne correspondent pas. Veuillez réessayer.');
         console.log(errMsg);
       }
     }
@@ -64,6 +62,9 @@ function Login({
       <div className="container-form">
         <div>
           <h2 className="form-title"> Connexion organisme</h2>
+        </div>
+        <div>
+          <h2 className="form-error">{errMsg}</h2>
         </div>
         <form className="ui form container-form" onSubmit={handleSubmit}>
           <div className="field">
