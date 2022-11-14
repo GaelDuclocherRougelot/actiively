@@ -23,7 +23,7 @@ const { Pool } = require('pg');
 //   });
 
 const pool = new Pool({
-    host: 'localhost',// 'gaelduclocherrougelot-server.eddi.cloud', // or 'localhost'
+    host: 'gaelduclocherrougelot-server.eddi.cloud',// 'gaelduclocherrougelot-server.eddi.cloud', // or 'localhost'
     user: 'actiively',//'actiively', // db user
     max: 20,
     idleTimeoutMillis: 30000,
