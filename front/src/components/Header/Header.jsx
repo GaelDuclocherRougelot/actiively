@@ -74,7 +74,7 @@ function Header({
             )}
           </li>
           <li>
-            {isLogged && (
+            {isLogged && (currentPath !== '/organism/create') && (
             <Link to="/organism/create" className="appheader-profile">
               <button type="button" className="appheader-button">Ajouter une activité</button>
             </Link>
