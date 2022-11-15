@@ -122,34 +122,26 @@ function App() {
             />
           )}
         />
+        {/* Restricted pages */}
         <Route
           path="/organism/profile"
-          // Restricted page
           element={isLogged ? <Profil token={token} /> : <Navigate replace to="/login" />}
         />
         <Route
           path="/organism/profile/edit"
-          element={<ModifProfil />}
+          element={isLogged ? <ModifProfil token={token} /> : <Navigate replace to="/login" />}
         />
         <Route
           path="/organism/create"
-          element={<CreateActivity />}
+          element={isLogged ? <CreateActivity token={token} /> : <Navigate replace to="/login" />}
         />
         <Route
           path="/organism/activities"
-          element={(
-            <OrganismActivities
-              token={token}
-            />
-          )}
+          element={isLogged ? <OrganismActivities token={token} /> : <Navigate replace to="/login" />}
         />
         <Route
           path="/organism/activity/:id"
-          element={(
-            <Activity
-              token={token}
-            />
-          )}
+          element={isLogged ? <Activity token={token} /> : <Navigate replace to="/login" />}
         />
         <Route
           path="*"
