@@ -29,6 +29,14 @@ router
     .get(validateToken,controllerHandler(controller.profile))
 
 router
+    .route('/profile/edit')
+    .patch(validateToken,controllerHandler(controller.updateProfile))
+
+router
+    .route('/profile/delete')
+    .delete(validateToken,controllerHandler(controller.deleteProfile))
+
+router
     .route('/create')
     .post(validateToken,validator(createActivitySchema),controllerHandler(activitiesController.postOneActivity))
 
@@ -42,7 +50,7 @@ router
 
 router
     .route('/activity/:id/delete')
-    .get(validateToken,controllerHandler(activitiesController.deleteOneActivity))
+    .delete(validateToken,controllerHandler(activitiesController.deleteOneActivity))
 
 router
     .route('/activity/:id/edit')

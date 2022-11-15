@@ -57,10 +57,17 @@ module.exports = {
 
         async deleteActivityByPk(id, email) {
             await client.query(`
-                DELETE FROM "activity"
+                DELETE FROM "activity" CASCADE
                 WHERE code_activity = $1
                 AND pk_organism = $2
             `, [id, email]);
+        },
+
+        async deleteAllActivities(email) {
+            await client.query(`
+                DELETE FROM "activity" CASCADE
+                WHERE pk_organism = $1
+            `, [email]);
         },
 
         async findActivitiesByOrganism(email) {

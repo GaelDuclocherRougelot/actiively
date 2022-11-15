@@ -45,10 +45,10 @@ module.exports = {
                 if(match){
 
                     const accessToken = createTokens(organism);
-                    // res.cookie("access_token",accessToken, {
-                    //     maxAge: 30000,
-                    //     httpOnly: true
-                    // }); //! To delete after tests
+                    res.cookie("access_token",accessToken, {
+                        maxAge: 30000,
+                        httpOnly: true
+                    }); //! To delete after tests
                     res.json({
                         authenticated: true,
                         token: accessToken,
@@ -78,6 +78,30 @@ module.exports = {
             res.json({message: 'Logged out'});
         } catch (err) {
             res.json({error: err.message})
+            throw new customApiError(err.message, 400)
+        }
+    },
+
+    async updateProfile(req, res) {
+        const organismProfil = req.body;
+        try {
+            await organismDatamapper.updateProfile(organismProfil, req.decodedToken.email);
+            res.json({message: 'Profile Updated'});
+            
+        } catch (err) {
+            res.json({error: err.message})
+            throw new customApiError(err.message, 400)
+        }
+    },
+
+    async deleteProfile(req, res) { //! TO FIX
+        const currOrganism = req.decodedToken.email;
+        try {
+            await activityDatamapper.deleteAllActivities(currOrganism);
+            await organismDatamapper.deleteProfile(currOrganism);
+            res.json({message: 'Profile deleted with all activities related'});
+        } catch (err) {
+            res.json({error: err.message});
             throw new customApiError(err.message, 400)
         }
     }
