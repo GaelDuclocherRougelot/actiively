@@ -59,10 +59,6 @@ function App() {
   // Login still active on refresh
   useEffect(
     () => {
-      if (token === undefined) {
-        navigate('/login');
-      }
-
       if (token) {
         setIsLogged(true);
       }
@@ -150,7 +146,9 @@ function App() {
         <Route
           path="/organism/activity/:id"
           element={(
-            <Activity />
+            <Activity
+              token={token}
+            />
           )}
         />
         <Route

@@ -10,6 +10,7 @@ function OrganismActivities({
   token,
 }) {
   const [activities, setActivities] = useState([]);
+  const [message, setMessage] = useState("Vous n'avez aucune activité");
 
   // Request to API to get activities of an organism
   const fetchActivities = async () => {
@@ -21,6 +22,7 @@ function OrganismActivities({
       });
       // Give data to state
       setActivities(response.data);
+      setMessage('');
       console.log('fetchActivies :', response.data);
     }
     catch (error) {
@@ -40,6 +42,7 @@ function OrganismActivities({
     <div>
       <main className="posts">
         <div className="results-container">
+          <p className="activity-message">{message}</p>
           {activities.map((activity) => (
             <Post
               key={activity.code_activity}
@@ -53,6 +56,7 @@ function OrganismActivities({
               day={activity.day}
               price={activity.price}
               price_type={activity.price_type}
+              className="activity-card"
             />
           ))}
         </div>

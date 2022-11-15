@@ -21,10 +21,7 @@ function Post({
 }) {
   // To identify the page we are currently on
   const location = useLocation();
-  console.log(location);
-
   const [currentPath, setCurrentPath] = useState('');
-  console.log(currentPath);
 
   // Give the URL to state whenever URL changes
   useEffect(() => {
