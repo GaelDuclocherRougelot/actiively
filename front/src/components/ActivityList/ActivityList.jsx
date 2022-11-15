@@ -7,6 +7,7 @@ import './activityListStyles.css';
 function ActivityList({
   results,
 }) {
+  // Hook created to manage parametres of day's filter:
   const [checkMonday, setCheckMonday] = useState('');
   const [checkTuesday, setCheckTuesdayd] = useState('');
   const [checkWednesday, setCheckWednesday] = useState('');
@@ -15,15 +16,18 @@ function ActivityList({
   const [checSaturday, setChecSaturday] = useState('');
   const [checkSunday, setCheckSunday] = useState('');
 
+// Hook created to manage parametres of level's filter:
   const [checkFirstLevel, setCheckFirstLevel] = useState('');
   const [checkSecondLevel, setCheckSecondtLevel] = useState('');
   const [checkThirdLevel, setCeckThirdLevel] = useState('');
+
+  // Hook created to manage parametres of gender's filter:
 
   const [checkFirstGender, setCheckFirstGender] = useState('');
   const [checkSecondGender, setCheckSecondGender] = useState('');
   const [checkThirdGender, setCeckThirdGender] = useState('');
 
-  // function fo day's filter
+  // day's filters parametre function
 
   const handleMonday = (slectMonday) => {
     setCheckMonday(slectMonday);
@@ -47,7 +51,7 @@ function ActivityList({
     setCheckSunday(selectSunday);
   };
 
-  // function of levl'sfilter
+  // level's filters parametre function
   const handleFirstLevel = (selectFirstLevel) => {
     setCheckFirstLevel(selectFirstLevel);
   };
@@ -58,7 +62,7 @@ function ActivityList({
     setCeckThirdLevel(selectThirdLevel);
   };
 
-  // function of gender's filters
+  // gender's filters parametre function
   const handleFirstGender = (selectFirstGender) => {
     setCheckFirstGender(selectFirstGender);
   };
@@ -69,7 +73,7 @@ function ActivityList({
     setCeckThirdGender(selectThirdGender);
   };
 
-  // function for choice the right array:
+  // function to mange array for props:
   const arr = results;
   const day1 = checkMonday;
   const day2 = checkTuesday;
@@ -163,13 +167,15 @@ function ActivityList({
 ActivityList.propTypes = {
   results: PropTypes.arrayOf(PropTypes.shape({
     activity_name: PropTypes.string.isRequired,
-    image_url: PropTypes.string.isRequired,
-    zip_code: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
+    day: PropTypes.string.isRequired,
+    gender: PropTypes.string.isRequired,
+    image_url: PropTypes.string.isRequired,
+    level: PropTypes.string.isRequired,
+    organism_name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     price_type: PropTypes.string.isRequired,
-    organism_name: PropTypes.string.isRequired,
-    day: PropTypes.string.isRequired,
+    zip_code: PropTypes.string.isRequired,
   }).isRequired).isRequired,
 };
 

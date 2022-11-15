@@ -1,14 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-
 import PropTypes from 'prop-types';
 import Home from '../../images/Home.svg';
-
 import './homeStyle.scss';
 
 function HomePage({
   handle,
 }) {
+  // Hook created to manage settings search:
   const [state, setState] = useState({ keyword: '', zip_code: '' });
 
   const handleChange = (e) => {
@@ -26,12 +25,7 @@ function HomePage({
       keyword: state.keyword,
       zip_code: state.zip_code,
     }));
-    // handle(e, state)
   };
-  // const handleSubmit = () => {
-  //  handle(state)
-  // }
-
   return (
     <div className="home">
       <header>
@@ -40,7 +34,7 @@ function HomePage({
 
       <section className="form-home">
         <div>
-          <form className="ui large form" onSubmit={handleSubmit}>
+          <form className="ui large form" onSubmit={handleSubmit} noValidate>
             <div className="equal width fields">
               <div className="field color2">
                 <label>Nom de l&apos;activité</label>
@@ -59,7 +53,9 @@ function HomePage({
                   value={state.zip_code}
                   onChange={handleChange}
                   name="zip_code"
+                  required
                 />
+
               </div>
             </div>
             <button

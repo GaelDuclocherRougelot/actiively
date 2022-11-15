@@ -4,7 +4,7 @@ import {
   Routes, Route, useNavigate, Navigate,
 } from 'react-router-dom';
 import axios from 'axios';
-
+import swal from 'sweetalert';
 import Home from './components/Home/home';
 import Activity from './components/Activity/Activity';
 import Header from './components/Header/Header';
@@ -16,35 +16,27 @@ import ActivityList from './components/ActivityList/ActivityList';
 import Profil from './components/Profil/profil';
 import ModifProfil from './components/ModifProfil/modifProfil';
 import CreateActivity from './components/CreateActivity/createActivity';
-
 import useToken from './components/Hooks/useToken';
-
 import './styles/index.scss';
 
 function App() {
+  // Hook created to manage parametres search:
   const [keyword, setkeyword] = useState('');
   const [results, setResults] = useState([]);
-  // To enable redirection
-  const navigate = useNavigate();
-
-  // Login Feature
   // Hook created to manage token
   const { token, setToken } = useToken();
   const [isLogged, setIsLogged] = useState(false);
+  // To enable redirection
+  const navigate = useNavigate();
 
-  // Search Feature
+  // Search request
   const postData = () => {
-    if (!keyword.keyword || !keyword.zip_code) {
-      return;
-    }
-
     axios.post('http://localhost:3001/api/v1/activity/search', {
       keyword: keyword.keyword,
       zip_code: keyword.zip_code,
     })
       .then((res) => {
         setResults(res.data);
-        // console.log('results: ', res.data);
       });
   };
 
@@ -55,14 +47,21 @@ function App() {
     [keyword],
   );
 
+  // activity search parametre feature
   const handleClick = (e, activity) => {
     e.preventDefault();
     const act = `${activity.keyword}%`;
     const key = `${activity.zip_code}%`;
+    // function wtih informations required for activity search
+    if (key === '%') {
+      swal('Oops! Veuillez saisir un code postal (entre 2 et 5 chiffres)');
+      return;
+    }
     setkeyword({
       keyword: act,
       zip_code: key,
     });
+
     // Redirection to results page on click on Submit
     navigate('/activity');
   };

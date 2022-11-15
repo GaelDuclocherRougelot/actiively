@@ -3,19 +3,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import './postStyles.css';
 
 function Post({
-  code_activity,
   name,
-  organismName,
-  image_url,
-  zip_code,
   city,
   day,
+  image_url,
+  organismName,
   price,
   price_type,
+  zip_code,
+  code_activity,
 }) {
   return (
     <div>
@@ -46,15 +45,15 @@ function Post({
 }
 
 Post.propTypes = {
-  code_activity: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  image_url: PropTypes.string.isRequired,
-  zip_code: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
+  day: PropTypes.string.isRequired,
+  image_url: PropTypes.string.isRequired,
+  organismName: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   price_type: PropTypes.string.isRequired,
-  organismName: PropTypes.string.isRequired,
-  day: PropTypes.string.isRequired,
+  zip_code: PropTypes.string.isRequired,
+  code_activity: PropTypes.number.isRequired,
 };
 
 Post.defaultProps = {};
