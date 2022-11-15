@@ -23,8 +23,9 @@
         font-weight: bold;
     }
 
-    &-buttons {
+    &-navbar {
         display: flex;
+        flex-direction: column;
     }
 
     &-button {

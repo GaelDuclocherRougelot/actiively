@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faUser } from '@fortawesome/free-regular-svg-icons';
-import { faArrowRightFromBracket, faPencil } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './headerStyles.scss';
 
@@ -37,9 +37,7 @@ function Header({
         <FontAwesomeIcon className="appheader-icon" icon={faLightbulb} size="3x" />
       </Link>
       <h1 className="appheader-title">Actiively</h1>
-
-      {/* Login button will become an icon on mobile */}
-      <div className="appheader-buttons">
+      <nav>
         {/* If not logged, show login button */}
         {!isLogged && (
         <Link to="/login">
@@ -50,34 +48,43 @@ function Header({
 
         {/* If logged, show profile and logout buttons */}
         {/* Profile and activities buttons will toggle depending on the page we are on */}
-        {isLogged && (currentPath !== '/organism/profile') && (
-          <Link to="/organism/profile" className="appheader-profile">
-            <button type="button" className="appheader-button">Mon profil</button>
-            <FontAwesomeIcon icon={faUser} size="2x" className="appheader-button-mobile" />
-          </Link>
-        )}
-
-        {isLogged && (currentPath !== '/organism/activities') && (
-        <Link to="/organism/activities" className="appheader-profile">
-          <button type="button" className="appheader-button">Mes activités</button>
-          <FontAwesomeIcon icon={faUser} size="2x" className="appheader-button-mobile" />
-        </Link>
-        )}
-
-        {isLogged && (
-        <Link to="/organism/create" className="appheader-profile">
-          <button type="button" className="appheader-button">Ajouter une activité</button>
-          <FontAwesomeIcon icon={faUser} size="2x" className="appheader-button-mobile" />
-        </Link>
-        )}
-
-        {isLogged && (
-        <div className="appheader-logout">
-          <button type="button" className="appheader-button" onClick={handleLogout}>Déconnexion</button>
-          <FontAwesomeIcon icon={faArrowRightFromBracket} size="2x" className="appheader-button-mobile" onClick={handleLogout} />
-        </div>
-        )}
-      </div>
+        <ul className="appheader-navbar">
+          <li>
+            {' '}
+            {isLogged && (currentPath !== '/organism/profile') && (
+            <Link to="/organism/profile" className="appheader-profile">
+              <button type="button" className="appheader-button">Mon profil</button>
+              <FontAwesomeIcon icon={faUser} size="2x" className="appheader-button-mobile" />
+            </Link>
+            )}
+          </li>
+          <li>
+            {' '}
+            {isLogged && (currentPath !== '/organism/activities') && (
+            <Link to="/organism/activities" className="appheader-profile">
+              <button type="button" className="appheader-button">Mes activités</button>
+              <FontAwesomeIcon icon={faUser} size="2x" className="appheader-button-mobile" />
+            </Link>
+            )}
+          </li>
+          <li>
+            {isLogged && (
+            <Link to="/organism/create" className="appheader-profile">
+              <button type="button" className="appheader-button">Ajouter une activité</button>
+              <FontAwesomeIcon icon={faUser} size="2x" className="appheader-button-mobile" />
+            </Link>
+            )}
+          </li>
+          <li>
+            {isLogged && (
+            <div className="appheader-logout">
+              <button type="button" className="appheader-button" onClick={handleLogout}>Déconnexion</button>
+              <FontAwesomeIcon icon={faArrowRightFromBracket} size="2x" className="appheader-button-mobile" onClick={handleLogout} />
+            </div>
+            )}
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
