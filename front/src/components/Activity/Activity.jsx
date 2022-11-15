@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 import 'semantic-ui-css/semantic.min.css';
 import {
-  Image, Grid, Header, Container, Label, Icon,
+  Image, Grid, Header, Container, Label, Icon, Button,
 } from 'semantic-ui-react';
 
 function Activity() {
@@ -23,7 +23,7 @@ function Activity() {
       // Update states with results
       setActivity(response.data);
       setOrganism(response.data.organism_infos);
-      // console.log(response.data);
+      console.log(response.data);
       // console.log(response.data.organism_infos);
     }
     catch (error) {
@@ -39,8 +39,17 @@ function Activity() {
     [],
   );
 
-  // console.log(activity);
-  // console.log(organism);
+  // To identify the page we are currently on
+  const location = useLocation();
+  console.log(location);
+
+  const [currentPath, setCurrentPath] = useState('');
+  console.log(currentPath);
+
+  // Give the URL to state whenever URL changes
+  useEffect(() => {
+    setCurrentPath(location.pathname);
+  }, [location]);
 
   return (
     <Container>
@@ -110,9 +119,14 @@ function Activity() {
             </Header>
             {organism.organism_description}
             {' '}
-
           </Grid.Column>
         </Grid.Row>
+        {/* If on organism page, link redirects to private activity URL */}
+        {currentPath === `/organism/activity/${activity.code_activity}` && (
+        <Grid.Row>
+          <Button basic color="red" type="submit" size="mini">Supprimer cette activité</Button>
+        </Grid.Row>
+        )}
       </Grid>
     </Container>
   );

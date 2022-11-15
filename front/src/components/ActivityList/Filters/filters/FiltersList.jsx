@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import DayFilter from '../aloneFilter/DayFilter';
 import LevelFilter from '../aloneFilter/LevelFilter';
@@ -19,10 +20,9 @@ function FiltersList({
   SecondGender,
   ThirdGender,
 }) {
-
   const [hiden, ishiden] = useState('false');
 
-  console.log('im', hiden);
+  // console.log('im', hiden);
   const handleChangeFilter = () => {
     ishiden(!hiden);
   };
@@ -81,30 +81,30 @@ function FiltersList({
       >
         Filtres
       </button>
-      
-    {!hiden && (
-      <div className="filters-container"> 
-      <DayFilter
-        MondaySelect={handleMonday}
-        TuesdaySelect={handleTuesday}
-        WednesdaySelect={handleWednesday}
-        ThursdaySelect={handleThursday}
-        FridaySelect={handleFriday}
-        SaturdaySelect={handleSaturday}
-        SundaySelect={handleSunday}
-      />
-      <LevelFilter
-        FirstLevelSelect={handleFirstLevel}
-        SecondLevelSelect={handleSecondLevel}
-        ThirdLevelSelect={handleThirdLevel}
-      />
-      <GenderFilter
-        FirstGenderSelect={handleFirstGender}
-        SecondGenderSelect={handleSecondGender}
-        ThirdGenderSelect={handleThirdGender}
-      />
+
+      {!hiden && (
+      <div className="filters-container">
+        <DayFilter
+          MondaySelect={handleMonday}
+          TuesdaySelect={handleTuesday}
+          WednesdaySelect={handleWednesday}
+          ThursdaySelect={handleThursday}
+          FridaySelect={handleFriday}
+          SaturdaySelect={handleSaturday}
+          SundaySelect={handleSunday}
+        />
+        <LevelFilter
+          FirstLevelSelect={handleFirstLevel}
+          SecondLevelSelect={handleSecondLevel}
+          ThirdLevelSelect={handleThirdLevel}
+        />
+        <GenderFilter
+          FirstGenderSelect={handleFirstGender}
+          SecondGenderSelect={handleSecondGender}
+          ThirdGenderSelect={handleThirdGender}
+        />
       </div>
-    )}
+      )}
     </div>
   );
 }

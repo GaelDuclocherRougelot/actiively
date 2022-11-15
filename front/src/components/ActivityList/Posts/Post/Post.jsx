@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unused-prop-types */
 /* eslint-disable camelcase */
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './postStyles.css';
@@ -19,12 +19,33 @@ function Post({
   level,
   gender,
 }) {
+  // To identify the page we are currently on
+  const location = useLocation();
+  console.log(location);
+
+  const [currentPath, setCurrentPath] = useState('');
+  console.log(currentPath);
+
+  // Give the URL to state whenever URL changes
+  useEffect(() => {
+    setCurrentPath(location.pathname);
+  }, [location]);
+
   return (
     <div>
       <article className="container-post">
+        {/* If on organism page, link redirects to private activity URL */}
+        {currentPath === '/organism/activities' && (
+        <Link to={`/organism/activity/${code_activity}`} className="appheader-profile">
+          <img className="image" alt={name} src={image_url} />
+        </Link>
+        )}
+        {/* Otherwise redirects to public activity */}
+        {currentPath !== '/organism/activities' && (
         <Link to={`/activity/${code_activity}`} className="imagestyle">
           <img className="image" alt={name} src={image_url} />
         </Link>
+        )}
         <p className="post-title">{name}</p>
         <p className="post-organism">{organismName}</p>
         <strong className="post-zip">
