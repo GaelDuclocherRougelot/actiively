@@ -25,7 +25,10 @@
 
     &-navbar {
         display: flex;
-        flex-direction: column;
+    }
+
+    &-burger {
+        display: none;
     }
 
     &-button {
@@ -37,38 +40,55 @@
         border: transparent;
         margin-left: 1rem;
 
+        &-mobile {
+            display: none;
+        }
+
         &:hover {
             background-color: darken(vars.$secondary-color, 10%);
         }
     }
 }
 
-// Login button will become an icon on mobile
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
     .appheader {
-        background-color: #00b5ad;
-        color: #fff;
-        padding: 1.3em 1em;
-        margin-bottom: 2rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: sticky;
-        top: 0px;
-        z-index: 1;
-    }
     
-    .appheader-button {
-        display: none;
+        &-burger {
+        display: block;
+        background-color: transparent;
+        border: none;
+
+            &-loggedout {
+                display: none;
+            }
+        }
+
+        &-button-mobile {
+            display: block;
+
+            &:hover {
+                color: darken(vars.$secondary-color, 10%);
+            }
+        }
+
+        &-navbar {
+            display: flex;
+
+            &-closed {
+                display: none;
+            }
+
+            &-open {
+                flex-direction: column;
+                position: absolute;
+                right: 3.5rem;
+                top: 5rem;
+                text-align: end;
+            }
+        }
     }
 
-    .appheader-profile {
-        margin-right: 1rem;
-    }
-}
-
-@media screen and (min-width: 501px) {
-    .appheader-button-mobile {
+    .login-button {
         display: none;
     }
 }

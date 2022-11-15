@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import Burger from '../Burger/Burger';
 import './headerStyles.scss';
 
 function Header({
@@ -12,6 +13,13 @@ function Header({
   setIsLogged,
   setToken,
 }) {
+  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+  console.log('open:', isBurgerOpen);
+
+  const toggleBurger = () => {
+    setIsBurgerOpen(!isBurgerOpen);
+  };
+
   const navigate = useNavigate();
 
   // To identify the page we are currently on
@@ -41,20 +49,19 @@ function Header({
         {/* If not logged, show login button */}
         {!isLogged && (
         <Link to="/login">
-          <button type="button" className="appheader-button">Connexion</button>
+          <button type="button" className="appheader-button login-button">Connexion</button>
           <FontAwesomeIcon icon={faUser} size="2x" className="appheader-button-mobile" />
         </Link>
         )}
 
         {/* If logged, show profile and logout buttons */}
         {/* Profile and activities buttons will toggle depending on the page we are on */}
-        <ul className="appheader-navbar">
+        <ul className={`appheader-navbar ${isBurgerOpen ? 'appheader-navbar-open' : 'appheader-navbar-closed'}`}>
           <li>
             {' '}
             {isLogged && (currentPath !== '/organism/profile') && (
             <Link to="/organism/profile" className="appheader-profile">
               <button type="button" className="appheader-button">Mon profil</button>
-              <FontAwesomeIcon icon={faUser} size="2x" className="appheader-button-mobile" />
             </Link>
             )}
           </li>
@@ -63,7 +70,6 @@ function Header({
             {isLogged && (currentPath !== '/organism/activities') && (
             <Link to="/organism/activities" className="appheader-profile">
               <button type="button" className="appheader-button">Mes activités</button>
-              <FontAwesomeIcon icon={faUser} size="2x" className="appheader-button-mobile" />
             </Link>
             )}
           </li>
@@ -71,7 +77,6 @@ function Header({
             {isLogged && (
             <Link to="/organism/create" className="appheader-profile">
               <button type="button" className="appheader-button">Ajouter une activité</button>
-              <FontAwesomeIcon icon={faUser} size="2x" className="appheader-button-mobile" />
             </Link>
             )}
           </li>
@@ -79,11 +84,17 @@ function Header({
             {isLogged && (
             <div className="appheader-logout">
               <button type="button" className="appheader-button" onClick={handleLogout}>Déconnexion</button>
-              <FontAwesomeIcon icon={faArrowRightFromBracket} size="2x" className="appheader-button-mobile" onClick={handleLogout} />
             </div>
             )}
           </li>
         </ul>
+        <button
+          type="button"
+          className={`appheader-burger ${!isLogged ? 'appheader-burger-loggedout' : ''}`}
+          onClick={toggleBurger}
+        >
+          <Burger />
+        </button>
       </nav>
     </header>
   );
