@@ -7,20 +7,25 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import { useForm } from 'react-hook-form';
-import {
-    Button, Input, Form,
-} from 'semantic-ui-react';
-import PropTypes from 'prop-types';
+import { Button, Form, Message } from 'semantic-ui-react';
+import { Link, useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
 
 import Sport from '../../images/Sport.svg';
 import './createActivity.scss';
 
-function CreateActivity({
-    token,
-  }) {
+// label pour le menu déroulant pour le type d'activité
+
+function CreateActivity() {
+    const navigate = useNavigate();
+
     const {
-        register, handleSubmit, formState: { errors },
+        register, handleSubmit, formState: {
+            errors, isDirty, isSubmitSuccessful, submitCount,
+        },
     } = useForm({
         defaultValues: {
             name: '',
@@ -35,11 +40,37 @@ function CreateActivity({
             day: '',
             start_time: '',
             end_time: '',
+            image_url: '',
 
         },
     });
 
-    const onSubmit = (data) => console.log(data);
+    // const onSubmit = (data) => console.log(data);
+    /* const onSubmit = async (data) => {
+        const formData = new FormData();
+        formData.append('image_url', data.image_url[0]);
+
+        const res = await fetch('http://localhost:5000/upload-file', {
+            method: 'POST',
+            body: formData,
+        }).then((res) => res.json());
+        alert(JSON.stringify(`${res.message}, status: ${res.status}`));
+    }; */
+
+    const onSubmit = (data) => {
+        axios
+            .post(
+                'http://localhost:3001/api/v1/organism/create',
+                data,
+            )
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log(error.data);
+            });
+        navigate('/activity');
+    };
 
     return (
         <div className="container">
@@ -50,8 +81,7 @@ function CreateActivity({
 
                 <h1 className="container-title">Créer une activité</h1>
 
-                <form className="ui form container-form" onSubmit={handleSubmit(onSubmit)}>
-
+                <Form success className="ui form container-form" onSubmit={handleSubmit(onSubmit)}>
                     <div className="field">
                         <label className="label-form">
                             Nom de l activité :
@@ -149,23 +179,26 @@ function CreateActivity({
                     <div className="field">
                         <label className="label-day">
                             jour de l activité :
+                            <select
+                                {...register('day', { required: 'Ces champs sont obligatoire' })}
+                            >
+                                <option value="Lundi">Lundi</option>
+                                <option value="Mardi">Mardi</option>
+                                <option value="Mercredi">Mercredi</option>
+                                <option value="Jeudi">Jeudi</option>
+                                <option value="Vendredi">Vendredi</option>
+                                <option value="Samedi">Samedi</option>
+                                <option value="Dimanche">Dimanche</option>
 
-                            <input
-                                placeholder="Lundi..."
-                                type="text"
-                                name="day"
-                                {...register('day', {
-                                    required: 'Ce champ est obligatoire',
-                                })}
-
-                            />
+                            </select>
                             {errors.day && <p className="errors">{errors.day.message}</p>}
 
                         </label>
+
                         <label className="label-day">
                             heure de départ de l activité :
                             <input
-                                placeholder="jour de l'activité"
+                                placeholder="heure de début de l'activité"
                                 type="text"
                                 name="start_time"
                                 {...register('start_time', {
@@ -210,46 +243,42 @@ function CreateActivity({
                     <div className="field">
                         <label className="label-form">
                             Type de tarif
+                            <select
+                                {...register('price_type', { required: 'Ce champ est obligatoire' })}
+                            >
+                                <option value="Lundi">Séance</option>
+                                <option value="Mardi"> Mois</option>
+                                <option value="Mercredi">Année</option>
+                                <option value="Jeudi">trimestriel</option>
+
+                            </select>
+                            {errors.price_type && <p className="errors">{errors.price_type.message}</p>}
+
                         </label>
-                        <input
-                            placeholder="une baguette achetée, la 23ème offerte"
-                            id="price_type"
-                            type="text"
-                            name="price_type"
-                            {...register('price_type', {
-                                required: 'Ce champ est obligatoire',
-                                minLength: {
-                                    value: 3,
-                                    message: '3 caractères minimum',
-                                },
-                            })}
-                        />
-                        {errors.price_type && <p className="errors">{errors.price_type.message}</p>}
                     </div>
                     <div className="field">
                         <label className="label-form">
                             <select
-                                {...register('gender', { required: 'Ces champs sont obligatoire' })}
+                                {...register('gender', { required: 'les 2 champs sont obligatoires' })}
                             >
-                                <option value="Homme">Homme</option>
-                                <option value="Femme">Femme</option>
+                                <option value="Homme">Masculin</option>
+                                <option value="Femme">Féminin</option>
                                 <option value="Mixte">Mixte</option>
 
                             </select>
                         </label>
                         <label className="label-form">
                             <select
-                                {...register('level', { required: 'Ces champs sont obligatoire' })}
+                                {...register('level', { required: 'les 2 champs sont obligatoires' })}
                             >
-                                <option value="débutant">débutant</option>
+                                <option value="débutant">Débutant</option>
                                 <option value="Tous niveaux">Tous niveaux</option>
                                 <option value="Confirmé">Confirmé</option>
 
                             </select>
                         </label>
+                        {errors.gender && <p className="errors">{errors.gender.message}</p>}
                     </div>
-                    {errors.gender && <p className="errors">{errors.gender.message}</p>}
-                    {errors.level && <p className="errors">{errors.level.message}</p>}
 
                     <div className="field">
                         <Button
@@ -260,14 +289,12 @@ function CreateActivity({
 
                         </Button>
                     </div>
-                </form>
+                    {isSubmitSuccessful.form && <p className="errors">{isSubmitSuccessful.form.message}</p>}
+
+                </Form>
             </div>
         </div>
     );
 }
-
-CreateActivity.propTypes = {
-    token: PropTypes.string.isRequired,
-};
 
 export default React.memo(CreateActivity);
