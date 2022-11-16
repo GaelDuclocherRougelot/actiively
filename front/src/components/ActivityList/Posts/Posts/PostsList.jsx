@@ -19,6 +19,8 @@ function Posts({
             <Post
               name={post.activity_name}
               city={post.city}
+              level={post.level}
+              gender={post.gender}
               day={post.day}
               image_url={post.image_url}
               organismName={post.organism_name}

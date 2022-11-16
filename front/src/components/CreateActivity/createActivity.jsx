@@ -11,11 +11,14 @@ import { useForm } from 'react-hook-form';
 import {
     Button, Input, Form,
 } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 import Sport from '../../images/Sport.svg';
 import './createActivity.scss';
 
-function CreateActivity() {
+function CreateActivity({
+    token,
+  }) {
     const {
         register, handleSubmit, formState: { errors },
     } = useForm({
@@ -45,7 +48,7 @@ function CreateActivity() {
             </div>
             <div className="container-form">
 
-                <h1 className="container-title">Inscription</h1>
+                <h1 className="container-title">Créer une activité</h1>
 
                 <form className="ui form container-form" onSubmit={handleSubmit(onSubmit)}>
 
@@ -253,7 +256,7 @@ function CreateActivity() {
                             type="submit"
                             className="ui color1 button"
                         >
-                            Envoyer
+                            Créer
 
                         </Button>
                     </div>
@@ -262,5 +265,9 @@ function CreateActivity() {
         </div>
     );
 }
+
+CreateActivity.propTypes = {
+    token: PropTypes.string.isRequired,
+};
 
 export default React.memo(CreateActivity);

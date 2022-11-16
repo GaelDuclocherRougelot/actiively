@@ -5,11 +5,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
 import { Button, Icon } from 'semantic-ui-react';
 import './modifProfil.scss';
 import Sport from '../../images/Sport2.svg';
 
-function ModifProfil() {
+function ModifProfil({
+  token,
+}) {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
 
@@ -23,7 +26,7 @@ function ModifProfil() {
           <div className="random">
             <h1 className="container-title">Modifier mon profil</h1>
             <p className="cancel-modif">
-              <Link to="/organism/:id/profil" className="link">
+              <Link to="/organism/profile" className="link">
                 <Button
                   animated="vertical"
                   className="ui color1 button"
@@ -114,4 +117,9 @@ function ModifProfil() {
     </div>
   );
 }
+
+ModifProfil.propTypes = {
+  token: PropTypes.string.isRequired,
+};
+
 export default React.memo(ModifProfil);

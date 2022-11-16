@@ -16,6 +16,8 @@ import ActivityList from './components/ActivityList/ActivityList';
 import Profil from './components/Profil/profil';
 import ModifProfil from './components/ModifProfil/modifProfil';
 import CreateActivity from './components/CreateActivity/createActivity';
+import OrganismActivities from './components/OrganismActivities/OrganismActivities';
+
 import useToken from './components/Hooks/useToken';
 import './styles/index.scss';
 
@@ -29,11 +31,11 @@ function App() {
   // Hook created to manage token
   const { token, setToken } = useToken();
   const [isLogged, setIsLogged] = useState(false);
+
   // To enable redirection
   const navigate = useNavigate();
-
-  // Search request
   
+  // Search request
   const postData = async () => {
     if (keyword.zip_code === '%' && keyword.keyword === '%') {
       return;
@@ -60,7 +62,18 @@ function App() {
     [keyword],
   );
 
-  // activity search parametre feature
+
+  // Login still active on refresh
+  useEffect(
+    () => {
+      if (token) {
+        setIsLogged(true);
+      }
+    },
+    [],
+  );
+
+// activity search parametre feature
   const handleClick = (e, activity) => {
     e.preventDefault();
     const act = `${activity.keyword}%`;
@@ -119,21 +132,30 @@ function App() {
             <Login
               setToken={setToken}
               setIsLogged={setIsLogged}
+              isLogged={isLogged}
             />
           )}
         />
+        {/* Restricted pages */}
         <Route
           path="/organism/profile"
-          // Restricted page
           element={isLogged ? <Profil token={token} /> : <Navigate replace to="/login" />}
         />
         <Route
-          path="/organism/:id/profil/modif"
-          element={<ModifProfil />}
+          path="/organism/profile/edit"
+          element={isLogged ? <ModifProfil token={token} /> : <Navigate replace to="/login" />}
         />
         <Route
-          path="/organism/:id/create"
-          element={<CreateActivity />}
+          path="/organism/create"
+          element={isLogged ? <CreateActivity token={token} /> : <Navigate replace to="/login" />}
+        />
+        <Route
+          path="/organism/activities"
+          element={isLogged ? <OrganismActivities token={token} /> : <Navigate replace to="/login" />}
+        />
+        <Route
+          path="/organism/activity/:id"
+          element={isLogged ? <Activity token={token} /> : <Navigate replace to="/login" />}
         />
         <Route
           path="*"

@@ -46,16 +46,12 @@ function Profil({
         <div className="organism-infos-header">
           <h1 className="container-title">Mon profil</h1>
           <p className="cancel-modif">
-            <Link to="/organism/:id/profil/modif" className="link">
+            <Link to="/organism/profile/edit" className="link">
               <Button
-                animated="vertical"
                 className="ui color1 button"
               >
-                <Button.Content hidden>
-                  <Icon name="pencil" />
-                </Button.Content>
                 <Button.Content visible>
-                  <Icon name="home" />
+                  <Icon name="pencil" />
                 </Button.Content>
               </Button>
             </Link>
