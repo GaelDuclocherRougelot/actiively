@@ -25,6 +25,8 @@ function App() {
   // Hook created to manage parametres search:
   const [keyword, setkeyword] = useState('');
   const [results, setResults] = useState([]);
+  // console.log(keyword.keyword)
+  // console.log(keyword.zip_code)
 
   // Hook created to manage token
   const { token, setToken } = useToken();
@@ -34,10 +36,13 @@ function App() {
   const navigate = useNavigate();
 
   // Search request
+  debugger;
   const postData = async () => {
-    if (keyword.zip_code === '%' && keyword.keyword === '%') {
+    if (keyword.zip_code == 'undefined' && keyword.keyword == 'undefined') {
+      console.log("ici")
       return;
     }
+    debugger;
     try {
       const resp = await axios.post('http://localhost:3001/api/v1/activity/search', {
         keyword: keyword.keyword,
@@ -80,6 +85,7 @@ function App() {
       swal('Oops! Veuillez saisir un code postal (entre 2 et 5 chiffres)');
       return;
     }
+
     setkeyword({
       keyword: act,
       zip_code: key,
