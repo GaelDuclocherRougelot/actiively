@@ -21,10 +21,6 @@ router
     .post(validator(loginSchema),controllerHandler(controller.login))
 
 router
-    .route('/logout')
-    .get(validateToken,controllerHandler(controller.logout))
-
-router
     .route('/profile')
     .get(validateToken,controllerHandler(controller.profile))
 

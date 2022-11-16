@@ -75,7 +75,6 @@ module.exports = {
 
         try {
             if(activityToDelete){
-                // await dayDatamapper.deleteDay(currActivity, req.decodedToken.email);
                 await activityDatamapper.deleteActivityByPk(currActivity, req.decodedToken.email);
                 res.json({message: `Activity with id (${currActivity}) deleted`}); 
             }else {
