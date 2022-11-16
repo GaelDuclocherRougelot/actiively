@@ -4,7 +4,7 @@ import {
   Routes, Route, useNavigate, Navigate,
 } from 'react-router-dom';
 import axios from 'axios';
-
+import swal from 'sweetalert';
 import Home from './components/Home/home';
 import Activity from './components/Activity/Activity';
 import Header from './components/Header/Header';
@@ -19,34 +19,40 @@ import CreateActivity from './components/CreateActivity/createActivity';
 import OrganismActivities from './components/OrganismActivities/OrganismActivities';
 
 import useToken from './components/Hooks/useToken';
-
 import './styles/index.scss';
 
 function App() {
+  // Hook created to manage parametres search:
   const [keyword, setkeyword] = useState('');
   const [results, setResults] = useState([]);
-  // To enable redirection
-  const navigate = useNavigate();
+  console.log(keyword.keyword);
+  console.log(keyword.zip_code);
 
-  // Login Feature
   // Hook created to manage token
   const { token, setToken } = useToken();
   const [isLogged, setIsLogged] = useState(false);
-  console.log(isLogged);
 
-  // Search Feature
-  const postData = () => {
-    if (!keyword.keyword || !keyword.zip_code) {
+  // To enable redirection
+  const navigate = useNavigate();
+  
+  // Search request
+  const postData = async () => {
+    if (keyword.zip_code === '%' && keyword.keyword === '%') {
       return;
     }
+    try {
+      const resp = await axios.post('http://localhost:3001/api/v1/activity/search', {
+        keyword: keyword.keyword,
+        zip_code: keyword.zip_code,
+      })
 
-    axios.post('http://localhost:3001/api/v1/activity/search', {
-      keyword: keyword.keyword,
-      zip_code: keyword.zip_code,
-    })
-      .then((res) => {
-        setResults(res.data);
-      });
+        .then((res) => {
+          setResults(res.data);
+        });
+    }
+    catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(
@@ -55,6 +61,7 @@ function App() {
     },
     [keyword],
   );
+
 
   // Login still active on refresh
   useEffect(
@@ -66,14 +73,21 @@ function App() {
     [],
   );
 
+// activity search parametre feature
   const handleClick = (e, activity) => {
     e.preventDefault();
     const act = `${activity.keyword}%`;
     const key = `${activity.zip_code}%`;
+    // function wtih informations required for activity search
+    if (key === '%') {
+      swal('Oops! Veuillez saisir un code postal (entre 2 et 5 chiffres)');
+      return;
+    }
     setkeyword({
       keyword: act,
       zip_code: key,
     });
+
     // Redirection to results page on click on Submit
     navigate('/activity');
   };

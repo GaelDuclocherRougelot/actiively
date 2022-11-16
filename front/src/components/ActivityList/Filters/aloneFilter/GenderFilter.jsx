@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 function GenderFilter({
   FirstGenderSelect,
@@ -85,5 +85,17 @@ function GenderFilter({
 
   );
 }
+GenderFilter.propTypes = {
+  FirstGenderSelect: PropTypes.func,
+  SecondGenderSelect: PropTypes.func,
+  ThirdGenderSelect: PropTypes.func,
+};
+
+GenderFilter.defaultProps = {
+  FirstGenderSelect: '',
+  SecondGenderSelect: '',
+  ThirdGenderSelect: '',
+
+};
 
 export default React.memo(GenderFilter);

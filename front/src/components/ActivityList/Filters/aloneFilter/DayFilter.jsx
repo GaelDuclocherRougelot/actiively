@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 function DayFilter({
@@ -20,6 +19,15 @@ function DayFilter({
   const [selectSaturday, setSlectSaturday] = useState('');
   const [selectSunday, setSelectSunday] = useState('');
 
+  useEffect(() => {
+    MondaySelect(slectMonday);
+    TuesdaySelect(selectTuesday);
+    WednesdaySelect(selectWednsday);
+    ThursdaySelect(selectThursday);
+    FridaySelect(selectFriday);
+    SaturdaySelect(selectSaturday);
+    SundaySelect(selectSunday);
+  }, []);
   
   MondaySelect(slectMonday);
   TuesdaySelect(selectTuesday);
@@ -183,5 +191,27 @@ function DayFilter({
     </div>
   );
 }
+
+DayFilter.propTypes = {
+  MondaySelect: PropTypes.func,
+  TuesdaySelect: PropTypes.func,
+  WednesdaySelect: PropTypes.func,
+  ThursdaySelect: PropTypes.func,
+  FridaySelect: PropTypes.func,
+  SaturdaySelect: PropTypes.func,
+  SundaySelect: PropTypes.func,
+
+};
+
+DayFilter.defaultProps = {
+  MondaySelect: '',
+  TuesdaySelect: '',
+  WednesdaySelect: '',
+  ThursdaySelect: '',
+  FridaySelect: '',
+  SaturdaySelect: '',
+  SundaySelect: '',
+
+};
 
 export default React.memo(DayFilter);

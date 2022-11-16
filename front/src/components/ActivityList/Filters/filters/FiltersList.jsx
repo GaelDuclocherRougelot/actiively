@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import DayFilter from '../aloneFilter/DayFilter';
 import LevelFilter from '../aloneFilter/LevelFilter';
 import GenderFilter from '../aloneFilter/GenderFilter';
@@ -20,13 +21,13 @@ function FiltersList({
   SecondGender,
   ThirdGender,
 }) {
+// Hook created to manage  filters' parameters to hide :
   const [hiden, ishiden] = useState('false');
 
-  // console.log('im', hiden);
   const handleChangeFilter = () => {
     ishiden(!hiden);
   };
-  // function fo day's filter
+  // feature to manage day's filter
   const handleMonday = (slectMonday) => {
     Monday(slectMonday);
   };
@@ -49,7 +50,7 @@ function FiltersList({
     Sunday(selectSunday);
   };
 
-  // function of levl'sfilter
+  // feature to manage level's filter
   const handleFirstLevel = (selectFirstLevel) => {
     FirstLevel(selectFirstLevel);
   };
@@ -60,7 +61,7 @@ function FiltersList({
     ThirdLevel(selectThirdLevel);
   };
 
-  // function of gender'sfilter
+  // feature to manage gender's filter
 
   const handleFirstGender = (selectFirstGender) => {
     FirstGender(selectFirstGender);
@@ -108,5 +109,37 @@ function FiltersList({
     </div>
   );
 }
+
+FiltersList.propTypes = {
+  Monday: PropTypes.func,
+  Tuesday: PropTypes.func,
+  Wednesday: PropTypes.func,
+  Thursday: PropTypes.func,
+  Friday: PropTypes.func,
+  Saturday: PropTypes.func,
+  Sunday: PropTypes.func,
+  FirstLevel: PropTypes.func,
+  SecondLevel: PropTypes.func,
+  ThirdLevel: PropTypes.func,
+  FirstGender: PropTypes.func,
+  SecondGender: PropTypes.func,
+  ThirdGender: PropTypes.func,
+};
+
+FiltersList.defaultProps = {
+  Monday: '',
+  Tuesday: '',
+  Wednesday: '',
+  Thursday: '',
+  Friday: '',
+  Saturday: '',
+  Sunday: '',
+  FirstLevel: '',
+  SecondLevel: '',
+  ThirdLevel: '',
+  FirstGender: '',
+  SecondGender: '',
+  ThirdGender: '',
+};
 
 export default React.memo(FiltersList);

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './levelFilterStyles.css';
 
 function LevelFilter({
@@ -86,5 +86,18 @@ function LevelFilter({
     </div>
   );
 }
+
+LevelFilter.propTypes = {
+  FirstLevelSelect: PropTypes.func,
+  SecondLevelSelect: PropTypes.func,
+  ThirdLevelSelect: PropTypes.func,
+};
+
+LevelFilter.defaultProps = {
+  FirstLevelSelect: '',
+  SecondLevelSelect: '',
+  ThirdLevelSelect: '',
+
+};
 
 export default React.memo(LevelFilter);
