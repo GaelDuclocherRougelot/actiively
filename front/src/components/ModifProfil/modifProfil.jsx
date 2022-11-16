@@ -5,11 +5,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
 import { Button, Icon } from 'semantic-ui-react';
 import './modifProfil.scss';
 import Sport from '../../images/Sport2.svg';
 
-function ModifProfil() {
+function ModifProfil({
+  token,
+}) {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
 
@@ -114,4 +117,9 @@ function ModifProfil() {
     </div>
   );
 }
+
+ModifProfil.propTypes = {
+  token: PropTypes.string.isRequired,
+};
+
 export default React.memo(ModifProfil);

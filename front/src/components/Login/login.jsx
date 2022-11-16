@@ -37,7 +37,7 @@ function Login({
         },
         { withCredentials: true },
       );
-      console.log('response:', response.data);
+      // console.log('response:', response.data);
       const { token } = response.data;
       setToken(token);
       const login = true;
