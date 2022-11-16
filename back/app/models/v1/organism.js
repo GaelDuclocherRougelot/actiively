@@ -29,5 +29,28 @@ module.exports = {
             SELECT * FROM "organism" WHERE email = $1
         `,[email]);
         return organism.rows[0]
+    },
+
+    async updateProfile(organism, emailLogged) {
+        await client.query(`
+        UPDATE "organism"
+        SET email= COALESCE(NULLIF($1,''), email),
+            name= COALESCE(NULLIF($2, ''), name),
+            description= COALESCE(NULLIF($3,''), description),
+            contact_email= COALESCE(NULLIF($4,''), contact_email),
+            phone_number= COALESCE(NULLIF($5,''), phone_number)
+        WHERE email = $6
+    `, [organism.email, 
+        organism.name,  
+        organism.description, 
+        organism.contact_email, 
+        organism.phone_number,
+    emailLogged]);
+    },
+
+    async deleteProfile(email) {
+        await client.query(`
+        DELETE FROM organism WHERE email = $1;`
+        , [email]);
     }
 }

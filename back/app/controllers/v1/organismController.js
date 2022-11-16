@@ -6,7 +6,6 @@ const customApiError = require('../../errors/apiErrors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const {createTokens} = require('../../middlewares/JWT');
-const cookieParser = require('cookie-parser');
 
 module.exports = {
     async register(req, res) {
@@ -43,17 +42,12 @@ module.exports = {
             await bcrypt.compare(password, dbPassword)
             .then((match) => {
                 if(match){
-
                     const accessToken = createTokens(organism);
-                    res.cookie("access_token",accessToken, {
-                        maxAge: 30000,
-                        httpOnly: true
-                    });
-                    res.send({
+
+                    res.json({
                         authenticated: true,
                         token: accessToken,
                         message: "Authentication Successful."})                    
-
                 }else {
                     throw new Error('Wrong password and email combination!')
                 }
@@ -72,12 +66,26 @@ module.exports = {
         res.json({message: 'PROFILE', connected: req.authenticated, user: organism});
     },
 
-    async logout(req, res) {
+    async updateProfile(req, res) {
+        const organismProfil = req.body;
         try {
-            //TODO : logout with req.headers.authorization
-            res.json({message: 'Logged out'});
+            await organismDatamapper.updateProfile(organismProfil, req.decodedToken.email);
+            res.json({message: 'Profile Updated'});
+            
         } catch (err) {
             res.json({error: err.message})
+            throw new customApiError(err.message, 400)
+        }
+    },
+
+    async deleteProfile(req, res) {
+        const currOrganism = req.decodedToken.email;
+        try {
+            await activityDatamapper.deleteAllActivities(currOrganism);
+            await organismDatamapper.deleteProfile(currOrganism);
+            res.json({message: 'Profile deleted with all activities related'});
+        } catch (err) {
+            res.json({error: err.message});
             throw new customApiError(err.message, 400)
         }
     }

@@ -15,7 +15,7 @@ content-type: application/json
 
 {
     "keyword": "%",
-    "zip_code": "44%"
+    "zip_code": "75%"
 }
 
 ### Register an organism ###
@@ -24,12 +24,12 @@ Content-Type: application/json
 
 {
         "email": "yoga.club@gmail.com",
-        "name": "Yoga Nantes",
+        "name": "YogaTime",
         "password": "Tests1234!",
         "confirm_password": "Tests1234!",
-        "description": "Organisme de yoga",
+        "description": "Yogatime le meilleur du yoga",
         "contact_email": "yoga.club@gmail.com",
-        "phone_number": "0734564521"
+        "phone_number": "0734235141"
 }
 
 ### Login an organization ###
@@ -54,7 +54,7 @@ GET {{endpoint}}/organism/activities
 GET {{endpoint}}/organism/activity/21
 
 ### Delete one activity of my organization ###
-GET {{endpoint}}/organism/activity/22/delete
+DELETE {{endpoint}}/organism/activity/25/delete
 
 ### Create a new activity for my organization ###
 POST {{endpoint}}/organism/create
@@ -71,17 +71,17 @@ Content-Type: application/json
     "gender": "Mixte",
     "level": "Confirmé",
     "image_url": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1220&q=80",
-    "day": "Samedi",
-    "start_time": "18h00",
-    "end_time": "20h00"
+    "day": "Dimanche",
+    "start_time": "10h00",
+    "end_time": "12h00"
 }
 
 ### Update one activity of my organization ###
-PATCH {{endpoint}}/organism/activity/21/edit
+PATCH {{endpoint}}/organism/activity/4/edit
 Content-Type: application/json
 
 {
-    "name": "Yoga",
+    "name": "",
     "description": "",
     "address": "",
     "zip_code": "",
@@ -89,6 +89,22 @@ Content-Type: application/json
     "price": "40",
     "price_type": "",
     "gender": "",
-    "level": "",
-    "image_url": ""
+    "level": "Débutant",
+    "image_url": "",
+    "day": "",
+    "start_time": "",
+    "end_time": ""
 }
+### Update my profile ###
+PATCH {{endpoint}}/organism/profile/edit
+Content-Type: application/json
+
+{
+        "name": "",
+        "description": "Organisme de Yoga sur Nantes",
+        "contact_email": "",
+        "phone_number": ""
+}
+
+###/!\ Delete my profile /!\###
+DELETE {{endpoint}}/organism/profile/delete

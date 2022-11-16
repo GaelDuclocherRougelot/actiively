@@ -30,5 +30,21 @@ module.exports = {
             WHERE pk_activity = $1
             AND pk_organism = $2
         `, [pk_activity, email])
+    },
+
+    async updateDay(dayToUpdate, code_activity) {
+            
+        await client.query(`
+            UPDATE "day"
+                SET name= COALESCE(NULLIF($1,''), name),
+                    start_time= COALESCE(NULLIF($2,''), start_time),
+                    end_time= COALESCE(NULLIF($3,''), end_time)
+                WHERE pk_activity = $4
+        `,[
+            dayToUpdate.name,
+            dayToUpdate.start_time,
+            dayToUpdate.end_time,
+            code_activity
+        ]);
     }
 }

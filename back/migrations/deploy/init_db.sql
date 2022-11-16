@@ -18,7 +18,7 @@ CREATE TABLE
         name character varying(128) NOT NULL,
         start_time character varying(128),
         end_time character varying(128),
-        pk_activity integer NOT NULL
+        pk_activity integer NOT NULL;
     );
 
 CREATE TABLE

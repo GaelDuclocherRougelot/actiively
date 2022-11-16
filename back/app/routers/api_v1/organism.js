@@ -21,12 +21,16 @@ router
     .post(validator(loginSchema),controllerHandler(controller.login))
 
 router
-    .route('/logout')
-    .get(validateToken,controllerHandler(controller.logout))
-
-router
     .route('/profile')
     .get(validateToken,controllerHandler(controller.profile))
+
+router
+    .route('/profile/edit')
+    .patch(validateToken,controllerHandler(controller.updateProfile))
+
+router
+    .route('/profile/delete')
+    .delete(validateToken,controllerHandler(controller.deleteProfile))
 
 router
     .route('/create')
@@ -42,7 +46,7 @@ router
 
 router
     .route('/activity/:id/delete')
-    .get(validateToken,controllerHandler(activitiesController.deleteOneActivity))
+    .delete(validateToken,controllerHandler(activitiesController.deleteOneActivity))
 
 router
     .route('/activity/:id/edit')
