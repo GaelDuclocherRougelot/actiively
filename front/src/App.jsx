@@ -36,13 +36,10 @@ function App() {
   const navigate = useNavigate();
 
   // Search request
-  debugger;
+
   const postData = async () => {
-    if (keyword.zip_code == 'undefined' && keyword.keyword == 'undefined') {
-      console.log("ici")
-      return;
-    }
-    debugger;
+    if (!keyword.zip_code && !keyword.keyword) {
+      return;}
     try {
       const resp = await axios.post('http://localhost:3001/api/v1/activity/search', {
         keyword: keyword.keyword,
