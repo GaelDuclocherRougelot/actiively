@@ -11,11 +11,14 @@ import { useForm } from 'react-hook-form';
 import {
     Button, Input, Form,
 } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 import Sport from '../../images/Sport.svg';
 import './createActivity.scss';
 
-function CreateActivity() {
+function CreateActivity({
+    token,
+  }) {
     const {
         register, handleSubmit, formState: { errors },
     } = useForm({
@@ -262,5 +265,9 @@ function CreateActivity() {
         </div>
     );
 }
+
+CreateActivity.propTypes = {
+    token: PropTypes.string.isRequired,
+};
 
 export default React.memo(CreateActivity);

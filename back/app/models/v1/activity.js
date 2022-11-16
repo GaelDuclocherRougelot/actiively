@@ -8,7 +8,7 @@ module.exports = {
     async findByPk(id){
         const result = await client.query(`
             SELECT 
-                a.name, a.address, a.zip_code, a.city, d.name as day, d.start_time, d.end_time, a.price, a.price_type, a.gender, a.level, a.description, a.image_url,
+                a.name, a.address, a.code_activity, a.zip_code, a.city, d.name as day, d.start_time, d.end_time, a.price, a.price_type, a.gender, a.level, a.description, a.image_url,
                 json_build_object('email', o.contact_email,'name', o.name, 'phone_number', o.phone_number, 'organism_description', o.description) as organism_infos 
             FROM activity a
                 JOIN day d ON pk_activity = code_activity

@@ -12,6 +12,7 @@ module.exports = {
 
     async getOneOrganismActivty(req, res){
             const activity = await activityDatamapper.findActivityByOrganism(req.params.id, req.decodedToken.email);
+            console.log(res.json(activity));
             return res.json(activity);
     },
 

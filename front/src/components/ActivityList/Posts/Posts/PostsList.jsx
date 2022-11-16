@@ -23,6 +23,8 @@ function Posts({
               name={post.activity_name}
               zip_code={post.zip_code}
               city={post.city}
+              level={post.level}
+              gender={post.gender}
               image_url={post.image_url}
               day={post.day}
               price={post.price}

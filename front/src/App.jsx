@@ -16,6 +16,7 @@ import ActivityList from './components/ActivityList/ActivityList';
 import Profil from './components/Profil/profil';
 import ModifProfil from './components/ModifProfil/modifProfil';
 import CreateActivity from './components/CreateActivity/createActivity';
+import OrganismActivities from './components/OrganismActivities/OrganismActivities';
 
 import useToken from './components/Hooks/useToken';
 
@@ -45,7 +46,6 @@ function App() {
     })
       .then((res) => {
         setResults(res.data);
-        // console.log('results: ', res.data);
       });
   };
 
@@ -122,18 +122,26 @@ function App() {
             />
           )}
         />
+        {/* Restricted pages */}
         <Route
           path="/organism/profile"
-          // Restricted page
           element={isLogged ? <Profil token={token} /> : <Navigate replace to="/login" />}
         />
         <Route
-          path="/organism/profile/modif"
-          element={<ModifProfil />}
+          path="/organism/profile/edit"
+          element={isLogged ? <ModifProfil token={token} /> : <Navigate replace to="/login" />}
         />
         <Route
           path="/organism/create"
-          element={<CreateActivity />}
+          element={isLogged ? <CreateActivity token={token} /> : <Navigate replace to="/login" />}
+        />
+        <Route
+          path="/organism/activities"
+          element={isLogged ? <OrganismActivities token={token} /> : <Navigate replace to="/login" />}
+        />
+        <Route
+          path="/organism/activity/:id"
+          element={isLogged ? <Activity token={token} /> : <Navigate replace to="/login" />}
         />
         <Route
           path="*"
