@@ -42,7 +42,7 @@ function Profil({
   );
 
   // Delete profile feature
-  const Delete = async () => {
+  const deleteProfile = async () => {
     try {
       await axios.delete(
         'http://localhost:3001/api/v1/organism/profile/delete',
@@ -70,7 +70,7 @@ function Profil({
     })
       .then((willDelete) => {
         if (willDelete) {
-          Delete();
+          deleteProfile();
           swal('Votre profil a bien été supprimé', {
             icon: 'success',
           });
