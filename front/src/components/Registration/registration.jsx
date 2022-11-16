@@ -42,7 +42,7 @@ function Registration() {
   };
 
   return (
-    <div className="container">
+    <div className="container ">
       <div className="container-image">
         <img src={Sport} alt="Sport" className="image" />
       </div>

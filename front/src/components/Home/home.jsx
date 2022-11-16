@@ -29,7 +29,7 @@ function HomePage({
   return (
     <div className="home">
       <header>
-        <h1 className="home-title"> Trouvez l&apos;activité qui vous correspond</h1>
+        <h1 className="home-title"> Trouvez l'activité qui vous correspond</h1>
       </header>
 
       <section className="form-home">
