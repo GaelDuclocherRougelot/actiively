@@ -23,6 +23,9 @@ function App() {
   // Hook created to manage parametres search:
   const [keyword, setkeyword] = useState('');
   const [results, setResults] = useState([]);
+  console.log(keyword.keyword);
+  console.log(keyword.zip_code);
+
   // Hook created to manage token
   const { token, setToken } = useToken();
   const [isLogged, setIsLogged] = useState(false);
@@ -30,14 +33,24 @@ function App() {
   const navigate = useNavigate();
 
   // Search request
-  const postData = () => {
-    axios.post('http://localhost:3001/api/v1/activity/search', {
-      keyword: keyword.keyword,
-      zip_code: keyword.zip_code,
-    })
-      .then((res) => {
-        setResults(res.data);
-      });
+  
+  const postData = async () => {
+    if (keyword.zip_code === '%' && keyword.keyword === '%') {
+      return;
+    }
+    try {
+      const resp = await axios.post('http://localhost:3001/api/v1/activity/search', {
+        keyword: keyword.keyword,
+        zip_code: keyword.zip_code,
+      })
+
+        .then((res) => {
+          setResults(res.data);
+        });
+    }
+    catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(
