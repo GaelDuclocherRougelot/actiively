@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
+import swal from 'sweetalert';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
@@ -14,6 +15,7 @@ function Profil({
   setToken,
 }) {
   const [organism, setOrganism] = useState({});
+  const navigate = useNavigate();
 
   // Request to API to get profile data of an organism depending on token
   const fetchOrganism = async () => {
@@ -39,10 +41,8 @@ function Profil({
     [],
   );
 
-  const navigate = useNavigate();
   // Delete profile feature
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const Delete = async () => {
     try {
       await axios.delete(
         'http://localhost:3001/api/v1/organism/profile/delete',
@@ -50,15 +50,32 @@ function Profil({
           headers: { authorization: token },
         },
       );
-      console.log('profil supprimé');
+      // console.log('profil supprimé');
       setToken(null);
-      setIsLogged(false);
+      setIsLogged(false); // Logout
       localStorage.clear(); // Remove token from localStorage in browser
       navigate('/');
     }
     catch (error) {
       console.log(error);
     }
+  };
+
+  // Alert modal to confirm delete profile
+  const handleClick = () => {
+    swal({
+      title: 'Voulez-vous vraiment supprimer le profil ?',
+      buttons: ['Annuler', 'Supprimer le profil'],
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          Delete();
+          swal('Votre profil a bien été supprimé', {
+            icon: 'success',
+          });
+        }
+      });
   };
 
   return (
@@ -103,7 +120,7 @@ function Profil({
             <p>{organism.description}</p>
           </div>
           <div className="organism-delete">
-            <Button basic color="red" type="submit" size="mini" onClick={handleSubmit}>Supprimer le profil</Button>
+            <Button basic color="red" type="button" size="mini" onClick={handleClick}>Supprimer le profil</Button>
           </div>
         </div>
       </div>
