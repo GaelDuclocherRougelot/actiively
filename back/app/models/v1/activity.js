@@ -2,24 +2,10 @@ const client = require('../../config/db');
 
 module.exports = {
     /**
-     * Get one activity by pk
+     * Find one activity by code_activity
      * @typedef {object} Activity
-     * @param {integer} id
-     * @return {object}
-     * @property {string} name.required - Name of the activity
-     * @property {string} address.required - Address of the activity
-     * @property {string} code_activity.required - id of the activity
-     * @property {string} zip_code.required - ZipCode of the activity
-     * @property {string} city.required - City of the activity
-     * @property {string} day.required - Day of the activity
-     * @property {string} start_time.required - StartTime of the activity
-     * @property {string} end_time.required - EndTime of the activity
-     * @property {string} price.required - Price of the activity
-     * @property {string} price_type.required - PriceType of the activity ex: par an, par mois...
-     * @property {string} gender.required - Gender of the activity
-     * @property {string} level.required - Level of the activity
-     * @property {string} description.required - Description of the activity
-     * @property {string} image_url.required - ImageUrl of the activity
+     * @param {integer} id code_activity
+     * @return {object} object
      */
     async findByPk(id){
         const result = await client.query(`
@@ -37,24 +23,8 @@ module.exports = {
     },
     /**
      * lists of activities filtered by keyword and zip code
-     * The '%' is for the SQL query
-     * @typedef {array} Activities
-     * @param q = query object
-     * @returns {object} 
-     * @property {string} name.required - Name of the activity
-     * @property {string} address.required - Address of the activity
-     * @property {string} code_activity.required - id of the activity
-     * @property {string} zip_code.required - ZipCode of the activity
-     * @property {string} city.required - City of the activity
-     * @property {string} day.required - Day of the activity
-     * @property {string} start_time.required - StartTime of the activity
-     * @property {string} end_time.required - EndTime of the activity
-     * @property {string} price.required - Price of the activity
-     * @property {string} price_type.required - PriceType of the activity ex: par an, par mois...
-     * @property {string} gender.required - Gender of the activity
-     * @property {string} level.required - Level of the activity
-     * @property {string} description.required - Description of the activity
-     * @property {string} image_url.required - ImageUrl of the activity
+     * @typedef {object} Activities
+     * @param q request body
      */
      async findByKeyword(q){
         const result = await client.query(`
@@ -68,7 +38,7 @@ module.exports = {
     },
 
         /**
-     * Get one activity by name
+     * Find one activity by name
      * @param {string} name
      */
          async findByName(name){
@@ -82,7 +52,11 @@ module.exports = {
     
             return result.rows[0]
         },
-
+        /**
+     * Remove one activity by id & email
+     * @param {number} activity id
+     * @param {string} email
+     */
         async deleteActivityByPk(id, email) {
             await client.query(`
                 DELETE FROM "activity" CASCADE
@@ -90,14 +64,18 @@ module.exports = {
                 AND pk_organism = $2
             `, [id, email]);
         },
-
+     /** Remove all activities / day related by email, from one organism
+     * @param {string} email
+     */
         async deleteAllActivities(email) {
             await client.query(`
                 DELETE FROM "activity" CASCADE
                 WHERE pk_organism = $1
             `, [email]);
         },
-
+     /** Find all activities by organism
+     * @param {string} email of the organism
+     */
         async findActivitiesByOrganism(email) {
             const result = await client.query(`
                 SELECT 
@@ -110,7 +88,10 @@ module.exports = {
             `, [email]);
             return result.rows;
         },
-
+     /** Find one activity by code_activity / email
+      * @param {number} id
+     * @param {string} email of the organism
+     */
         async findActivityByOrganism(id,email) {
             const result = await client.query(`
                 SELECT 
@@ -124,7 +105,10 @@ module.exports = {
             `, [id, email]);
             return result.rows;
         },
-    
+         /** Create one activity by organism
+        * @param {object} activity
+        * @param {string} email
+        */
         async createActivity(activity, email) {
             const activityQuery = await client.query(`
                 INSERT INTO "activity"
@@ -158,7 +142,12 @@ module.exports = {
     
             return activityQuery.rows[0];
         },
-
+        /** Update one activity by organism, code_activity
+         * @param {object} activity req.body
+         * @property {string} pk_organism
+         * @property {number} code_activity
+         * 
+        */
         async updateActivity(activity, pk_organism, code_activity) {
             
             await client.query(`

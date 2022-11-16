@@ -11,8 +11,7 @@ const options = {
     filesPattern: [
     '../routers/**/*.js', 
     '../errors/*.js',
-    '../models/v1/*.js',
-    './swaggerSchemas/*.yaml'
+    '../models/v1/*.js'
     ],
     // URL où sera disponible la page de documentation
     swaggerUIPath: process.env.API_DOCUMENTATION_ROUTE,
