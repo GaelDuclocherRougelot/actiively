@@ -56,7 +56,7 @@ function Activity({
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.get(
+      await axios.delete(
         `http://localhost:3001/api/v1/organism/activity/${id}/delete`,
         {
           headers: { authorization: token },

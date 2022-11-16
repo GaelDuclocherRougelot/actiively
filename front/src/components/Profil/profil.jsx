@@ -3,13 +3,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Icon } from 'semantic-ui-react';
 import Sport from '../../images/Sport3.svg';
 import './profil.scss';
 
 function Profil({
   token,
+  setIsLogged,
+  setToken,
 }) {
   const [organism, setOrganism] = useState({});
 
@@ -36,6 +38,28 @@ function Profil({
     },
     [],
   );
+
+  const navigate = useNavigate();
+  // Delete profile feature
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await axios.delete(
+        'http://localhost:3001/api/v1/organism/profile/delete',
+        {
+          headers: { authorization: token },
+        },
+      );
+      console.log('profil supprimé');
+      setToken(null);
+      setIsLogged(false);
+      localStorage.clear(); // Remove token from localStorage in browser
+      navigate('/');
+    }
+    catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="organism-page-container">
@@ -78,6 +102,9 @@ function Profil({
             <h2>Description </h2>
             <p>{organism.description}</p>
           </div>
+          <div className="organism-delete">
+            <Button basic color="red" type="submit" size="mini" onClick={handleSubmit}>Supprimer le profil</Button>
+          </div>
         </div>
       </div>
     </div>
@@ -86,6 +113,8 @@ function Profil({
 
 Profil.propTypes = {
   token: PropTypes.string.isRequired,
+  setIsLogged: PropTypes.func.isRequired,
+  setToken: PropTypes.func.isRequired,
 };
 
 export default React.memo(Profil);

@@ -37,8 +37,15 @@ function Login({
         },
         { withCredentials: true },
       );
-      // console.log('response:', response.data);
       const { token } = response.data;
+
+      if (token === undefined) {
+        setErrMsg('Vos identifiants n\'existent pas.');
+        localStorage.clear();
+        navigate('/login');
+        return;
+      }
+
       setToken(token);
       const login = true;
       setIsLogged(login);
