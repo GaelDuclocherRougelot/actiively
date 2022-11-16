@@ -28,7 +28,7 @@ function DayFilter({
     SaturdaySelect(selectSaturday);
     SundaySelect(selectSunday);
   }, []);
-  
+
   MondaySelect(slectMonday);
   TuesdaySelect(selectTuesday);
   WednesdaySelect(selectWednsday);

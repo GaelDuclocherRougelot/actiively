@@ -14,7 +14,6 @@ function Header({
   setToken,
 }) {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
-  console.log('open:', isBurgerOpen);
 
   const toggleBurger = () => {
     setIsBurgerOpen(!isBurgerOpen);

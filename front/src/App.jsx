@@ -25,8 +25,6 @@ function App() {
   // Hook created to manage parametres search:
   const [keyword, setkeyword] = useState('');
   const [results, setResults] = useState([]);
-  console.log(keyword.keyword);
-  console.log(keyword.zip_code);
 
   // Hook created to manage token
   const { token, setToken } = useToken();
@@ -34,7 +32,7 @@ function App() {
 
   // To enable redirection
   const navigate = useNavigate();
-  
+
   // Search request
   const postData = async () => {
     if (keyword.zip_code === '%' && keyword.keyword === '%') {
@@ -62,7 +60,6 @@ function App() {
     [keyword],
   );
 
-
   // Login still active on refresh
   useEffect(
     () => {
@@ -73,7 +70,7 @@ function App() {
     [],
   );
 
-// activity search parametre feature
+  // activity search parametre feature
   const handleClick = (e, activity) => {
     e.preventDefault();
     const act = `${activity.keyword}%`;

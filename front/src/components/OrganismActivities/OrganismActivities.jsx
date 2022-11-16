@@ -23,7 +23,6 @@ function OrganismActivities({
       // Give data to state
       setActivities(response.data);
       setMessage('');
-      console.log('fetchActivies :', response.data);
     }
     catch (error) {
       console.log(error);

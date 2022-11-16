@@ -16,7 +16,7 @@ function ActivityList({
   const [checSaturday, setChecSaturday] = useState('');
   const [checkSunday, setCheckSunday] = useState('');
 
-// Hook created to manage parametres of level's filter:
+  // Hook created to manage parametres of level's filter:
   const [checkFirstLevel, setCheckFirstLevel] = useState('');
   const [checkSecondLevel, setCheckSecondtLevel] = useState('');
   const [checkThirdLevel, setCeckThirdLevel] = useState('');
@@ -110,8 +110,7 @@ function ActivityList({
     && level2 === ''
     && level3 === ''
     );
-    let rightData;
-    rightData = table.filter((el) => {
+    const rightData = table.filter((el) => {
       const isvalid = (isdayfiltrenotactive || (
         el.day === day1
     || el.day === day2
