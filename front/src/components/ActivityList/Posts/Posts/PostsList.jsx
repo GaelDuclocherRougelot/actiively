@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Post from '../Post/Post';
 import './postsListStyles.css';
@@ -6,12 +6,22 @@ import './postsListStyles.css';
 function Posts({
   results,
 }) {
+  // Message depends on number of results
+  const getMessage = () => {
+    if (results.length === 0) {
+      return 'Aucun résultat ne correspond à votre recherche';
+    }
+    if (results.length === 1) {
+      return '1 résultat correspond à votre recherche';
+    }
+
+    return `${results.length} résultats correspondent à votre recherche`;
+  };
+
   return (
     <div>
       <h2 className="number-result">
-        {results.length}
-        {' '}
-        résultats correspondent à votre recherche
+        {getMessage()}
       </h2>
       <main className="posts">
         <div className="results-container">
