@@ -4,31 +4,51 @@
   flex-direction: column;
   text-align: center;
   margin:auto;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
 }
 
 /* This is to be able to style image;*/
 .image {
-  width:15rem;
-  height:15rem;
+  width:14rem;
+  height:14rem;
+  -webkit-transition: all 0.2s;
+     -moz-transition: all 0.2s;
+     -ms-transition: all 0.2s;
+     -o-transition: all 0.2s;
+     transition: all 0.2s;
+}
+
+img:hover {
+  transform:scale(1.2);
 }
 /* This is to be able to position image;*/
 .imagestyle {
   padding: 1rem;
 }
 
+
 /* This is to be able to style the title;*/
 .post-title {
   color: #00b5ad;
   font-size: 1.4rem;
   font-weight: bold;
-  text-align: center;  
+  text-align: center; 
+  
+}
+
+.post-organism {
+  font-weight: bold;
+  padding-bottom: 1rem;
+
 }
 
 /* This is to be able to style the code zip;*/
 .post-zip {
   text-align: left;
   padding-left: 3rem;
-  padding-top: 1rem;
+  padding-top: 0.3rem;
+  font-style: italic;
 }
 
 /* This is to be able to style the price;*/
@@ -36,4 +56,7 @@
   padding: 0.2rem;
   text-align: right;
   font-size: 1em;
+  font-style: italic;
+  text-shadow: 10px 11px 18px rgba(300, 180, 100, 1),
+-10px -11px 18px #00b5ad;
   }

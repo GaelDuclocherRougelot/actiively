@@ -14,7 +14,7 @@ function Posts({
         résultats correspondent à votre recherche
       </h2>
       <main className="posts">
-        <div className="results-container">
+        <div className="posts-container">
           {results.map((post) => (
             <Post
               name={post.activity_name}
