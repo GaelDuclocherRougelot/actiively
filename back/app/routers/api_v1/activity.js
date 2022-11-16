@@ -10,41 +10,39 @@ router
     .route('/:id')
     /** 
      * GET /api/v1/activity/{id}
-     * @summary 
-     * @tags Get
-     * @param {number} code_activity.params
-     * @return {Get} 200 - success response - application/json
+     * @summary Get one activity by id
+     * @tags GET
+     * @param {number} id.path
+     * @return {Activity} 200 - success response - application/json
      * @return {ApiError} 401 - Unauthorized - application/json
      * @return {ApiError} 404 - Response not found - application/json
-     * @example response - 200 - success response exemple
-        * {
-        * "name": "Tennis",
-        * "address": "12 rue du Tennis",
-        * "zip_code": "75016",
-        * "city": "Paris",
-        * "day": "Samedi",
-        * "start_time": "20H00",
-        * "end_time": "22H00",
-        * "price": "20",
-        * "price_type": "La scéance",
-        * "gender": "Mixte",
-        * "level": "Débutant",
-        * "description": "Tennis description",
-        * "image_url": "link",
-        * "organism_infos": {
-        *     "email": "email@oftheorganism.com",
-        *     "name": "Organization 1",
-        *     "phone_number": "0702030304",
-        *     "organism_description": "description of the organism"
-        * }
-        * }
-    * @example response - 400 - Bad request response
+     * @example {Activity} - 200 - success response
+     * @example response - 400 - Bad request response
         *  {ApiError}
-        */
-    
+    */
     .get(controllerHandler(controller.getOneActivty))
 router
     .route('/search')
+    /**
+     * A research
+     * @typedef {object} Search
+     * @property {string} keyword - ex: Tennis%
+     * @property {string} zip_code - ex: 75%
+     */
+
+        /** 
+     * POST /api/v1/activity/search
+     * @summary Get activities by keyword & zip_code
+     * @description Exemple of request: keyword = Tennis% & zip_code = 75%
+     * @tags POST
+     * @param {Search} request.body - request exemple: Tennis% & 75% - application/json
+     * @return {Activities} 200 - success response - application/json
+     * @return {ApiError} 401 - Unauthorized - application/json
+     * @return {ApiError} 404 - Response not found - application/json
+     * @example {Activities} - 200 - success response
+     * @example response - 400 - Bad request response
+        *  {ApiError}
+    */
     .post(validator(searchSchema),controllerHandler(controller.getAllByKeyword))
 
 module.exports = router;

@@ -3,7 +3,23 @@ const client = require('../../config/db');
 module.exports = {
     /**
      * Get one activity by pk
+     * @typedef {object} Activity
      * @param {integer} id
+     * @return {object}
+     * @property {string} name.required - Name of the activity
+     * @property {string} address.required - Address of the activity
+     * @property {string} code_activity.required - id of the activity
+     * @property {string} zip_code.required - ZipCode of the activity
+     * @property {string} city.required - City of the activity
+     * @property {string} day.required - Day of the activity
+     * @property {string} start_time.required - StartTime of the activity
+     * @property {string} end_time.required - EndTime of the activity
+     * @property {string} price.required - Price of the activity
+     * @property {string} price_type.required - PriceType of the activity ex: par an, par mois...
+     * @property {string} gender.required - Gender of the activity
+     * @property {string} level.required - Level of the activity
+     * @property {string} description.required - Description of the activity
+     * @property {string} image_url.required - ImageUrl of the activity
      */
     async findByPk(id){
         const result = await client.query(`
@@ -20,13 +36,25 @@ module.exports = {
         return result.rows[0]
     },
     /**
+     * lists of activities filtered by keyword and zip code
+     * The '%' is for the SQL query
+     * @typedef {array} Activities
      * @param q = query object
-     * @example // of the query body
-     * {
-     *  "keyword": "Tennis%",
-     *  "zip_code": "75%"
-     * }
-     * @returns lists of activities filtered by keyword and zip code
+     * @returns {object} 
+     * @property {string} name.required - Name of the activity
+     * @property {string} address.required - Address of the activity
+     * @property {string} code_activity.required - id of the activity
+     * @property {string} zip_code.required - ZipCode of the activity
+     * @property {string} city.required - City of the activity
+     * @property {string} day.required - Day of the activity
+     * @property {string} start_time.required - StartTime of the activity
+     * @property {string} end_time.required - EndTime of the activity
+     * @property {string} price.required - Price of the activity
+     * @property {string} price_type.required - PriceType of the activity ex: par an, par mois...
+     * @property {string} gender.required - Gender of the activity
+     * @property {string} level.required - Level of the activity
+     * @property {string} description.required - Description of the activity
+     * @property {string} image_url.required - ImageUrl of the activity
      */
      async findByKeyword(q){
         const result = await client.query(`
