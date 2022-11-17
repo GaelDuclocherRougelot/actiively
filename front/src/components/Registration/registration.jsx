@@ -6,7 +6,7 @@
 import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-
+import swal from 'sweetalert';
 import { Icon, Button } from 'semantic-ui-react';
 import axios from 'axios';
 import Sport from '../../images/Sport.svg';
@@ -41,6 +41,11 @@ function Registration() {
       )
       .then((response) => {
         console.log(response.data);
+        swal({
+          title: 'Votre organisme a bien été créé !',
+          text: 'Veuillez vous connecter.',
+          icon: 'success',
+        });
       })
       .catch((error) => {
         console.log(error.data);

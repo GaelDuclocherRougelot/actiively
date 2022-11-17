@@ -7,6 +7,7 @@
 import React from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import swal from 'sweetalert';
 import PropTypes from 'prop-types';
 import { Button, Icon } from 'semantic-ui-react';
 import axios from 'axios';
@@ -40,11 +41,6 @@ function ModifActivity({
 
         },
     });
-    // type de tarif : menu déroulant (par an, trimestre, séance, mois)
-    // const onSubmit = (data, event) => {
-    //    console.log(data, 'data');
-    //    console.log(event, 'event');
-    // };
 
     const onSubmit = (data) => {
         axios
@@ -59,6 +55,10 @@ function ModifActivity({
             )
             .then((response) => {
                 console.log(response.data);
+                swal({
+                    title: "L'activité a bien été modifiée !",
+                    icon: 'success',
+                  });
             })
             .catch((error) => {
                 console.log(error.data);

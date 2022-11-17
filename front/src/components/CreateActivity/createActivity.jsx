@@ -89,6 +89,7 @@ return (
                             })}
                         />
                     </div>
+                    {errors.name && <p className="errors">{errors.name.message}</p>}
                     <div className="field">
                         <label className="label-form">
                             Nom de l activité :
@@ -122,6 +123,7 @@ return (
                             })}
                         />
                     </div>
+                    {errors.name && <p className="errors">{errors.name.message}</p>}
                     <div className="field">
                         <label className="label-form">
                             Adresse

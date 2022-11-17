@@ -6,6 +6,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
+import swal from 'sweetalert';
 import { Button, Icon } from 'semantic-ui-react';
 import './modifProfil.scss';
 import axios from 'axios';
@@ -29,6 +30,10 @@ function ModifProfil({
       )
       .then((response) => {
         console.log(response.data);
+        swal({
+          title: 'Le profil a bien été modifié !',
+          icon: 'success',
+        });
       })
       .catch((error) => {
         console.log(error.data);
