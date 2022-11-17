@@ -1,6 +1,10 @@
 const client = require('../../config/db');
 
 module.exports = {
+    /**
+     * Create one organism
+     * @param {object} organism
+     */
     async createOrganism(organism) {
         const organismQuery = await client.query(`
             INSERT INTO "organism"
@@ -17,20 +21,31 @@ module.exports = {
 
         return organismQuery.rows[0];
     },
+    /**
+     * Find one email address
+     * @param {text} email of the organism (connected)
+     */
     async findOneEmail(email) {
         const organism = await client.query(`
             SELECT email FROM "organism" WHERE email = $1
         `,[email]);
         return organism.rows
     },
-
+    /**
+     * Find one organism by email
+     * @param {object} email of the organism (connected)
+     */
     async findOneOrganism(email) {
         const organism = await client.query(`
             SELECT * FROM "organism" WHERE email = $1
         `,[email]);
         return organism.rows[0]
     },
-
+    /**
+     * Create one organism
+     * @param {object} organism
+     * @param {object} emailLogged of the organism (connected)
+     */
     async updateProfile(organism, emailLogged) {
         await client.query(`
         UPDATE "organism"
@@ -47,7 +62,9 @@ module.exports = {
         organism.phone_number,
     emailLogged]);
     },
-
+    /** Remove one organism
+     * @param {string} email of the organism (connected)
+     */
     async deleteProfile(email) {
         await client.query(`
         DELETE FROM organism WHERE email = $1;`

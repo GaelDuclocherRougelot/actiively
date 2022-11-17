@@ -17,7 +17,19 @@ const options = {
     swaggerUIPath: process.env.API_DOCUMENTATION_ROUTE,
     // Activation de la documentation à travers une route de l'API
     exposeApiDocs: true,
-    apiDocsPath: '/api/docs'
+    apiDocsPath: '/api/docs',
+    "security": {
+        "BasicAuth": {
+          "type": "http",
+          "scheme": "basic"
+        },
+        "BearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT",
+          "value": "Bearer <JWT token here>"
+        }
+      }
 };
 
 /**

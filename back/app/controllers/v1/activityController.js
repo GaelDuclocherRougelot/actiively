@@ -5,22 +5,42 @@ const customApiError = require('../../errors/apiErrors');
 const { response } = require('express');
 
 module.exports = {
+    /**
+     * Find one activity by id
+     * @param {*} req 
+     * @param {*} res 
+     * @returns an object containing one activity
+     */
     async getOneActivty(req, res){
         const activity = await activityDatamapper.findByPk(req.params.id);
         return res.json(activity);
     },
-
+    /**
+     * Find one activity by organism
+     * @param {*} req 
+     * @param {*} res 
+     * @returns an object containing one activity by the current organism connected
+     */
     async getOneOrganismActivty(req, res){
             const activity = await activityDatamapper.findActivityByOrganism(req.params.id, req.decodedToken.email);
             console.log(res.json(activity));
             return res.json(activity);
     },
-
+    /**
+     * Find all activities filtered by keyword & zip_code (postal code)
+     * @param {*} req 
+     * @param {*} res 
+     * @returns an array of objects containing activities
+     */
     async getAllByKeyword(req, res){
         const activities = await activityDatamapper.findByKeyword(req.body);
         return res.json(activities);
     },
-
+    /**
+     * Find all activities by the current organism connected
+     * @param {*} req 
+     * @param {*} res 
+     */
     async getOrganismActivities(req, res) {
         const activities = await activityDatamapper.findActivitiesByOrganism(req.decodedToken.email);
         try {
@@ -30,12 +50,16 @@ module.exports = {
             throw new customApiError(err.message, 400);
         }
     },
-
+    /**
+     * Create one activty by the current organism connected
+     * @param {*} req
+     * @param {*} res 
+     */
     async postOneActivity(req, res) {
         try {
             const activityExist = await activityDatamapper.findByName(req.body.name);
 
-            if(activityExist) {
+            if(activityExist) { // if the activity exists = error
                 res.json({error: `Activity ${activityExist.name} already exists`});
                 throw new Error(`Activity ${activityExist.name} already exists`);
 
@@ -69,7 +93,11 @@ module.exports = {
             throw new customApiError(err.message, 400);
         }
     },
-
+    /**
+     * Remove one activity by the current organism connected
+     * @param {*} req
+     * @param {*} res 
+     */
     async deleteOneActivity(req, res){
         const currActivity = req.params.id;
         const activityToDelete = await activityDatamapper.findByPk(currActivity);
@@ -88,7 +116,11 @@ module.exports = {
              throw new customApiError(err.message, 400);
          }
     },
-
+    /**
+     * Update one activity by the current organism connected & current activity ID
+     * @param {*} req 
+     * @param {*} res 
+     */
     async updateOneActivity(req, res) {
         const activityId = req.params.id
         const activityToUpdate = {
