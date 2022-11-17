@@ -25,8 +25,7 @@ function App() {
   // Hook created to manage parametres search:
   const [keyword, setkeyword] = useState('');
   const [results, setResults] = useState([]);
-  // console.log(keyword.keyword)
-  // console.log(keyword.zip_code)
+
 
   // Hook created to manage token
   const { token, setToken } = useToken();
@@ -39,7 +38,8 @@ function App() {
 
   const postData = async () => {
     if (!keyword.zip_code && !keyword.keyword) {
-      return;}
+      return;
+    }
     try {
       const resp = await axios.post('http://localhost:3001/api/v1/activity/search', {
         keyword: keyword.keyword,
