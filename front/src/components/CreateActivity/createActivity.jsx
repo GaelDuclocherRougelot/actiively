@@ -57,7 +57,7 @@ function CreateActivity({
             .then((response) => {
                 console.log('response:', response.data);
                 swal({
-                    title: "L'activité a bien été crée !",
+                    title: "L'activité a bien été créée !",
                     icon: 'success',
                   });
             })
@@ -77,7 +77,7 @@ return (
                 <Form success className="ui form container-form" onSubmit={handleSubmit(onSubmit)}>
                     <div className="field">
                         <label className="label-form">
-                            image URL
+                            URL de l&apos;image
                         </label>
                         <input
                             placeholder="URL de votre image préférée"
@@ -92,7 +92,7 @@ return (
                     {errors.name && <p className="errors">{errors.name.message}</p>}
                     <div className="field">
                         <label className="label-form">
-                            Nom de l activité :
+                            Nom de l&apos;activité
                         </label>
                         <input
                             placeholder="les sbires de Gul'dan"
@@ -145,7 +145,7 @@ return (
                     {errors.address && <p className="errors">{errors.address.message}</p>}
                     <div className="field">
                         <label className="label-form">
-                            ville
+                            Ville
                         </label>
                         <input
                             placeholder="Lyon"
@@ -183,7 +183,7 @@ return (
                     </div>
                     <div className="field">
                         <label className="label-day">
-                            jour de l activité :
+                            Jour de l&apos;activité
                             <select
                                 {...register('day', { required: 'Ces champs sont obligatoire' })}
                             >
@@ -199,7 +199,7 @@ return (
                         </label>
 
                         <label className="label-day">
-                            heure de départ de l activité :
+                            Heure de début de l&apos;activité
                             <input
                                 placeholder="heure de début de l'activité"
                                 type="text"
@@ -211,7 +211,7 @@ return (
                             {errors.start_time && <p className="errors">{errors.start_time.message}</p>}
                         </label>
                         <label className="label-day">
-                            heure de fin de l activité :
+                            Heure de fin de l&apos;activité
                             <input
                                 placeholder="heure de fin de l'activité"
                                 type="text"

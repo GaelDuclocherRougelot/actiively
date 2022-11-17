@@ -4,7 +4,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-indent-props */
 /* eslint-disable react/jsx-indent */
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import swal from 'sweetalert';
@@ -17,6 +17,7 @@ import Sport from '../../images/Sport3.svg';
 function ModifActivity({
     token,
 }) {
+    const [activity, setActivity] = useState({});
     const navigate = useNavigate();
     // Used params to add id to URL when sending an axios request
     let id = useParams();
@@ -42,6 +43,26 @@ function ModifActivity({
         },
     });
 
+    // Request to API to get data for an Activity for placeholders
+    const fetchActivity = async () => {
+        try {
+        const response = await axios.get(`http://localhost:3001/api/v1/activity/${id}`);
+        // Update states with results
+        setActivity(response.data);
+        }
+        catch (error) {
+        console.log(error);
+        }
+    };
+    // useEffect so that data is fetched on mount
+    useEffect(
+        () => {
+        fetchActivity();
+        },
+        [],
+    );
+
+    // Post request to update data
     const onSubmit = (data) => {
         axios
             .patch(
@@ -102,10 +123,10 @@ function ModifActivity({
 
                     <div className="field">
                                 <label className="label-form">
-                                    image URL
+                                    URL de l&apos;image
                                 </label>
                                 <input
-                                    placeholder="URL de votre image préférée"
+                                    placeholder={activity.image_url}
                                     id="image_url"
                                     type="text"
                                     name="image_url"
@@ -118,11 +139,10 @@ function ModifActivity({
                                 Description
                             </label>
                             <textarea
-                                placeholder="Ma super association..."
+                                placeholder={activity.description}
                                 id="description"
                                 type="text"
-                                name="
-              description"
+                                name="description"
                                 {...register('description')}
                             />
                         </div>
@@ -132,7 +152,7 @@ function ModifActivity({
                                 Adresse
                             </label>
                             <input
-                                placeholder="123 royaume de Lordaeron"
+                                placeholder={activity.address}
                                 id="address"
                                 type="text"
                                 name="address"
@@ -149,10 +169,10 @@ function ModifActivity({
 
                         <div className="field">
                             <label className="label-form">
-                                ville
+                                Ville
                             </label>
                             <input
-                                placeholder="Lyon"
+                                placeholder={activity.city}
                                 id="city"
                                 type="text"
                                 name="city"
@@ -168,17 +188,17 @@ function ModifActivity({
 
                         <div className="field">
                             <label className="label-form">
-                                postal_code
+                                Code postal
                             </label>
                             <input
-                                placeholder="01000"
+                                placeholder={activity.zip_code}
                                 id="zip_code"
                                 type="number"
                                 name="zip_code"
                                 {...register('zip_code', {
                                     pattern: {
                                         value: /^[0-9]{5}$/,
-                                        message: 'format code postal invalide',
+                                        message: 'Format du code postal invalide',
                                     },
                                 })}
                             />
@@ -186,7 +206,7 @@ function ModifActivity({
                         </div>
                         <div className="field">
                             <label className="label-day">
-                                jour de l activité
+                                Jour de l&apos;activité
                                 <select
                                     {...register('day')}
                                 >
@@ -202,9 +222,9 @@ function ModifActivity({
                             </label>
 
                             <label className="label-day">
-                                heure de départ de l activité
+                                Heure de début de l&apos;activité
                                 <input
-                                    placeholder="heure de début de l'activité"
+                                    placeholder={activity.start_time}
                                     type="text"
                                     name="start_time"
                                     {...register('start_time', {
@@ -218,9 +238,9 @@ function ModifActivity({
 
                             </label>
                             <label className="label-day">
-                                heure de fin de l activité
+                                Heure de fin de l&apos;activité
                                 <input
-                                    placeholder="heure de fin de l'activité"
+                                    placeholder={activity.end_time}
                                     type="text"
                                     name="end_time"
                                     {...register('end_time', {
@@ -239,14 +259,14 @@ function ModifActivity({
                                 Tarif
                             </label>
                             <input
-                                placeholder="1 euro ca mange pas de pain"
+                                placeholder={activity.price}
                                 id="price"
                                 type="number"
                                 name="price"
                                 {...register('price', {
                                     minLength: {
                                         value: 1,
-                                        message: '1 caractères minimum',
+                                        message: '1 caractère minimum',
                                     },
                                 })}
                             />
