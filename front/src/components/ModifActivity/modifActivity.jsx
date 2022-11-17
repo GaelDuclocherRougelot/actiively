@@ -5,16 +5,22 @@
 /* eslint-disable react/jsx-indent-props */
 /* eslint-disable react/jsx-indent */
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
 import { Button, Icon } from 'semantic-ui-react';
-// import axios from 'axios';
+import axios from 'axios';
 import './modifActivity.scss';
-import Sport from '../../images/Sport4.svg';
+import Sport from '../../images/Sport3.svg';
 
-function ModifActivity() {
+function ModifActivity({
+    token,
+}) {
     const navigate = useNavigate();
-
+    // Used params to add id to URL when sending an axios request
+    let id = useParams();
+    // Transformed result to number to match format set in the Back
+    id = Number(id.id);
     const {
         register, handleSubmit, formState: { errors },
     } = useForm({
@@ -35,26 +41,31 @@ function ModifActivity() {
         },
     });
     // type de tarif : menu déroulant (par an, trimestre, séance, mois)
-    const onSubmit = (data, event) => {
-        console.log(data, 'data');
-        console.log(event, 'event');
-    };
-    /*
-     const onSubmit = (data) => {
+    // const onSubmit = (data, event) => {
+    //    console.log(data, 'data');
+    //    console.log(event, 'event');
+    // };
+
+    const onSubmit = (data) => {
         axios
-          .post(
-            'http://localhost:3001/api/v1/organism/activity/:id/edit',
-            data,
-          )
-          .then((response) => {
-            console.log(response.data);
-          })
-          .catch((error) => {
-            console.log(error.data);
-          });
-        navigate('/activity');
-      };
-    */
+            .patch(
+                `http://localhost:3001/api/v1/organism/activity/${id}/edit`,
+                data,
+                {
+                    headers: {
+                        authorization: token,
+                    },
+                },
+            )
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log(error.data);
+            });
+        navigate('/organism/activities');
+    };
+
     return (
 
         <div className="container">
@@ -89,34 +100,18 @@ function ModifActivity() {
 
                     <form className="ui form container-form" onSubmit={handleSubmit(onSubmit)}>
 
-                        <div className="field">
-                            <label className="label-form">
-                                upload image :
-                            </label>
-                            <input
-                                id="image_url"
-                                type="file"
-                                name="image_url"
-                                {...register('image_url')}
-                            />
-                            <label className="label-form">
-                                Nom de l activité :
-                            </label>
-                            <input
-                                placeholder="les sbires de Gul'dan"
-                                id="name"
-                                type="text"
-                                name="name"
-                                {...register('name', {
-                                    minLength: {
-                                        value: 3,
-                                        message: '3 caractères minimum',
-                                    },
-                                })}
-                            />
-                            {errors.name && <p className="errors">{errors.name.message}</p>}
-
-                        </div>
+                    <div className="field">
+                                <label className="label-form">
+                                    image URL
+                                </label>
+                                <input
+                                    placeholder="URL de votre image préférée"
+                                    id="image_url"
+                                    type="text"
+                                    name="image_url"
+                                    {...register('image_url')}
+                                />
+                    </div>
 
                         <div className="field">
                             <label>
@@ -261,7 +256,7 @@ function ModifActivity() {
                             <label className="label-form">
                                 Type de tarif
                                 <select
-                                    {...register('price_type', { required: 'Ce champ est obligatoire' })}
+                                    {...register('price_type')}
                                 >
                                     <option value="Lundi">Séance</option>
                                     <option value="Mardi"> Mois</option>
@@ -269,7 +264,6 @@ function ModifActivity() {
                                     <option value="Jeudi">trimestriel</option>
 
                                 </select>
-                                {errors.price_type && <p className="errors">{errors.price_type.message}</p>}
 
                             </label>
                         </div>
@@ -310,4 +304,8 @@ function ModifActivity() {
         </div>
     );
 }
+ModifActivity.propTypes = {
+    token: PropTypes.string.isRequired,
+};
+
 export default React.memo(ModifActivity);
