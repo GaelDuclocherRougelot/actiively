@@ -82,8 +82,8 @@ function Activity({
   };
 
   return (
-    <Container style={{ paddingBottom: '5rem' }}>
-      <Grid centered>
+    <Container>
+      <Grid centered style={{ marginBottom: '2rem' }}>
         <Grid.Row>
           <Header as="h1">{activity.name}</Header>
         </Grid.Row>
@@ -127,9 +127,11 @@ function Activity({
               </Label.Group>
               <Header as="h3" size="small">Informations de contact</Header>
               {organism.email}
+              &nbsp;
               <Icon name="mail" />
               <br />
               {organism.phone_number}
+              &nbsp;
               <Icon name="phone" />
             </Container>
           </Grid.Column>
