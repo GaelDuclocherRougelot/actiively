@@ -2,10 +2,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
+import swal from 'sweetalert';
 import { Button, Icon } from 'semantic-ui-react';
 import './modifProfil.scss';
 import axios from 'axios';
@@ -14,8 +15,11 @@ import Sport from '../../images/Sport2.svg';
 function ModifProfil({
   token,
 }) {
+  const [organism, setOrganism] = useState({});
+
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
+
   const onSubmit = (data) => {
     axios
       .patch(
@@ -29,12 +33,41 @@ function ModifProfil({
       )
       .then((response) => {
         console.log(response.data);
+        swal({
+          title: 'Le profil a bien été modifié !',
+          icon: 'success',
+        });
+        setOrganism(response.data);
       })
       .catch((error) => {
         console.log(error.data);
       });
     navigate('/organism/profile');
   };
+
+  // Request to API to get profile data of an organism depending on token
+  const fetchOrganism = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/api/v1/organism/profile', {
+        headers: {
+          authorization: token,
+        },
+      });
+        // Give data to state
+      setOrganism(response.data.user);
+    }
+    catch (error) {
+      console.log(error);
+    }
+  };
+
+  // useEffect so that data is fetched on mount
+  useEffect(
+    () => {
+      fetchOrganism();
+    },
+    [],
+  );
 
   return (
     <div className="container">
@@ -70,7 +103,7 @@ function ModifProfil({
                 Nom
               </label>
               <input
-                placeholder="Nom..."
+                placeholder={organism.name}
                 id="nom"
                 type="text"
                 name="nom"
@@ -83,11 +116,11 @@ function ModifProfil({
                 Numéro de téléphone
               </label>
               <input
-                placeholder="06..."
+                placeholder={organism.phone_number}
                 id="téléphone"
                 type="text"
                 name="téléphone"
-                {...register('téléphone')}
+                {...register('phone_number')}
               />
             </div>
 
@@ -96,11 +129,11 @@ function ModifProfil({
                 E-mail de contact
               </label>
               <input
-                placeholder="MonOrganisme@gmail.com..."
+                placeholder={organism.contact_email}
                 id="mailContact"
                 type="text"
                 name="mailContact"
-                {...register('mailContact')}
+                {...register('contact_email')}
               />
             </div>
             <div className="field">
@@ -108,7 +141,7 @@ function ModifProfil({
                 Description
               </label>
               <textarea
-                placeholder="Ma super association..."
+                placeholder={organism.description}
                 id="description"
                 type="text"
                 name="

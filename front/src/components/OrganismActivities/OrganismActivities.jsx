@@ -37,7 +37,7 @@ function OrganismActivities({
     () => {
       fetchActivities();
     },
-    [setMessage],
+    [setMessage, activities],
   );
 
   return (

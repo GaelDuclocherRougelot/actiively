@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { Button, Form } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 import axios from 'axios';
 import Sport from '../../images/Sport.svg';
 import './createActivity.scss';
@@ -40,16 +41,7 @@ function CreateActivity({
             image_url: '',
         },
     });
-    // const onSubmit = (data) => console.log(data);
-    /* const onSubmit = async (data) => {
-        const formData = new FormData();
-        formData.append('image_url', data.image_url[0]);
-        const res = await fetch('http://localhost:5000/upload-file', {
-            method: 'POST',
-            body: formData,
-        }).then((res) => res.json());
-        alert(JSON.stringify(${res.message}, status: ${res.status}));
-    }; */
+
     const onSubmit = (data) => {
         console.log('data:', data);
         axios
@@ -64,6 +56,10 @@ function CreateActivity({
             )
             .then((response) => {
                 console.log('response:', response.data);
+                swal({
+                    title: "L'activité a bien été créée !",
+                    icon: 'success',
+                  });
             })
             .catch((error) => {
                 console.log(error.data);
@@ -81,7 +77,7 @@ return (
                 <Form success className="ui form container-form" onSubmit={handleSubmit(onSubmit)}>
                     <div className="field">
                         <label className="label-form">
-                            image URL
+                            URL de l&apos;image
                         </label>
                         <input
                             placeholder="URL de votre image préférée"
@@ -93,9 +89,10 @@ return (
                             })}
                         />
                     </div>
+                    {errors.name && <p className="errors">{errors.name.message}</p>}
                     <div className="field">
                         <label className="label-form">
-                            Nom de l activité :
+                            Nom de l&apos;activité
                         </label>
                         <input
                             placeholder="les sbires de Gul'dan"
@@ -120,11 +117,13 @@ return (
                             placeholder="Ma super association..."
                             id="description"
                             type="text"
-                            name="
-              description"
-                            {...register('description')}
+                            name="description"
+                            {...register('description', {
+                                required: 'Ce champ est obligatoire',
+                            })}
                         />
                     </div>
+                    {errors.name && <p className="errors">{errors.name.message}</p>}
                     <div className="field">
                         <label className="label-form">
                             Adresse
@@ -146,7 +145,7 @@ return (
                     {errors.address && <p className="errors">{errors.address.message}</p>}
                     <div className="field">
                         <label className="label-form">
-                            ville
+                            Ville
                         </label>
                         <input
                             placeholder="Lyon"
@@ -184,7 +183,7 @@ return (
                     </div>
                     <div className="field">
                         <label className="label-day">
-                            jour de l activité :
+                            Jour de l&apos;activité
                             <select
                                 {...register('day', { required: 'Ces champs sont obligatoire' })}
                             >
@@ -200,7 +199,7 @@ return (
                         </label>
 
                         <label className="label-day">
-                            heure de départ de l activité :
+                            Heure de début de l&apos;activité
                             <input
                                 placeholder="heure de début de l'activité"
                                 type="text"
@@ -212,7 +211,7 @@ return (
                             {errors.start_time && <p className="errors">{errors.start_time.message}</p>}
                         </label>
                         <label className="label-day">
-                            heure de fin de l activité :
+                            Heure de fin de l&apos;activité
                             <input
                                 placeholder="heure de fin de l'activité"
                                 type="text"
@@ -249,10 +248,10 @@ return (
                             <select
                                 {...register('price_type', { required: 'Ce champ est obligatoire' })}
                             >
-                                <option value="price_type">la séance</option>
-                                <option value="price_type">par mois</option>
-                                <option value="price_type">par an</option>
-                                <option value="price_type">par trimestre</option>
+                                <option value="la séance">la séance</option>
+                                <option value="par mois">par mois</option>
+                                <option value="par an">par an</option>
+                                <option value="par trimestre">par trimestre</option>
                             </select>
                             {errors.price_type && <p className="errors">{errors.price_type.message}</p>}
                         </label>
