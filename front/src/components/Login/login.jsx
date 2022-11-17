@@ -56,14 +56,6 @@ function Login({
         setErrMsg('Le serveur ne répond pas');
         console.log(errMsg);
       }
-      // else if (err.response?.status === 400) {
-      //   setErrMsg('Missing Username or Password');
-      //   console.log(errMsg);
-      // }
-      // else if (err.response?.status === 401) {
-      //   setErrMsg('Unauthorized');
-      //   console.log(errMsg);
-      // }
       else {
         setErrMsg('Les identifiants ne correspondent pas. Veuillez réessayer.');
         console.log(errMsg);

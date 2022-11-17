@@ -50,7 +50,6 @@ function Profil({
           headers: { authorization: token },
         },
       );
-      // console.log('profil supprimé');
       setToken(null);
       setIsLogged(false); // Logout
       localStorage.clear(); // Remove token from localStorage in browser

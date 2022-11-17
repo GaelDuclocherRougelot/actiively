@@ -62,7 +62,6 @@ function Activity({
           headers: { authorization: token },
         },
       );
-      // console.log('activité supprimée');
       navigate('/organism/activities');
     }
     catch (error) {
