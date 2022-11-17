@@ -26,6 +26,7 @@ function App() {
   const [keyword, setkeyword] = useState('');
   const [results, setResults] = useState([]);
 
+
   // Hook created to manage token
   const { token, setToken } = useToken();
   const [isLogged, setIsLogged] = useState(false);
@@ -34,8 +35,9 @@ function App() {
   const navigate = useNavigate();
 
   // Search request
+
   const postData = async () => {
-    if (keyword.zip_code === '%' && keyword.keyword === '%') {
+    if (!keyword.zip_code && !keyword.keyword) {
       return;
     }
     try {
@@ -80,6 +82,7 @@ function App() {
       swal('Oops! Veuillez saisir un code postal (entre 2 et 5 chiffres)');
       return;
     }
+
     setkeyword({
       keyword: act,
       zip_code: key,

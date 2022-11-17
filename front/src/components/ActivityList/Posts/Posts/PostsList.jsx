@@ -24,7 +24,7 @@ function Posts({
         {getMessage()}
       </h2>
       <main className="posts">
-        <div className="results-container">
+        <div className="posts-container">
           {results.map((post) => (
             <Post
               name={post.activity_name}
