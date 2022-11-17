@@ -10,7 +10,7 @@ function OrganismActivities({
   token,
 }) {
   const [activities, setActivities] = useState([]);
-  const [message, setMessage] = useState("Vous n'avez aucune activité");
+  const [message, setMessage] = useState('');
 
   // Request to API to get activities of an organism
   const fetchActivities = async () => {
@@ -22,7 +22,10 @@ function OrganismActivities({
       });
       // Give data to state
       setActivities(response.data);
-      setMessage('');
+
+      if (response.data.length === 0) {
+        setMessage('Vous n\'avez aucune activité');
+      }
     }
     catch (error) {
       console.log(error);
@@ -34,7 +37,7 @@ function OrganismActivities({
     () => {
       fetchActivities();
     },
-    [],
+    [setMessage],
   );
 
   return (

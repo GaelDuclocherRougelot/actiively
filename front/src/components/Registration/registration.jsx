@@ -61,7 +61,7 @@ function Registration() {
 
           <div className="field">
             <label className="label-form">
-              Nom
+              Nom de l&apos;organisme
               <Icon disabled name="user" size="large" className="icon" />
             </label>
             <input

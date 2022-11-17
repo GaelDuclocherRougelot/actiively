@@ -43,7 +43,10 @@ module.exports = {
             .then((match) => {
                 if(match){
                     const accessToken = createTokens(organism);
-
+                    // res.cookie("access_token", accessToken, {
+                    //     maxAge: 300000,
+                    //     httpOnly: true
+                    // });
                     res.json({
                         authenticated: true,
                         token: accessToken,

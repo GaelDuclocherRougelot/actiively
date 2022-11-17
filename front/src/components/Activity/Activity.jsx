@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import swal from 'sweetalert';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -13,6 +14,7 @@ function Activity({
 }) {
   const [activity, setActivity] = useState({});
   const [organism, setOrganism] = useState({});
+  const navigate = useNavigate();
 
   // Used params to add id to URL when sending an axios request
   let id = useParams();
@@ -51,23 +53,37 @@ function Activity({
     setCurrentPath(location.pathname);
   }, [location]);
 
-  const navigate = useNavigate();
   // Delete an activity feature
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const deleteActivity = async () => {
     try {
-      const response = await axios.get(
+      await axios.delete(
         `http://localhost:3001/api/v1/organism/activity/${id}/delete`,
         {
           headers: { authorization: token },
         },
       );
-      // console.log('activité supprimée');
       navigate('/organism/activities');
     }
     catch (error) {
       console.log(error);
     }
+  };
+
+  // Alert modal to confirm delete activity
+  const handleClick = () => {
+    swal({
+      title: 'Voulez-vous vraiment supprimer cette activité ?',
+      buttons: ['Annuler', 'Supprimer l\'activité'],
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          deleteActivity();
+          swal('L\'activité a bien été supprimée', {
+            icon: 'success',
+          });
+        }
+      });
   };
 
   return (
@@ -143,7 +159,7 @@ function Activity({
         {/* If on organism page, link redirects to private activity URL */}
         {currentPath === `/organism/activity/${activity.code_activity}` && (
         <Grid.Row>
-          <Button basic color="red" type="submit" size="mini" onClick={handleSubmit}>Supprimer cette activité</Button>
+          <Button basic color="red" type="button" size="mini" onClick={handleClick}>Supprimer cette activité</Button>
         </Grid.Row>
         )}
       </Grid>
