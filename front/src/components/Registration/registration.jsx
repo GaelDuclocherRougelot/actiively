@@ -70,7 +70,7 @@ function Registration() {
               <Icon disabled name="user" size="large" className="icon" />
             </label>
             <input
-              placeholder="les amis de la forêt..."
+              placeholder="Les amis de la forêt..."
               id="name"
               type="text"
               name="name"
@@ -112,7 +112,7 @@ function Registration() {
               <Icon disabled name="key" size="large" className="icon" />
             </label>
             <input
-              placeholder="password..."
+              placeholder="Mot de passe..."
               id="password"
               type="password"
               name="password"
@@ -137,7 +137,7 @@ function Registration() {
               <Icon disabled name="key" size="large" className="icon" />
             </label>
             <input
-              placeholder="confirmer mot de passe"
+              placeholder="Confirmez le mot de passe"
               id="confirm_password"
               type="password"
               name="confirm_password"
@@ -158,6 +158,7 @@ function Registration() {
               type="text"
               name="phone_number"
               {...register('phone_number', {
+                required: 'Ce champ est obligatoire',
                 pattern: {
                   value: /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[\s.-]?[1-9](?:(?:[\s.-]?\d{1}){8}|\d{2}(?:[\s.-]?\d{3}){2})$/,
                   message: 'numéro de téléphone invalide',
@@ -199,9 +200,13 @@ function Registration() {
               type="text"
               name="
               description"
-              {...register('description')}
+              {...register('description', {
+                required: 'Ce champ est obligatoire',
+              })}
             />
           </div>
+          {errors.contact_email && <p className="errors">{errors.contact_email.message}</p>}
+
           <div className="field">
             <Button
               type="submit"
