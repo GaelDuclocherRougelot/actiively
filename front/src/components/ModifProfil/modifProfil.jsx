@@ -80,19 +80,6 @@ function ModifProfil({
 
             <div className="field">
               <label>
-                E-mail de connexion
-              </label>
-              <input
-                placeholder="MonOrganisme@gmail.com..."
-                type="text"
-                id="emailConnexion"
-                name="emailConnexion"
-                {...register('emailConnexion')}
-              />
-            </div>
-
-            <div className="field">
-              <label>
                 Numéro de téléphone
               </label>
               <input

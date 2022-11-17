@@ -3,15 +3,20 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
+
 import { Icon, Button } from 'semantic-ui-react';
 import axios from 'axios';
 import Sport from '../../images/Sport.svg';
 
 import './registration.scss';
+// signifier a l'utilisateur que son formulaire est bien envoyé
 
 function Registration() {
+  const navigate = useNavigate();
+
   const {
     register, handleSubmit, watch, formState: { errors },
   } = useForm({
@@ -24,6 +29,7 @@ function Registration() {
       description: '',
     },
   });
+
   const password = useRef({});
   password.current = watch('password', '');
 
@@ -39,10 +45,11 @@ function Registration() {
       .catch((error) => {
         console.log(error.data);
       });
+    navigate('/organism/profile');
   };
 
   return (
-    <div className="container">
+    <div className="container ">
       <div className="container-image">
         <img src={Sport} alt="Sport" className="image" />
       </div>
@@ -54,7 +61,7 @@ function Registration() {
 
           <div className="field">
             <label className="label-form">
-              Nom
+              Nom de l&apos;organisme
               <Icon disabled name="user" size="large" className="icon" />
             </label>
             <input

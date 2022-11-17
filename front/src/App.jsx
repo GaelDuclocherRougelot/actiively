@@ -35,12 +35,13 @@ function App() {
   const navigate = useNavigate();
 
   // Search request
+
   const postData = async () => {
-    if (keyword.zip_code === '%' && keyword.keyword === '%') {
+    if (!keyword.zip_code && !keyword.keyword) {
       return;
     }
     try {
-      const resp = await axios.post('http://localhost:3001/api/v1/activity/search', {
+      await axios.post('http://localhost:3001/api/v1/activity/search', {
         keyword: keyword.keyword,
         zip_code: keyword.zip_code,
       })
@@ -81,6 +82,7 @@ function App() {
       swal('Oops! Veuillez saisir un code postal (entre 2 et 5 chiffres)');
       return;
     }
+
     setkeyword({
       keyword: act,
       zip_code: key,
@@ -137,7 +139,13 @@ function App() {
         {/* Restricted pages */}
         <Route
           path="/organism/profile"
-          element={isLogged ? <Profil token={token} /> : <Navigate replace to="/login" />}
+          element={isLogged ? (
+            <Profil
+              token={token}
+              setToken={setToken}
+              setIsLogged={setIsLogged}
+            />
+          ) : <Navigate replace to="/login" />}
         />
         <Route
           path="/organism/profile/edit"

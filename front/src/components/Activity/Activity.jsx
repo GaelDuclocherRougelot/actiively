@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import 'semantic-ui-css/semantic.min.css';
+import swal from 'sweetalert';
 import {
   Image, Grid, Header, Container, Label, Icon, Button,
 } from 'semantic-ui-react';
@@ -48,8 +49,7 @@ function Activity({
   }, [location]);
   const navigate = useNavigate();
   // Delete an activity feature
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const deleteActivity = async () => {
     try {
       await axios.delete(
         `http://localhost:3001/api/v1/organism/activity/${id}/delete`,
@@ -57,13 +57,30 @@ function Activity({
           headers: { authorization: token },
         },
       );
-      // console.log('activité supprimée');
       navigate('/organism/activities');
     }
     catch (error) {
       console.log(error);
     }
   };
+
+  // Alert modal to confirm delete activity
+  const handleClick = () => {
+    swal({
+      title: 'Voulez-vous vraiment supprimer cette activité ?',
+      buttons: ['Annuler', 'Supprimer l\'activité'],
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          deleteActivity();
+          swal('L\'activité a bien été supprimée', {
+            icon: 'success',
+          });
+        }
+      });
+  };
+
   return (
     <Container style={{ paddingBottom: '5rem' }}>
       <Grid centered>
@@ -145,7 +162,7 @@ function Activity({
         {/* If on organism page, link redirects to private activity URL */}
         {currentPath === `/organism/activity/${activity.code_activity}` && (
         <Grid.Row>
-          <Button basic color="red" type="submit" size="mini" onClick={handleSubmit}>Supprimer cette activité</Button>
+          <Button basic color="red" type="submit" size="mini" onClick={handleClick}>Supprimer cette activité</Button>
         </Grid.Row>
         )}
       </Grid>
