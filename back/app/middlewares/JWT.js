@@ -2,12 +2,22 @@ const { expressjwt: jwt} = require("express-jwt");
 const { sign, verify } = require("jsonwebtoken");
 const jwtSecret = process.env.JWT_SECRET;
 const customApiError = require('../errors/apiErrors');
-
+/**
+ * Create a new jwt token
+ * @param {object} organism
+ * @returns accessToken
+ */
 const createTokens = (organism) => {
     const accessToken = sign({ email: organism.email}, jwtSecret);
     return accessToken;
 }
-
+/**
+ * Check if token is valid
+ * @param {*} req headers.authorization
+ * @param {*} res 
+ * @param {*} next 
+ * @returns decodedToken & next()
+ */
 const validateToken = (req, res, next) => {
     // console.log('req.headers de validate :', req.headers.authorization)
     const accessToken = req.headers.authorization

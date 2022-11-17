@@ -8,6 +8,11 @@ const bcrypt = require('bcrypt');
 const {createTokens} = require('../../middlewares/JWT');
 
 module.exports = {
+    /**
+     * Create a new organism & hashing the password
+     * @param {*} req 
+     * @param {*} res 
+     */
     async register(req, res) {
         const { email, name, password, description, contact_email, phone_number } = req.body;
 
@@ -30,7 +35,11 @@ module.exports = {
         }
 
     },
-
+    /**
+     * Login an organism with the given email and password
+     * @param {*} req
+     * @param {*} res 
+     */
     async login(req, res) {
         const { email, password } = req.body;
         
@@ -62,13 +71,21 @@ module.exports = {
             throw new customApiError(err.message, 400)
         }
     },
-
+    /**
+     * Access to the organism profile
+     * @param {*} req 
+     * @param {*} res 
+     */
     async profile(req, res) {
         const organism = await organismDatamapper.findOneOrganism(req.decodedToken.email);
 
         res.json({message: 'PROFILE', connected: req.authenticated, user: organism});
     },
-
+    /**
+     * Update the current organism profile
+     * @param {*} req 
+     * @param {*} res 
+     */
     async updateProfile(req, res) {
         const organismProfil = req.body;
         try {
@@ -80,7 +97,11 @@ module.exports = {
             throw new customApiError(err.message, 400)
         }
     },
-
+    /**
+     * Remove the current organism
+     * @param {*} req 
+     * @param {*} res 
+     */
     async deleteProfile(req, res) {
         const currOrganism = req.decodedToken.email;
         try {

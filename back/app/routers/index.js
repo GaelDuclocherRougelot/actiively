@@ -11,7 +11,7 @@ const router = express.Router();
  * GET /api/v1
  * @summary Base url of actiively API
  * @return {string} 200 - success response
- * @return {object} 400 - Bad request response
+ * @return {object} 400 - Bad request
  */
 router.use('/api/v1', apiRouterV1);
 router.all('/', apiController.home);

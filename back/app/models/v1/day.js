@@ -2,7 +2,11 @@ const client = require('../../config/db');
 
 
 module.exports = {
-
+    /**
+     * Create one day by code_activity 
+     * @param {object} day req.body
+     * @param {number} code_activity
+     */
     async createDay(day,pk_activity){
         const dayQuery = await client.query(`
             INSERT INTO "day"
@@ -22,7 +26,11 @@ module.exports = {
 
         return dayQuery.rows[0];
     },
-
+    /**
+     * Remove one day by code_activity & email of the organism
+     * @param {number} pk_activity id of the activity
+     * @param {string} email of the organism
+     */
     async deleteDay(pk_activity, email) {
         await client.query(`
             DELETE FROM "day"
@@ -31,7 +39,11 @@ module.exports = {
             AND pk_organism = $2
         `, [pk_activity, email])
     },
-
+    /**
+     * Update one day by code_activity 
+     * @param {object} dayToUpdate req.body
+     * @param {number} code_activity
+     */
     async updateDay(dayToUpdate, code_activity) {
             
         await client.query(`
