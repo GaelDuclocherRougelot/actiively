@@ -84,7 +84,7 @@ function ModifActivity({
             .catch((error) => {
                 console.log(error.data);
             });
-        navigate('/organism/activities');
+        navigate(`/organism/activity/${id}`);
     };
 
     return (

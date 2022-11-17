@@ -23,9 +23,9 @@ function OrganismActivities({
       // Give data to state
       setActivities(response.data);
 
-      if (response.data.length === 0) {
-        setMessage('Vous n\'avez aucune activité');
-      }
+      // if (response.data.length !== 0) {
+      //   setMessage('Vous n\'avez aucune activité');
+      // }
     }
     catch (error) {
       console.log(error);
@@ -36,8 +36,14 @@ function OrganismActivities({
   useEffect(
     () => {
       fetchActivities();
+      if (activities.length === 0) {
+        setMessage('Vous n\'avez aucune activité');
+      }
+      else {
+        setMessage('');
+      }
     },
-    [setMessage, activities],
+    [setMessage, message, activities],
   );
 
   return (

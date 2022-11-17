@@ -83,7 +83,7 @@ function Profil({
       </div>
       <div className="organism-section">
         <div className="organism-infos-header">
-          <h1 className="container-title">Mon profil</h1>
+          <h1 className="organism-infos-header-title">Mon profil</h1>
           <p className="cancel-modif">
             <Link to="/organism/profile/edit" className="link">
               <Button

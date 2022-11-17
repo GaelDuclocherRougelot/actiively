@@ -82,8 +82,8 @@ function Activity({
   };
 
   return (
-    <Container style={{ paddingBottom: '5rem' }}>
-      <Grid centered>
+    <Container>
+      <Grid centered style={{ marginBottom: '2rem' }}>
         <Grid.Row>
           <Header as="h1">{activity.name}</Header>
         </Grid.Row>
@@ -127,9 +127,11 @@ function Activity({
               </Label.Group>
               <Header as="h3" size="small">Informations de contact</Header>
               {organism.email}
+              &nbsp;
               <Icon name="mail" />
               <br />
               {organism.phone_number}
+              &nbsp;
               <Icon name="phone" />
             </Container>
           </Grid.Column>
@@ -140,6 +142,8 @@ function Activity({
             {activity.description}
           </Grid.Column>
         </Grid.Row>
+        {/* If on public page, show info on organism */}
+        {currentPath === `/activity/${activity.code_activity}` && (
         <Grid.Row>
           <Grid.Column mobile={12} computer={8}>
             <Header as="h2" size="medium">
@@ -151,7 +155,8 @@ function Activity({
             {' '}
           </Grid.Column>
         </Grid.Row>
-        {/* If on organism page, link redirects to private activity URL */}
+        )}
+        {/* If on organism page, show edit button */}
         {currentPath === `/organism/activity/${activity.code_activity}` && (
         <Grid.Row>
           <Link to={`/organism/activity/${activity.code_activity}/edit`}>
@@ -159,7 +164,7 @@ function Activity({
           </Link>
         </Grid.Row>
         )}
-        {/* If on organism page, link redirects to private activity URL */}
+        {/* If on organism page, show delete button */}
         {currentPath === `/organism/activity/${activity.code_activity}` && (
         <Grid.Row>
           <Button basic color="red" type="submit" size="mini" onClick={handleClick}>Supprimer cette activité</Button>
