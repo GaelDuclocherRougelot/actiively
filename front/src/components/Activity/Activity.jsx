@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import {
+  useParams, useLocation, useNavigate, Link,
+} from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import 'semantic-ui-css/semantic.min.css';
 import {
   Image, Grid, Header, Container, Label, Icon, Button,
@@ -13,12 +14,10 @@ function Activity({
 }) {
   const [activity, setActivity] = useState({});
   const [organism, setOrganism] = useState({});
-
   // Used params to add id to URL when sending an axios request
   let id = useParams();
   // Transformed result to number to match format set in the Back
   id = Number(id.id);
-
   // Request to API to get data for an Activity with an id in URL
   const fetchActivity = async () => {
     try {
@@ -33,7 +32,6 @@ function Activity({
       console.log(error);
     }
   };
-
   // useEffect so that data is fetched on mount
   useEffect(
     () => {
@@ -41,22 +39,19 @@ function Activity({
     },
     [],
   );
-
   // To identify the page we are currently on
   const location = useLocation();
   const [currentPath, setCurrentPath] = useState('');
-
   // Give the URL to state whenever URL changes
   useEffect(() => {
     setCurrentPath(location.pathname);
   }, [location]);
-
   const navigate = useNavigate();
   // Delete an activity feature
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.get(
+      await axios.delete(
         `http://localhost:3001/api/v1/organism/activity/${id}/delete`,
         {
           headers: { authorization: token },
@@ -69,9 +64,8 @@ function Activity({
       console.log(error);
     }
   };
-
   return (
-    <Container>
+    <Container style={{ paddingBottom: '5rem' }}>
       <Grid centered>
         <Grid.Row>
           <Header as="h1">{activity.name}</Header>
@@ -143,6 +137,14 @@ function Activity({
         {/* If on organism page, link redirects to private activity URL */}
         {currentPath === `/organism/activity/${activity.code_activity}` && (
         <Grid.Row>
+          <Link to={`/organism/activity/${activity.code_activity}/edit`}>
+            <Button basic color="teal" type="button" size="mini">Modifier cette activité</Button>
+          </Link>
+        </Grid.Row>
+        )}
+        {/* If on organism page, link redirects to private activity URL */}
+        {currentPath === `/organism/activity/${activity.code_activity}` && (
+        <Grid.Row>
           <Button basic color="red" type="submit" size="mini" onClick={handleSubmit}>Supprimer cette activité</Button>
         </Grid.Row>
         )}
@@ -150,13 +152,10 @@ function Activity({
     </Container>
   );
 }
-
 Activity.propTypes = {
   token: PropTypes.string,
 };
-
 Activity.defaultProps = {
   token: '',
 };
-
 export default React.memo(Activity);

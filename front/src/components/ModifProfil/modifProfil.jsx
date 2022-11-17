@@ -3,18 +3,38 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import { Button, Icon } from 'semantic-ui-react';
 import './modifProfil.scss';
+import axios from 'axios';
 import Sport from '../../images/Sport2.svg';
 
 function ModifProfil({
   token,
 }) {
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    axios
+      .patch(
+        'http://localhost:3001/api/v1/organism/profile/edit',
+        data,
+        {
+          headers: {
+            authorization: token,
+          },
+        },
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.data);
+      });
+    navigate('/organism/profile');
+  };
 
   return (
     <div className="container">
