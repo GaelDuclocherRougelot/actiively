@@ -52,7 +52,7 @@
 
 @media screen and (max-width: 700px) {
     .appheader {
-    
+
         &-burger {
         display: block;
         background-color: transparent;
@@ -60,6 +60,18 @@
 
             &-loggedout {
                 display: none;
+            }
+
+            &-active {
+                .burger1 {
+                    transform: rotate(45deg);
+                }
+                .burger2 {
+                    opacity: 0;
+                }
+                .burger3 {
+                    transform: rotate(-45deg);
+                }
             }
         }
 
@@ -81,8 +93,8 @@
             &-open {
                 flex-direction: column;
                 position: absolute;
-                right: 3.5rem;
-                top: 5rem;
+                right: 0.5rem;
+                top: 5.6rem;
                 text-align: end;
             }
         }

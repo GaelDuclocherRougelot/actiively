@@ -89,7 +89,7 @@ function Header({
         </ul>
         <button
           type="button"
-          className={`appheader-burger ${!isLogged ? 'appheader-burger-loggedout' : ''}`}
+          className={`appheader-burger ${!isLogged ? 'appheader-burger-loggedout' : ''} ${isBurgerOpen ? 'appheader-burger-active' : ''}`}
           onClick={toggleBurger}
         >
           <Burger />
