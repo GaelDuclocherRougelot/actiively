@@ -142,6 +142,8 @@ function Activity({
             {activity.description}
           </Grid.Column>
         </Grid.Row>
+        {/* If on public page, show info on organism */}
+        {currentPath === `/activity/${activity.code_activity}` && (
         <Grid.Row>
           <Grid.Column mobile={12} computer={8}>
             <Header as="h2" size="medium">
@@ -153,7 +155,8 @@ function Activity({
             {' '}
           </Grid.Column>
         </Grid.Row>
-        {/* If on organism page, link redirects to private activity URL */}
+        )}
+        {/* If on organism page, show edit button */}
         {currentPath === `/organism/activity/${activity.code_activity}` && (
         <Grid.Row>
           <Link to={`/organism/activity/${activity.code_activity}/edit`}>
@@ -161,7 +164,7 @@ function Activity({
           </Link>
         </Grid.Row>
         )}
-        {/* If on organism page, link redirects to private activity URL */}
+        {/* If on organism page, show delete button */}
         {currentPath === `/organism/activity/${activity.code_activity}` && (
         <Grid.Row>
           <Button basic color="red" type="submit" size="mini" onClick={handleClick}>Supprimer cette activité</Button>
