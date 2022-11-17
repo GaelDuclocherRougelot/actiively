@@ -7,6 +7,12 @@ const { apiController } = require('../controllers/v1');
 const router = express.Router();
 
 // On préfixe les routers
+/**
+ * GET /api/v1
+ * @summary Base url of actiively API
+ * @return {string} 200 - success response
+ * @return {object} 400 - Bad request response
+ */
 router.use('/api/v1', apiRouterV1);
 router.all('/', apiController.home);
 
