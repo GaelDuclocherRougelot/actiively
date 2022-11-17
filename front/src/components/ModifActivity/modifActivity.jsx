@@ -258,10 +258,10 @@ function ModifActivity({
                                 <select
                                     {...register('price_type')}
                                 >
-                                    <option value="Lundi">Séance</option>
-                                    <option value="Mardi"> Mois</option>
-                                    <option value="Mercredi">Année</option>
-                                    <option value="Jeudi">trimestriel</option>
+                                    <option value="la séance">la séance</option>
+                                    <option value="par mois">par mois</option>
+                                    <option value="par an">par an</option>
+                                    <option value="par trimestre">par trimestre</option>
 
                                 </select>
 
@@ -272,9 +272,9 @@ function ModifActivity({
                                 <select
                                     {...register('gender')}
                                 >
-                                    <option value="Homme">Masculin</option>
-                                    <option value="Femme">Féminin</option>
-                                    <option value="Mixte">Mixte</option>
+                                <option value="Masculin">Masculin</option>
+                                <option value="Féminin">Féminin</option>
+                                <option value="Mixte">Mixte</option>
 
                                 </select>
                             </label>
@@ -282,7 +282,7 @@ function ModifActivity({
                                 <select
                                     {...register('level')}
                                 >
-                                    <option value="débutant">Débutant</option>
+                                    <option value="Débutant">Débutant</option>
                                     <option value="Tous niveaux">Tous niveaux</option>
                                     <option value="Confirmé">Confirmé</option>
 
@@ -294,7 +294,7 @@ function ModifActivity({
                                 type="submit"
                                 className="ui color1 button"
                             >
-                                Créer
+                                Modifier
 
                             </Button>
                         </div>
