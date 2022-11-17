@@ -97,7 +97,7 @@ function Activity({
             <Image src={activity.image_url} alt={activity.name} />
           </Grid.Column>
           <Grid.Column mobile={16} tablet={8} computer={4}>
-            <Container style={{ textAlign: 'center'}}>
+            <Container style={{ textAlign: 'center' }}>
               <br />
               {activity.address}
               <br />

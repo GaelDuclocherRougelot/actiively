@@ -26,7 +26,6 @@ function App() {
   const [keyword, setkeyword] = useState('');
   const [results, setResults] = useState([]);
 
-
   // Hook created to manage token
   const { token, setToken } = useToken();
   const [isLogged, setIsLogged] = useState(false);
