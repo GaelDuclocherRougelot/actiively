@@ -7,22 +7,27 @@
   -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
  margin: 1.2rem;
+ border-radius: 2rem;
+ 
 }
-
+.container-post:hover {
+  transform:scale(1.2);
+}
+/*
+-webkit-transition: all 0.2s;
+ -moz-transition: all 0.2s;
+ -ms-transition: all 0.2s;
+ -o-transition: all 0.2s;
+ transition: all 0.2s;
+ */
 /* This is to be able to style image;*/
 .image {
   width:14rem;
   height:14rem;
-  -webkit-transition: all 0.2s;
-     -moz-transition: all 0.2s;
-     -ms-transition: all 0.2s;
-     -o-transition: all 0.2s;
-     transition: all 0.2s;
+  border-radius: 2rem;
 }
 
-img:hover {
-  transform:scale(1.2);
-}
+
 /* This is to be able to position image;*/
 .imagestyle {
   padding: 1rem;

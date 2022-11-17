@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Icon } from 'semantic-ui-react';
 import Sport from '../../images/Sport3.svg';
