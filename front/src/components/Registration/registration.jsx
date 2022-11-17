@@ -70,7 +70,7 @@ function Registration() {
               <Icon disabled name="user" size="large" className="icon" />
             </label>
             <input
-              placeholder="les amis de la forêt..."
+              placeholder="Les amis de la forêt..."
               id="name"
               type="text"
               name="name"
@@ -112,7 +112,7 @@ function Registration() {
               <Icon disabled name="key" size="large" className="icon" />
             </label>
             <input
-              placeholder="password..."
+              placeholder="Mot de passe..."
               id="password"
               type="password"
               name="password"
@@ -137,7 +137,7 @@ function Registration() {
               <Icon disabled name="key" size="large" className="icon" />
             </label>
             <input
-              placeholder="confirmer mot de passe"
+              placeholder="Confirmez le mot de passe"
               id="confirm_password"
               type="password"
               name="confirm_password"
