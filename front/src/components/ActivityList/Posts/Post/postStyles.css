@@ -33,7 +33,6 @@
  */
 /* This is to be able to style image;*/
 .image {
-  width:14rem;
   height:14rem;
   border-radius: 1.5rem;
   object-fit: cover;

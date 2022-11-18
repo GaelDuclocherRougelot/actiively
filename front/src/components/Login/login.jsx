@@ -64,12 +64,12 @@ function Login({
   };
 
   return (
-    <div className="container">
+    <div className="container container-login">
       <div className="container-image">
         <img src={Sport} alt="Sport" className="image" />
       </div>
 
-      <div className="container-form">
+      <div className="container-form container-form-login">
         <div>
           <h2 className="form-title"> Connexion organisme</h2>
         </div>
