@@ -43,7 +43,7 @@ function OrganismActivities({
         setMessage('');
       }
     },
-    [setMessage, message, activities],
+    [message, activities, setActivities],
   );
 
   return (

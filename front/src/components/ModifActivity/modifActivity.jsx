@@ -54,13 +54,6 @@ function ModifActivity({
         console.log(error);
         }
     };
-    // useEffect so that data is fetched on mount
-    useEffect(
-        () => {
-        fetchActivity();
-        },
-        [],
-    );
 
     // Post request to update data
     const onSubmit = (data) => {
@@ -80,12 +73,21 @@ function ModifActivity({
                     title: "L'activité a bien été modifiée !",
                     icon: 'success',
                   });
+                setActivity(response.data);
             })
             .catch((error) => {
                 console.log(error.data);
             });
         navigate(`/organism/activity/${id}`);
     };
+
+    // useEffect so that data is fetched on mount
+    useEffect(
+         () => {
+         fetchActivity();
+        },
+          [],
+        );
 
     return (
 
