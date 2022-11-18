@@ -90,6 +90,7 @@ return (
                         />
                     </div>
                     {errors.name && <p className="errors">{errors.name.message}</p>}
+
                     <div className="label-select">
                         <label className="label-form">
                             Nom de l&apos;activité

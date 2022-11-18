@@ -79,7 +79,7 @@ function Profil({
   return (
     <div className="organism-page-container">
       <div className="organism-section">
-        <img src={Sport} alt="Sport" className="image" />
+        <img src={Sport} alt="Sport" className="image image-profile" />
       </div>
       <div className="organism-section">
         <div className="organism-infos-header">

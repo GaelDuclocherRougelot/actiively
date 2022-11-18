@@ -57,13 +57,8 @@ module.exports = {
      */
     async postOneActivity(req, res) {
         try {
-            const activityExist = await activityDatamapper.findByName(req.body.name);
+            await activityDatamapper.findByName(req.body.name);
 
-            if(activityExist) { // if the activity exists = error
-                res.json({error: `Activity ${activityExist.name} already exists`});
-                throw new Error(`Activity ${activityExist.name} already exists`);
-
-            }else {
                 const activityWihoutDay = {
                     name: req.body.name,
                     description: req.body.description,
@@ -86,7 +81,6 @@ module.exports = {
 
                 await dayDatamapper.createDay(day, currActivity.code_activity);
                 res.json({message: `Activity ${req.body.name} created`});
-            }
             
         } catch (err) {
             res.json({error: err.message});

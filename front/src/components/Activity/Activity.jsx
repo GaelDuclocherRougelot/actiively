@@ -38,7 +38,7 @@ function Activity({
     () => {
       fetchActivity();
     },
-    [],
+    [activity],
   );
   // To identify the page we are currently on
   const location = useLocation();
