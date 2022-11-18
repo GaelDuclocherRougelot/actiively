@@ -72,8 +72,9 @@ function HomePage({
       </section>
 
       <section className="image-section">
-        <img src={Home} alt="accueil" className="home-image" />
-        <a href="https://storyset.com/health" className="attribution">Health illustrations by Storyset</a>
+        <a href="https://storyset.com" className="home-image">
+          <img src={Home} alt="home page illustration" className="home-image" />
+        </a>
       </section>
     </div>
 
