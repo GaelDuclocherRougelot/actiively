@@ -100,31 +100,16 @@ function ModifActivity({
             </div>
             <div className="container">
                 <div className="container-form">
-                    <div className="random">
-                        <h1 className="container-title">Modifier mon activité</h1>
-                        <p className="cancel-modif">
-                            <Link to="/organism/profile" className="link">
-                                <Button
-                                    animated="vertical"
-                                    className="ui color1 button"
-                                >
-                                    <Button.Content hidden>
-                                        <Icon name="address card outline" />
-                                    </Button.Content>
-                                    <Button.Content visible>
-                                        X
-                                    </Button.Content>
-                                </Button>
-                            </Link>
-                        </p>
+                    <div className="style_tit">
+                        <h1 className="style_tit">Modifier mon activité</h1>
                     </div>
 
                     <form className="ui form container-form" onSubmit={handleSubmit(onSubmit)}>
 
-                    <div className="field">
-                                <label className="label-form">
+                    <div className="label-select">
+                        <label className="label-form">
                                     URL de l&apos;image
-                                </label>
+                        </label>
                                 <input
                                     placeholder={activity.image_url}
                                     id="image_url"
@@ -134,10 +119,10 @@ function ModifActivity({
                                 />
                     </div>
 
-                        <div className="field">
-                            <label>
+                    <div className="label-select">
+                        <label className="label-form">
                                 Description
-                            </label>
+                        </label>
                             <textarea
                                 placeholder={activity.description}
                                 id="description"
@@ -145,12 +130,12 @@ function ModifActivity({
                                 name="description"
                                 {...register('description')}
                             />
-                        </div>
+                    </div>
 
-                        <div className="field">
-                            <label className="label-form">
+                    <div className="label-select">
+                        <label className="label-form">
                                 Adresse
-                            </label>
+                        </label>
                             <input
                                 placeholder={activity.address}
                                 id="address"
@@ -165,12 +150,12 @@ function ModifActivity({
                             />
                             {errors.address && <p className="errors">{errors.address.message}</p>}
 
-                        </div>
+                    </div>
 
-                        <div className="field">
-                            <label className="label-form">
+                        <div className="label-select">
+                        <label className="label-form">
                                 Ville
-                            </label>
+                        </label>
                             <input
                                 placeholder={activity.city}
                                 id="city"
@@ -186,8 +171,8 @@ function ModifActivity({
                             {errors.city && <p className="errors">{errors.city.message}</p>}
                         </div>
 
-                        <div className="field">
-                            <label className="label-form">
+                        <div className="label-select">
+                            <label>
                                 Code postal
                             </label>
                             <input
@@ -205,9 +190,10 @@ function ModifActivity({
                             {errors.zip_code && <p className="errors">{errors.zip_code.message}</p>}
                         </div>
                         <div className="field">
-                            <label className="label-day">
+                        <label className="label-select">
                                 Jour de l&apos;activité
                                 <select
+                                    id="day"
                                     {...register('day')}
                                 >
                                     <option value="Lundi">Lundi</option>
@@ -219,11 +205,12 @@ function ModifActivity({
                                     <option value="Dimanche">Dimanche</option>
 
                                 </select>
-                            </label>
+                        </label>
 
-                            <label className="label-day">
+                        <label className="label-select">
                                 Heure de début de l&apos;activité
                                 <input
+                                    id="start_time"
                                     placeholder={activity.start_time}
                                     type="text"
                                     name="start_time"
@@ -236,10 +223,11 @@ function ModifActivity({
                                 />
                                 {errors.start_time && <p className="errors">{errors.start_time.message}</p>}
 
-                            </label>
-                            <label className="label-day">
+                        </label>
+                        <label className="label-select">
                                 Heure de fin de l&apos;activité
                                 <input
+                                    id="end_time"
                                     placeholder={activity.end_time}
                                     type="text"
                                     name="end_time"
@@ -251,13 +239,13 @@ function ModifActivity({
                                     })}
                                 />
                                 {errors.end_time && <p className="errors">{errors.end_time.message}</p>}
-                            </label>
+                        </label>
                         </div>
                         {' '}
-                        <div className="field">
-                            <label className="label-form">
+                        <div className="label-select">
+                    <label className="label-form">
                                 Tarif
-                            </label>
+                    </label>
                             <input
                                 placeholder={activity.price}
                                 id="price"
@@ -272,10 +260,11 @@ function ModifActivity({
                             />
                             {errors.price && <p className="errors">{errors.price.message}</p>}
                         </div>
-                        <div className="field">
+                        <div className="label-select">
                             <label className="label-form">
                                 Type de tarif
                                 <select
+                                    id="price_type"
                                     {...register('price_type')}
                                 >
                                     <option value="la séance">la séance</option>
@@ -287,9 +276,11 @@ function ModifActivity({
 
                             </label>
                         </div>
-                        <div className="field">
+                        <div className="label-select">
                             <label className="label-form">
+                                Genre
                                 <select
+                                    id="gender"
                                     {...register('gender')}
                                 >
                                 <option value="Masculin">Masculin</option>
@@ -298,8 +289,12 @@ function ModifActivity({
 
                                 </select>
                             </label>
-                            <label className="label-form">
+                        </div>
+                            <div className="label-select">
+                            <label className="label-select">
+                                Niveau
                                 <select
+                                    id="level"
                                     {...register('level')}
                                 >
                                     <option value="Débutant">Débutant</option>
@@ -308,7 +303,7 @@ function ModifActivity({
 
                                 </select>
                             </label>
-                        </div>
+                            </div>
                         <div className="field">
                             <Button
                                 type="submit"

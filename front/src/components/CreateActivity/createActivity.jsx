@@ -75,7 +75,7 @@ return (
             <div className="container-form">
                 <h1 className="container-title">Créer une activité</h1>
                 <Form success className="ui form container-form" onSubmit={handleSubmit(onSubmit)}>
-                    <div className="field">
+                    <div className="label-select">
                         <label className="label-form">
                             URL de l&apos;image
                         </label>
@@ -90,7 +90,7 @@ return (
                         />
                     </div>
                     {errors.name && <p className="errors">{errors.name.message}</p>}
-                    <div className="field">
+                    <div className="label-select">
                         <label className="label-form">
                             Nom de l&apos;activité
                         </label>
@@ -109,8 +109,8 @@ return (
                         />
                     </div>
                     {errors.name && <p className="errors">{errors.name.message}</p>}
-                    <div className="field">
-                        <label>
+                    <div className="label-select">
+                        <label className="label-form">
                             Description
                         </label>
                         <textarea
@@ -124,7 +124,7 @@ return (
                         />
                     </div>
                     {errors.name && <p className="errors">{errors.name.message}</p>}
-                    <div className="field">
+                    <div className="label-select">
                         <label className="label-form">
                             Adresse
                         </label>
@@ -143,7 +143,7 @@ return (
                         />
                     </div>
                     {errors.address && <p className="errors">{errors.address.message}</p>}
-                    <div className="field">
+                    <div className="label-select">
                         <label className="label-form">
                             Ville
                         </label>
@@ -162,8 +162,8 @@ return (
                         />
                     </div>
                     {errors.city && <p className="errors">{errors.city.message}</p>}
-                    <div className="field">
-                        <label className="label-form">
+                    <div className="label-select">
+                        <label>
                             Code postal
                         </label>
                         <input
@@ -182,9 +182,10 @@ return (
                         {errors.zip_code && <p className="errors">{errors.zip_code.message}</p>}
                     </div>
                     <div className="field">
-                        <label className="label-day">
+                    <label className="label-select">
                             Jour de l&apos;activité
                             <select
+                                id="day"
                                 {...register('day', { required: 'Ces champs sont obligatoire' })}
                             >
                                 <option value="Lundi">Lundi</option>
@@ -198,9 +199,10 @@ return (
                             {errors.day && <p className="errors">{errors.day.message}</p>}
                         </label>
 
-                        <label className="label-day">
+                        <label className="label-select">
                             Heure de début de l&apos;activité
                             <input
+                                id="start_time"
                                 placeholder="heure de début de l'activité"
                                 type="text"
                                 name="start_time"
@@ -210,9 +212,10 @@ return (
                             />
                             {errors.start_time && <p className="errors">{errors.start_time.message}</p>}
                         </label>
-                        <label className="label-day">
+                        <label className="label-select">
                             Heure de fin de l&apos;activité
                             <input
+                                id="end_time"
                                 placeholder="heure de fin de l'activité"
                                 type="text"
                                 name="end_time"
@@ -227,8 +230,8 @@ return (
                             {errors.end_time && <p className="errors">{errors.end_time.message}</p>}
                         </label>
                     </div>
-                    <div className="field">
-                        <label className="label-form">
+                    <div className="label-select">
+                    <label className="label-form">
                             Tarif
                         </label>
                         <input
@@ -242,10 +245,11 @@ return (
                         />
                         {errors.price && <p className="errors">{errors.price.message}</p>}
                     </div>
-                    <div className="field">
-                        <label className="label-form">
+                    <div className="label-select">
+                    <label className="label-form">
                             Type de tarif
                             <select
+                                id="price_type"
                                 {...register('price_type', { required: 'Ce champ est obligatoire' })}
                             >
                                 <option value="la séance">la séance</option>
@@ -256,9 +260,11 @@ return (
                             {errors.price_type && <p className="errors">{errors.price_type.message}</p>}
                         </label>
                     </div>
-                    <div className="field">
-                        <label className="label-form">
+                    <div className="label-select">
+                    <label className="label-form">
+                            Genre
                             <select
+                                id="gender"
                                 {...register('gender', { required: 'les 2 champs sont obligatoires' })}
                             >
                                 <option value="Masculin">Masculin</option>
@@ -266,8 +272,12 @@ return (
                                 <option value="Mixte">Mixte</option>
                             </select>
                         </label>
-                        <label className="label-form">
+                        </div>
+                         <div className="label-select">
+                        <label className="label-select">
+                            Niveau
                             <select
+                                id="level"
                                 {...register('level', { required: 'les 2 champs sont obligatoires' })}
                             >
                                 <option value="Débutant">Débutant</option>
