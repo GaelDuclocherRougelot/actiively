@@ -91,7 +91,7 @@ return (
                     </div>
                     {errors.name && <p className="errors">{errors.name.message}</p>}
                     <div className="field">
-                        <label className="label-form">
+                        <label className="label-form label-margin">
                             Nom de l&apos;activité
                         </label>
                         <input
