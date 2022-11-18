@@ -55,11 +55,19 @@ function CreateActivity({
                 },
             )
             .then((response) => {
-                console.log('response:', response.data);
-                swal({
+                console.log('response of create:', response.data);
+                if (response.data.error) {
+                    swal({
+                        title: "L'activité doit avoir un nom unique !",
+                        icon: 'error',
+                      });
+                }
+                else {
+                    swal({
                     title: "L'activité a bien été créée !",
                     icon: 'success',
                   });
+                }
             })
             .catch((error) => {
                 console.log(error.data);
@@ -96,7 +104,7 @@ return (
                             Nom de l&apos;activité
                         </label>
                         <input
-                            placeholder="les sbires de Gul'dan"
+                            placeholder="les sbires de Gul'dan (nom unique requis)"
                             id="name"
                             type="text"
                             name="name"
