@@ -92,6 +92,9 @@ function Login({
         <div>
           <Link to="/register" className="link"> Pas encore inscrit ?</Link>
         </div>
+        <div>
+          <a href="https://storyset.com/together" className="attribution">Together illustrations by Storyset</a>
+        </div>
       </div>
     </div>
 
