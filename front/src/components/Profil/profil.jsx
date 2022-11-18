@@ -120,6 +120,9 @@ function Profil({
           <div className="organism-delete">
             <Button basic color="red" type="button" size="mini" onClick={handleClick}>Supprimer le profil</Button>
           </div>
+          <div>
+            <a href="https://storyset.com/sport" className="attribution">Sport illustrations by Storyset</a>
+          </div>
         </div>
       </div>
     </div>

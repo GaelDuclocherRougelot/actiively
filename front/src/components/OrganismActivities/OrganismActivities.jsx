@@ -10,7 +10,6 @@ function OrganismActivities({
   token,
 }) {
   const [activities, setActivities] = useState([]);
-  const [message, setMessage] = useState('');
 
   // Request to API to get activities of an organism
   const fetchActivities = async () => {
@@ -20,37 +19,40 @@ function OrganismActivities({
           authorization: token,
         },
       });
-      // Give data to state
       setActivities(response.data);
-
-      // if (response.data.length !== 0) {
-      //   setMessage('Vous n\'avez aucune activité');
-      // }
     }
     catch (error) {
       console.log(error);
     }
   };
 
+  // Message depends on number of results
+  const getMessage = () => {
+    if (activities.length === 0) {
+      return 'Vous n\'avez aucune activité';
+    }
+    if (activities.length === 1) {
+      return '1 activité proposée';
+    }
+
+    return `${activities.length} activités proposées`;
+  };
+
   // useEffect so that data is fetched on mount
   useEffect(
     () => {
       fetchActivities();
-      if (activities.length === 0) {
-        setMessage('Vous n\'avez aucune activité');
-      }
-      else {
-        setMessage('');
-      }
     },
-    [message, activities, setActivities],
+    [activities],
   );
 
   return (
     <div>
       <main className="posts">
+        <div className="message-container">
+          <p className="activity-message">{getMessage()}</p>
+        </div>
         <div className="results-container">
-          <p className="activity-message">{message}</p>
           {activities.map((activity) => (
             <Post
               key={activity.code_activity}
