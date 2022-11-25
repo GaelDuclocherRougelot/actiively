@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import FiltersList from './Filters/filters/FiltersList';
 import PostsList from './Posts/Posts/PostsList';
 import './activityListStyles.css';
+
 
 function ActivityList({
   results,
@@ -20,12 +21,10 @@ function ActivityList({
   const [checkFirstLevel, setCheckFirstLevel] = useState('');
   const [checkSecondLevel, setCheckSecondtLevel] = useState('');
   const [checkThirdLevel, setCeckThirdLevel] = useState('');
+  const [gender, setGender] = useState('');
+  console.log('gender',gender)
 
   // Hook created to manage parametres of gender's filter:
-
-  const [checkFirstGender, setCheckFirstGender] = useState('');
-  const [checkSecondGender, setCheckSecondGender] = useState('');
-  const [checkThirdGender, setCeckThirdGender] = useState('');
 
   // day's filters parametre function
 
@@ -61,16 +60,8 @@ function ActivityList({
   const handleThirdLevel = (selectThirdLevel) => {
     setCeckThirdLevel(selectThirdLevel);
   };
-
-  // gender's filters parametre function
-  const handleFirstGender = (selectFirstGender) => {
-    setCheckFirstGender(selectFirstGender);
-  };
-  const handleSecondGender = (selectSecondGender) => {
-    setCheckSecondGender(selectSecondGender);
-  };
-  const handleThirdGender = (selectThirdGender) => {
-    setCeckThirdGender(selectThirdGender);
+  const handleChoseGender = (genderFilters) => {
+    setGender(genderFilters);
   };
 
   // function to mange array for props:
@@ -82,9 +73,9 @@ function ActivityList({
   const day5 = checkFriday;
   const day6 = checSaturday;
   const day7 = checkSunday;
-  const gender1 = checkFirstGender;
-  const gender2 = checkSecondGender;
-  const gender3 = checkThirdGender;
+  const gender1 = gender.mixt;
+  const gender2 = gender.women;
+  const gender3 = gender.men;
   const level1 = checkFirstLevel;
   const level2 = checkSecondLevel;
   const level3 = checkThirdLevel;
@@ -136,6 +127,7 @@ function ActivityList({
   }
 
   const result = data(arr);
+  console.log('apres function', result)
 
   return (
     <div>
@@ -151,9 +143,7 @@ function ActivityList({
           FirstLevel={handleFirstLevel}
           SecondLevel={handleSecondLevel}
           ThirdLevel={handleThirdLevel}
-          FirstGender={handleFirstGender}
-          SecondGender={handleSecondGender}
-          ThirdGender={handleThirdGender}
+          choseGender={handleChoseGender}
         />
         <PostsList
           results={result}

@@ -17,9 +17,7 @@ function FiltersList({
   FirstLevel,
   SecondLevel,
   ThirdLevel,
-  FirstGender,
-  SecondGender,
-  ThirdGender,
+  choseGender,
 }) {
 // Hook created to manage  filters' parameters to hide :
   const [hiden, ishiden] = useState('false');
@@ -61,16 +59,8 @@ function FiltersList({
     ThirdLevel(selectThirdLevel);
   };
 
-  // feature to manage gender's filter
-
-  const handleFirstGender = (selectFirstGender) => {
-    FirstGender(selectFirstGender);
-  };
-  const handleSecondGender = (selectSecondGender) => {
-    SecondGender(selectSecondGender);
-  };
-  const handleThirdGender = (selectThirdGender) => {
-    ThirdGender(selectThirdGender);
+  const handleSelectFilter = (genderFilters) => {
+    choseGender(genderFilters);
   };
 
   return (
@@ -100,9 +90,7 @@ function FiltersList({
           ThirdLevelSelect={handleThirdLevel}
         />
         <GenderFilter
-          FirstGenderSelect={handleFirstGender}
-          SecondGenderSelect={handleSecondGender}
-          ThirdGenderSelect={handleThirdGender}
+          GenderSelect={handleSelectFilter}
         />
       </div>
       )}
@@ -121,9 +109,7 @@ FiltersList.propTypes = {
   FirstLevel: PropTypes.func,
   SecondLevel: PropTypes.func,
   ThirdLevel: PropTypes.func,
-  FirstGender: PropTypes.func,
-  SecondGender: PropTypes.func,
-  ThirdGender: PropTypes.func,
+  choseGender: PropTypes.func,
 };
 
 FiltersList.defaultProps = {
@@ -137,9 +123,7 @@ FiltersList.defaultProps = {
   FirstLevel: '',
   SecondLevel: '',
   ThirdLevel: '',
-  FirstGender: '',
-  SecondGender: '',
-  ThirdGender: '',
+  choseGender: '',
 };
 
 export default React.memo(FiltersList);

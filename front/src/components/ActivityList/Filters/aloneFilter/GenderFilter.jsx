@@ -1,46 +1,71 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
+const genderFiltersInitial = {
+  mixt: '',
+  women: '',
+  men: '',
+};
+
+
+function genderReducer(oldState, action) {
+  switch (action.type) {
+    case 'checkbox': {
+      if (action.payload.name === 'mixt') {
+        let mixt = (action.payload.value);
+        if (mixt) {
+          mixt = 'Mixte';
+        }
+        else {
+          mixt = '';
+        }
+        return {
+          ...oldState,
+          mixt,
+        };
+      }
+      if (action.payload.name === 'women') {
+        let women = (action.payload.value);
+        if (women) {
+          women = 'Féminin';
+        }
+        else {
+          women = '';
+        }
+        return {
+          ...oldState,
+          women,
+        };
+      }
+      if (action.payload.name === 'men') {
+        let men = (action.payload.value);
+        if (men) {
+          men = 'Masculin';
+        }
+        else {
+          men = '';
+        }
+        return {
+          ...oldState,
+          men,
+        };
+      }
+    }
+    default:
+      return oldState;
+  }
+}
+
+
 function GenderFilter({
-  FirstGenderSelect,
-  SecondGenderSelect,
-  ThirdGenderSelect,
+  GenderSelect,
 }) {
-  const [selectFirstGender, setSelectFirstGender] = useState('');
-  const [selectSecondGender, setSelectSecondtGender] = useState('');
-  const [selectThirdGender, setSelectThirdGender] = useState('');
+  const [genderFilters, filterDispatch] = useReducer(genderReducer, genderFiltersInitial);
+  console.log('genderfilter', genderFilters);
+  GenderSelect(genderFilters);
 
-  FirstGenderSelect(selectFirstGender);
-  SecondGenderSelect(selectSecondGender);
-  ThirdGenderSelect(selectThirdGender);
-
-  const handleChangeFirstGender = (e) => {
-    if (e.target.checked) {
-      setSelectFirstGender('Mixte');
-    }
-    else {
-      setSelectFirstGender('');
-    }
-  };
-
-  const handleChangeSecondeGender = (e) => {
-    if (e.target.checked) {
-      setSelectSecondtGender('Féminin');
-    }
-    else {
-      setSelectSecondtGender('');
-    }
-  };
-
-  const handleChangeThirdGender = (e) => {
-    if (e.target.checked) {
-      setSelectThirdGender('Masculin');
-    }
-    else {
-      setSelectThirdGender('');
-    }
-  };
   return (
     <div>
       <h1 className="level-title">Genre</h1>
@@ -49,9 +74,14 @@ function GenderFilter({
           <label>
             <input
               type="checkbox"
-              value="1"
+              value={genderFilters.mixt}
               id="opt-in"
-              onChange={handleChangeFirstGender}
+              onChange={(e) => filterDispatch({
+                type: 'checkbox',
+                payload: {
+                  name: 'mixt', value: e.target.checked,
+                },
+              })}
             />
             <span>Mixte</span>
           </label>
@@ -60,9 +90,14 @@ function GenderFilter({
           <label>
             <input
               type="checkbox"
-              value="1"
+              value={genderFilters.women}
               id="opt-in"
-              onChange={handleChangeSecondeGender}
+              onChange={(e) => filterDispatch({
+                type: 'checkbox',
+                payload: {
+                  name: 'women', value: e.target.checked,
+                },
+              })}
             />
             <span>Féminin</span>
           </label>
@@ -72,9 +107,14 @@ function GenderFilter({
           <label>
             <input
               type="checkbox"
-              value="1"
+              value={genderFilters.men}
               id="opt-in"
-              onChange={handleChangeThirdGender}
+              onChange={(e) => filterDispatch({
+                type: 'checkbox',
+                payload: {
+                  name: 'men', value: e.target.checked,
+                },
+              })}
             />
             <span>Masculin</span>
           </label>
@@ -85,17 +125,13 @@ function GenderFilter({
 
   );
 }
+
 GenderFilter.propTypes = {
-  FirstGenderSelect: PropTypes.func,
-  SecondGenderSelect: PropTypes.func,
-  ThirdGenderSelect: PropTypes.func,
+  GenderSelect: PropTypes.func,
 };
 
 GenderFilter.defaultProps = {
-  FirstGenderSelect: '',
-  SecondGenderSelect: '',
-  ThirdGenderSelect: '',
-
+  GenderSelect: '',
 };
 
 export default React.memo(GenderFilter);
