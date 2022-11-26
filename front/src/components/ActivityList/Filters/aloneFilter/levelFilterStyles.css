@@ -1,5 +1,12 @@
 /* This is to be able to style the name of the filter;*/
 
+.C { 
+  display : flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
+
+}
 .level-title{
   margin-left: 4rem;
   margin-bottom: 0.4rem;
