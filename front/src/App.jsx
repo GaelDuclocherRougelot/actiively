@@ -26,7 +26,6 @@ function App() {
   // Hook created to manage parametres search:
   const [keyword, setkeyword] = useState('');
   const [results, setResults] = useState([]);
-  console.log('apres appel axios',results)
 
   // Hook created to manage token
   const { token, setToken } = useToken();

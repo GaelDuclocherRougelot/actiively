@@ -1,38 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import FiltersList from './Filters/filters/FiltersList';
+import Filters from './Posts/Filters/Filters';
 import PostsList from './Posts/Posts/PostsList';
 import './activityListStyles.css';
-
 
 function ActivityList({
   results,
 }) {
   // Hook created to manage parametres's filters:
-  const [gender, setGender] = useState('');
-  console.log('ma selection gender dans activitylist ', gender)
-
-  // level's filters parametre function
-  const handleChoseGender = (genderFilters) => {
-    setGender(genderFilters);
+  const [filtersSelect, setFiltersSelect] = useState('');
+  
+  // function to manage filter's object
+  const handleChoseGender = (Filter) => {
+    setFiltersSelect(Filter);
   };
 
   // function to mange array for props:
   const arr = results;
-  console.log('le tableau avant tri' , arr)
-  const day1 = gender.monday;
-  const day2 = gender.tuesday;
-  const day3 = gender.wednesday;
-  const day4 = gender.thursday;
-  const day5 = gender.friday;
-  const day6 = gender.saturday;
-  const day7 = gender.sunday;
-  const gender1 = gender.mixt;
-  const gender2 = gender.women;
-  const gender3 = gender.men;
-  const level1 = gender.allLevel;
-  const level2 = gender.beginner;
-  const level3 = gender.confirmed;
+  const day1 = filtersSelect.monday;
+  const day2 = filtersSelect.tuesday;
+  const day3 = filtersSelect.wednesday;
+  const day4 = filtersSelect.thursday;
+  const day5 = filtersSelect.friday;
+  const day6 = filtersSelect.saturday;
+  const day7 = filtersSelect.sunday;
+  const gender1 = filtersSelect.mixt;
+  const gender2 = filtersSelect.women;
+  const gender3 = filtersSelect.men;
+  const level1 = filtersSelect.allLevel;
+  const level2 = filtersSelect.beginner;
+  const level3 = filtersSelect.confirmed;
 
   function data(table) {
     const isdayfiltrenotactive = (
@@ -81,13 +78,12 @@ function ActivityList({
   }
 
   const result = data(arr);
-console.log('le tableau apres tri' , result)
 
   return (
     <div>
       <div className="container-activity">
-        <FiltersList
-          GenderSelect={handleChoseGender}
+        <Filters
+          filtersChoice={handleChoseGender}
         />
         <PostsList
           results={result}

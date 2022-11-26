@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 
 
-const genderFiltersInitial = {
+const FilterInitial = {
   monday: '',
   tuesday: '',
   wednesday: '',
@@ -197,11 +197,11 @@ function genderReducer(oldState, action) {
 }
 
 
-function useGenderReducer() {
-  const [genderFilters, filterDispatch] = useReducer(genderReducer, genderFiltersInitial);
+function useFilterReducer() {
+  const [Filter, filterDispatch] = useReducer(genderReducer, FilterInitial);
   return {
-    genderFilters, filterDispatch,
+    Filter, filterDispatch,
   };
 }
 
-export default useGenderReducer;
+export default useFilterReducer;

@@ -1,17 +1,30 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState} from 'react';
 import PropTypes from 'prop-types';
-import useGenderReducer from '../../../Hooks/useGenderReducer';
+import useFilterReducer from '../../../Hooks/useFilterReducer';
 import './levelFilterStyles.css';
 
-function GenderFilter({
-  GenderSelect,
+function Filters({
+  filtersChoice,
 }) {
-  const { genderFilters, filterDispatch } = useGenderReducer();
-  GenderSelect(genderFilters);
+  const {Filter, filterDispatch } = useFilterReducer();
+  const [hiden, ishiden] = useState('false');
+  const handleChangeFilter = () => {
+    ishiden(!hiden);
+  };
+  filtersChoice(Filter);
 
   return (
-    <div>
+    <div className="filters-container">
+      <button
+        type="button"
+        className="filters-styles"
+        onClick={handleChangeFilter}
+      >
+        Filtres
+      </button>
+
+      {!hiden && (
       <div className="C">
         <div>
           <h1 className="level-title">Jours de disponibilité</h1>
@@ -20,7 +33,7 @@ function GenderFilter({
               <label>
                 <input
                   type="checkbox"
-                  value={genderFilters.monday}
+                  value={Filter.monday}
                   id="opt-in"
                   onChange={(e) => filterDispatch({
                     type: 'SET_VALUE',
@@ -36,7 +49,7 @@ function GenderFilter({
               <label>
                 <input
                   type="checkbox"
-                  value={genderFilters.tuesday}
+                  value={Filter.tuesday}
                   id="opt-in"
                   onChange={(e) => filterDispatch({
                     type: 'SET_VALUE',
@@ -52,7 +65,7 @@ function GenderFilter({
               <label>
                 <input
                   type="checkbox"
-                  value={genderFilters.wednesday}
+                  value={Filter.wednesday}
                   id="opt-in"
                   onChange={(e) => filterDispatch({
                     type: 'SET_VALUE',
@@ -68,7 +81,7 @@ function GenderFilter({
               <label>
                 <input
                   type="checkbox"
-                  value={genderFilters.thursday}
+                  value={Filter.thursday}
                   id="opt-in"
                   onChange={(e) => filterDispatch({
                     type: 'SET_VALUE',
@@ -84,7 +97,7 @@ function GenderFilter({
               <label>
                 <input
                   type="checkbox"
-                  value={genderFilters.friday}
+                  value={Filter.friday}
                   id="opt-in"
                   onChange={(e) => filterDispatch({
                     type: 'SET_VALUE',
@@ -100,7 +113,7 @@ function GenderFilter({
               <label>
                 <input
                   type="checkbox"
-                  value={genderFilters.saturday}
+                  value={Filter.saturday}
                   id="opt-in"
                   onChange={(e) => filterDispatch({
                     type: 'SET_VALUE',
@@ -116,7 +129,7 @@ function GenderFilter({
               <label>
                 <input
                   type="checkbox"
-                  value={genderFilters.sunday}
+                  value={Filter.sunday}
                   id="opt-in"
                   onChange={(e) => filterDispatch({
                     type: 'SET_VALUE',
@@ -137,7 +150,7 @@ function GenderFilter({
               <label>
                 <input
                   type="checkbox"
-                  value={genderFilters.allLevel}
+                  value={Filter.allLevel}
                   id="opt-in"
                   onChange={(e) => filterDispatch({
                     type: 'SET_VALUE',
@@ -153,7 +166,7 @@ function GenderFilter({
               <label>
                 <input
                   type="checkbox"
-                  value={genderFilters.beginner}
+                  value={Filter.beginner}
                   id="opt-in"
                   onChange={(e) => filterDispatch({
                     type: 'SET_VALUE',
@@ -170,7 +183,7 @@ function GenderFilter({
               <label>
                 <input
                   type="checkbox"
-                  value={genderFilters.confirmed}
+                  value={Filter.confirmed}
                   id="opt-in"
                   onChange={(e) => filterDispatch({
                     type: 'SET_VALUE',
@@ -191,7 +204,7 @@ function GenderFilter({
               <label>
                 <input
                   type="checkbox"
-                  value={genderFilters.mixt}
+                  value={Filter.mixt}
                   id="opt-in"
                   onChange={(e) => filterDispatch({
                     type: 'SET_VALUE',
@@ -207,7 +220,7 @@ function GenderFilter({
               <label>
                 <input
                   type="checkbox"
-                  value={genderFilters.women}
+                  value={Filter.women}
                   id="opt-in"
                   onChange={(e) => filterDispatch({
                     type: 'SET_VALUE',
@@ -224,7 +237,7 @@ function GenderFilter({
               <label>
                 <input
                   type="checkbox"
-                  value={genderFilters.men}
+                  value={Filter.men}
                   id="opt-in"
                   onChange={(e) => filterDispatch({
                     type: 'SET_VALUE',
@@ -239,17 +252,18 @@ function GenderFilter({
           </div>
         </div>
       </div>
+      )}
     </div>
 
   );
 }
 
-GenderFilter.propTypes = {
-  GenderSelect: PropTypes.func,
+Filters.propTypes = {
+  filtersChoice: PropTypes.func,
 };
 
-GenderFilter.defaultProps = {
-  GenderSelect: '',
+Filters.defaultProps = {
+  filtersChoice: '',
 };
 
-export default React.memo(GenderFilter);
+export default React.memo(Filters);
