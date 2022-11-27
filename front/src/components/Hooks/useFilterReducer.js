@@ -1,6 +1,5 @@
 import { useReducer } from 'react';
 
-
 const FilterInitial = {
   monday: '',
   tuesday: '',

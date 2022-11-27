@@ -13,7 +13,7 @@ function Filters({
     ishiden(!hiden);
   };
   filtersChoice(Filter);
-
+ 
   // creation action generateur
 
   function getActionValue(name, value) {
@@ -26,6 +26,10 @@ function Filters({
 
     };
   }
+
+  const handleCheckBoxChange = (e) => {
+    filterDispatch(getActionValue(e.target.name, e.target.checked));
+  };
 
   return (
     <div className="filters-container">
@@ -44,10 +48,10 @@ function Filters({
             <div className="cat action">
               <label>
                 <input
-                  type="checkbox"
-                  value={Filter.monday}
                   id="opt-in"
-                  onChange={(e) => filterDispatch(getActionValue('monday', e.target.checked))}
+                  type="checkbox"
+                  name="monday"
+                  onChange={handleCheckBoxChange}
                 />
                 <span>Lundi</span>
               </label>
@@ -55,10 +59,10 @@ function Filters({
             <div className="cat action">
               <label>
                 <input
-                  type="checkbox"
-                  value={Filter.tuesday}
                   id="opt-in"
-                  onChange={(e) => filterDispatch(getActionValue('tuesday', e.target.checked))}
+                  type="checkbox"
+                  name="tuesday"
+                  onChange={handleCheckBoxChange}
                 />
                 <span>Mardi</span>
               </label>
@@ -66,10 +70,10 @@ function Filters({
             <div className="cat action">
               <label>
                 <input
-                  type="checkbox"
-                  value={Filter.wednesday}
                   id="opt-in"
-                  onChange={(e) => filterDispatch(getActionValue('wednesday', e.target.checked))}
+                  type="checkbox"
+                  name="wednesday"
+                  onChange={handleCheckBoxChange}
                 />
                 <span>Mercredi</span>
               </label>
@@ -77,10 +81,10 @@ function Filters({
             <div className="cat action">
               <label>
                 <input
-                  type="checkbox"
-                  value={Filter.thursday}
                   id="opt-in"
-                  onChange={(e) => filterDispatch(getActionValue('thursday', e.target.checked))}
+                  type="checkbox"
+                  name="thursday"
+                  onChange={handleCheckBoxChange}
                 />
                 <span>Jeudi</span>
               </label>
@@ -88,10 +92,10 @@ function Filters({
             <div className="cat action">
               <label>
                 <input
-                  type="checkbox"
-                  value={Filter.friday}
                   id="opt-in"
-                  onChange={(e) => filterDispatch(getActionValue('friday', e.target.checked))}
+                  type="checkbox"
+                  name="friday"
+                  onChange={handleCheckBoxChange}
                 />
                 <span>Vendredi</span>
               </label>
@@ -99,10 +103,10 @@ function Filters({
             <div className="cat action">
               <label>
                 <input
-                  type="checkbox"
-                  value={Filter.saturday}
                   id="opt-in"
-                  onChange={(e) => filterDispatch(getActionValue('saturday', e.target.checked))}
+                  type="checkbox"
+                  name="saturday"
+                  onChange={handleCheckBoxChange}
                 />
                 <span>Samedi</span>
               </label>
@@ -110,10 +114,10 @@ function Filters({
             <div className="cat action">
               <label>
                 <input
-                  type="checkbox"
-                  value={Filter.sunday}
                   id="opt-in"
-                  onChange={(e) => filterDispatch(getActionValue('sunday', e.target.checked))}
+                  type="checkbox"
+                  name="sunday"
+                  onChange={handleCheckBoxChange}
                 />
                 <span>Dimanche</span>
               </label>
@@ -126,10 +130,10 @@ function Filters({
             <div className="cat action">
               <label>
                 <input
-                  type="checkbox"
-                  value={Filter.allLevel}
                   id="opt-in"
-                  onChange={(e) => filterDispatch(getActionValue('allLevel', e.target.checked))}
+                  type="checkbox"
+                  name="allLevel"
+                  onChange={handleCheckBoxChange}
                 />
                 <span>Tous niveaux</span>
               </label>
@@ -137,10 +141,10 @@ function Filters({
             <div className="cat action">
               <label>
                 <input
-                  type="checkbox"
-                  value={Filter.beginner}
                   id="opt-in"
-                  onChange={(e) => filterDispatch(getActionValue('beginner', e.target.checked))}
+                  type="checkbox"
+                  name="beginner"
+                  onChange={handleCheckBoxChange}
                 />
                 <span>Débutant</span>
               </label>
@@ -149,10 +153,10 @@ function Filters({
             <div className="cat action">
               <label>
                 <input
-                  type="checkbox"
-                  value={Filter.confirmed}
                   id="opt-in"
-                  onChange={(e) => filterDispatch(getActionValue('confirmed', e.target.checked))}
+                  type="checkbox"
+                  name="confirmed"
+                  onChange={handleCheckBoxChange}
                 />
                 <span>Confirmé</span>
               </label>
@@ -165,10 +169,10 @@ function Filters({
             <div className="cat action">
               <label>
                 <input
-                  type="checkbox"
-                  value={Filter.mixt}
                   id="opt-in"
-                  onChange={(e) => filterDispatch(getActionValue('mixt', e.target.checked))}
+                  type="checkbox"
+                  name="mixt"
+                  onChange={handleCheckBoxChange}
                 />
                 <span>Mixte</span>
               </label>
@@ -176,22 +180,21 @@ function Filters({
             <div className="cat action">
               <label>
                 <input
-                  type="checkbox"
-                  value={Filter.women}
                   id="opt-in"
-                  onChange={(e) => filterDispatch(getActionValue('women', e.target.checked))}
+                  type="checkbox"
+                  name="women"
+                  onChange={handleCheckBoxChange}
                 />
                 <span>Féminin</span>
               </label>
             </div>
-
             <div className="cat action">
               <label>
                 <input
-                  type="checkbox"
-                  value={Filter.men}
                   id="opt-in"
-                  onChange={(e) => filterDispatch(getActionValue('men', e.target.checked))}
+                  type="checkbox"
+                  name="men"
+                  onChange={handleCheckBoxChange}
                 />
                 <span>Masculin</span>
               </label>
