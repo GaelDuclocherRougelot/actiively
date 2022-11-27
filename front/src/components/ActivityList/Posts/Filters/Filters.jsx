@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useFilterReducer from '../../../Hooks/useFilterReducer';
 import './levelFilterStyles.css';
@@ -7,12 +7,25 @@ import './levelFilterStyles.css';
 function Filters({
   filtersChoice,
 }) {
-  const {Filter, filterDispatch } = useFilterReducer();
+  const { Filter, filterDispatch } = useFilterReducer();
   const [hiden, ishiden] = useState('false');
   const handleChangeFilter = () => {
     ishiden(!hiden);
   };
   filtersChoice(Filter);
+
+  // creation action generateur
+
+  function getActionValue(name, value) {
+    return {
+      type: 'SET_VALUE',
+      payload: {
+        name,
+        value,
+      },
+
+    };
+  }
 
   return (
     <div className="filters-container">
@@ -23,7 +36,6 @@ function Filters({
       >
         Filtres
       </button>
-
       {!hiden && (
       <div className="C">
         <div>
@@ -35,12 +47,7 @@ function Filters({
                   type="checkbox"
                   value={Filter.monday}
                   id="opt-in"
-                  onChange={(e) => filterDispatch({
-                    type: 'SET_VALUE',
-                    payload: {
-                      name: 'monday', value: e.target.checked,
-                    },
-                  })}
+                  onChange={(e) => filterDispatch(getActionValue('monday', e.target.checked))}
                 />
                 <span>Lundi</span>
               </label>
@@ -51,12 +58,7 @@ function Filters({
                   type="checkbox"
                   value={Filter.tuesday}
                   id="opt-in"
-                  onChange={(e) => filterDispatch({
-                    type: 'SET_VALUE',
-                    payload: {
-                      name: 'tuesday', value: e.target.checked,
-                    },
-                  })}
+                  onChange={(e) => filterDispatch(getActionValue('tuesday', e.target.checked))}
                 />
                 <span>Mardi</span>
               </label>
@@ -67,12 +69,7 @@ function Filters({
                   type="checkbox"
                   value={Filter.wednesday}
                   id="opt-in"
-                  onChange={(e) => filterDispatch({
-                    type: 'SET_VALUE',
-                    payload: {
-                      name: 'wednesday', value: e.target.checked,
-                    },
-                  })}
+                  onChange={(e) => filterDispatch(getActionValue('wednesday', e.target.checked))}
                 />
                 <span>Mercredi</span>
               </label>
@@ -83,12 +80,7 @@ function Filters({
                   type="checkbox"
                   value={Filter.thursday}
                   id="opt-in"
-                  onChange={(e) => filterDispatch({
-                    type: 'SET_VALUE',
-                    payload: {
-                      name: 'thursday', value: e.target.checked,
-                    },
-                  })}
+                  onChange={(e) => filterDispatch(getActionValue('thursday', e.target.checked))}
                 />
                 <span>Jeudi</span>
               </label>
@@ -99,12 +91,7 @@ function Filters({
                   type="checkbox"
                   value={Filter.friday}
                   id="opt-in"
-                  onChange={(e) => filterDispatch({
-                    type: 'SET_VALUE',
-                    payload: {
-                      name: 'friday', value: e.target.checked,
-                    },
-                  })}
+                  onChange={(e) => filterDispatch(getActionValue('friday', e.target.checked))}
                 />
                 <span>Vendredi</span>
               </label>
@@ -115,12 +102,7 @@ function Filters({
                   type="checkbox"
                   value={Filter.saturday}
                   id="opt-in"
-                  onChange={(e) => filterDispatch({
-                    type: 'SET_VALUE',
-                    payload: {
-                      name: 'saturday', value: e.target.checked,
-                    },
-                  })}
+                  onChange={(e) => filterDispatch(getActionValue('saturday', e.target.checked))}
                 />
                 <span>Samedi</span>
               </label>
@@ -131,12 +113,7 @@ function Filters({
                   type="checkbox"
                   value={Filter.sunday}
                   id="opt-in"
-                  onChange={(e) => filterDispatch({
-                    type: 'SET_VALUE',
-                    payload: {
-                      name: 'sunday', value: e.target.checked,
-                    },
-                  })}
+                  onChange={(e) => filterDispatch(getActionValue('sunday', e.target.checked))}
                 />
                 <span>Dimanche</span>
               </label>
@@ -152,12 +129,7 @@ function Filters({
                   type="checkbox"
                   value={Filter.allLevel}
                   id="opt-in"
-                  onChange={(e) => filterDispatch({
-                    type: 'SET_VALUE',
-                    payload: {
-                      name: 'allLevel', value: e.target.checked,
-                    },
-                  })}
+                  onChange={(e) => filterDispatch(getActionValue('allLevel', e.target.checked))}
                 />
                 <span>Tous niveaux</span>
               </label>
@@ -168,12 +140,7 @@ function Filters({
                   type="checkbox"
                   value={Filter.beginner}
                   id="opt-in"
-                  onChange={(e) => filterDispatch({
-                    type: 'SET_VALUE',
-                    payload: {
-                      name: 'beginner', value: e.target.checked,
-                    },
-                  })}
+                  onChange={(e) => filterDispatch(getActionValue('beginner', e.target.checked))}
                 />
                 <span>Débutant</span>
               </label>
@@ -185,12 +152,7 @@ function Filters({
                   type="checkbox"
                   value={Filter.confirmed}
                   id="opt-in"
-                  onChange={(e) => filterDispatch({
-                    type: 'SET_VALUE',
-                    payload: {
-                      name: 'confirmed', value: e.target.checked,
-                    },
-                  })}
+                  onChange={(e) => filterDispatch(getActionValue('confirmed', e.target.checked))}
                 />
                 <span>Confirmé</span>
               </label>
@@ -206,12 +168,7 @@ function Filters({
                   type="checkbox"
                   value={Filter.mixt}
                   id="opt-in"
-                  onChange={(e) => filterDispatch({
-                    type: 'SET_VALUE',
-                    payload: {
-                      name: 'mixt', value: e.target.checked,
-                    },
-                  })}
+                  onChange={(e) => filterDispatch(getActionValue('mixt', e.target.checked))}
                 />
                 <span>Mixte</span>
               </label>
@@ -222,12 +179,7 @@ function Filters({
                   type="checkbox"
                   value={Filter.women}
                   id="opt-in"
-                  onChange={(e) => filterDispatch({
-                    type: 'SET_VALUE',
-                    payload: {
-                      name: 'women', value: e.target.checked,
-                    },
-                  })}
+                  onChange={(e) => filterDispatch(getActionValue('women', e.target.checked))}
                 />
                 <span>Féminin</span>
               </label>
@@ -239,12 +191,7 @@ function Filters({
                   type="checkbox"
                   value={Filter.men}
                   id="opt-in"
-                  onChange={(e) => filterDispatch({
-                    type: 'SET_VALUE',
-                    payload: {
-                      name: 'men', value: e.target.checked,
-                    },
-                  })}
+                  onChange={(e) => filterDispatch(getActionValue('men', e.target.checked))}
                 />
                 <span>Masculin</span>
               </label>

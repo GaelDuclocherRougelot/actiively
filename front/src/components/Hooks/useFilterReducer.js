@@ -17,7 +17,7 @@ const FilterInitial = {
   men: '',
 };
 
-function genderReducer(oldState, action) {
+function filterReducer(oldState, action) {
   switch (action.type) {
     case 'SET_VALUE': {
       if (action.payload.name === 'monday') {
@@ -198,7 +198,7 @@ function genderReducer(oldState, action) {
 
 
 function useFilterReducer() {
-  const [Filter, filterDispatch] = useReducer(genderReducer, FilterInitial);
+  const [Filter, filterDispatch] = useReducer(filterReducer, FilterInitial);
   return {
     Filter, filterDispatch,
   };
