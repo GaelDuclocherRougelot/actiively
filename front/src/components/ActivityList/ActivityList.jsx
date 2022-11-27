@@ -1,93 +1,35 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import FiltersList from './Filters/filters/FiltersList';
+import Filters from './Posts/Filters/Filters';
 import PostsList from './Posts/Posts/PostsList';
 import './activityListStyles.css';
 
 function ActivityList({
   results,
 }) {
-  // Hook created to manage parametres of day's filter:
-  const [checkMonday, setCheckMonday] = useState('');
-  const [checkTuesday, setCheckTuesdayd] = useState('');
-  const [checkWednesday, setCheckWednesday] = useState('');
-  const [checkThursday, setCheckThursday] = useState('');
-  const [checkFriday, setCheckFriday] = useState('');
-  const [checSaturday, setChecSaturday] = useState('');
-  const [checkSunday, setCheckSunday] = useState('');
+  // Hook created to manage parametres's filters:
+  const [filtersSelect, setFiltersSelect] = useState('');
 
-  // Hook created to manage parametres of level's filter:
-  const [checkFirstLevel, setCheckFirstLevel] = useState('');
-  const [checkSecondLevel, setCheckSecondtLevel] = useState('');
-  const [checkThirdLevel, setCeckThirdLevel] = useState('');
-
-  // Hook created to manage parametres of gender's filter:
-
-  const [checkFirstGender, setCheckFirstGender] = useState('');
-  const [checkSecondGender, setCheckSecondGender] = useState('');
-  const [checkThirdGender, setCeckThirdGender] = useState('');
-
-  // day's filters parametre function
-
-  const handleMonday = (slectMonday) => {
-    setCheckMonday(slectMonday);
-  };
-  const handleTuesday = (selectTuesday) => {
-    setCheckTuesdayd(selectTuesday);
-  };
-  const handleWednsday = (selectWednsday) => {
-    setCheckWednesday(selectWednsday);
-  };
-  const handleThursday = (selectThursday) => {
-    setCheckThursday(selectThursday);
-  };
-  const handleFriday = (selectFriday) => {
-    setCheckFriday(selectFriday);
-  };
-  const handleSaturday = (electSaturday) => {
-    setChecSaturday(electSaturday);
-  };
-  const handleSunday = (selectSunday) => {
-    setCheckSunday(selectSunday);
-  };
-
-  // level's filters parametre function
-  const handleFirstLevel = (selectFirstLevel) => {
-    setCheckFirstLevel(selectFirstLevel);
-  };
-  const handleSecondLevel = (selectSecondLeve) => {
-    setCheckSecondtLevel(selectSecondLeve);
-  };
-  const handleThirdLevel = (selectThirdLevel) => {
-    setCeckThirdLevel(selectThirdLevel);
-  };
-
-  // gender's filters parametre function
-  const handleFirstGender = (selectFirstGender) => {
-    setCheckFirstGender(selectFirstGender);
-  };
-  const handleSecondGender = (selectSecondGender) => {
-    setCheckSecondGender(selectSecondGender);
-  };
-  const handleThirdGender = (selectThirdGender) => {
-    setCeckThirdGender(selectThirdGender);
+  // function to manage filter's object
+  const handleChoseGender = (Filter) => {
+    setFiltersSelect(Filter);
   };
 
   // function to mange array for props:
   const arr = results;
-  const day1 = checkMonday;
-  const day2 = checkTuesday;
-  const day3 = checkWednesday;
-  const day4 = checkThursday;
-  const day5 = checkFriday;
-  const day6 = checSaturday;
-  const day7 = checkSunday;
-  const gender1 = checkFirstGender;
-  const gender2 = checkSecondGender;
-  const gender3 = checkThirdGender;
-  const level1 = checkFirstLevel;
-  const level2 = checkSecondLevel;
-  const level3 = checkThirdLevel;
+  const day1 = filtersSelect.monday;
+  const day2 = filtersSelect.tuesday;
+  const day3 = filtersSelect.wednesday;
+  const day4 = filtersSelect.thursday;
+  const day5 = filtersSelect.friday;
+  const day6 = filtersSelect.saturday;
+  const day7 = filtersSelect.sunday;
+  const gender1 = filtersSelect.mixt;
+  const gender2 = filtersSelect.women;
+  const gender3 = filtersSelect.men;
+  const level1 = filtersSelect.allLevel;
+  const level2 = filtersSelect.beginner;
+  const level3 = filtersSelect.confirmed;
 
   function data(table) {
     const isdayfiltrenotactive = (
@@ -140,20 +82,8 @@ function ActivityList({
   return (
     <div>
       <div className="container-activity">
-        <FiltersList
-          Monday={handleMonday}
-          Tuesday={handleTuesday}
-          Wednesday={handleWednsday}
-          Thursday={handleThursday}
-          Friday={handleFriday}
-          Saturday={handleSaturday}
-          Sunday={handleSunday}
-          FirstLevel={handleFirstLevel}
-          SecondLevel={handleSecondLevel}
-          ThirdLevel={handleThirdLevel}
-          FirstGender={handleFirstGender}
-          SecondGender={handleSecondGender}
-          ThirdGender={handleThirdGender}
+        <Filters
+          filtersChoice={handleChoseGender}
         />
         <PostsList
           results={result}
