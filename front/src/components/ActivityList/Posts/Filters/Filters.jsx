@@ -10,13 +10,8 @@ function Filters({
   const { Filter, filterDispatch } = useFilterReducer();
   const [hiden, ishiden] = useState('false');
 
-  useEffect(
-    () => {
-      filtersChoice(Filter);
-    },
-    [],
-  );
-
+ 
+  filtersChoice(Filter)
   const handleChangeFilter = () => {
     ishiden(!hiden);
   };
