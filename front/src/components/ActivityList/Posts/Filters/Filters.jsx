@@ -1,50 +1,45 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import useFilterReducer from '../../../Hooks/useFilterReducer';
-import './levelFilterStyles.css';
+import useFilterReducer, { getActionValue } from '../../../Hooks/useFilterReducer';
+import './filterStyles.scss';
 
 function Filters({
   filtersChoice,
 }) {
   const { Filter, filterDispatch } = useFilterReducer();
   const [hiden, ishiden] = useState('false');
+
+  useEffect(
+    () => {
+      filtersChoice(Filter);
+    },
+    [],
+  );
+
   const handleChangeFilter = () => {
     ishiden(!hiden);
   };
-  filtersChoice(Filter);
+
  
-  // creation action generateur
-
-  function getActionValue(name, value) {
-    return {
-      type: 'SET_VALUE',
-      payload: {
-        name,
-        value,
-      },
-
-    };
-  }
-
   const handleCheckBoxChange = (e) => {
     filterDispatch(getActionValue(e.target.name, e.target.checked));
   };
 
   return (
-    <div className="filters-container">
+    <div>
       <button
+        className="filter-style"
         type="button"
-        className="filters-styles"
         onClick={handleChangeFilter}
       >
         Filtres
       </button>
       {!hiden && (
-      <div className="C">
+      <div className="global-container">
         <div>
-          <h1 className="level-title">Jours de disponibilité</h1>
-          <div className="level-container">
+          <h1 className="filter-title">Jours de disponibilité</h1>
+          <div className="filters-container">
             <div className="cat action">
               <label>
                 <input
@@ -125,8 +120,8 @@ function Filters({
           </div>
         </div>
         <div>
-          <h1 className="level-title">Niveau</h1>
-          <div className="level-container">
+          <h1 className="filter-title">Niveau</h1>
+          <div className="filters-container">
             <div className="cat action">
               <label>
                 <input
@@ -164,8 +159,8 @@ function Filters({
           </div>
         </div>
         <div>
-          <h1 className="level-title">Genre</h1>
-          <div className="level-container">
+          <h1 className="filter-title">Genre</h1>
+          <div className="filters-container">
             <div className="cat action">
               <label>
                 <input
@@ -204,7 +199,6 @@ function Filters({
       </div>
       )}
     </div>
-
   );
 }
 

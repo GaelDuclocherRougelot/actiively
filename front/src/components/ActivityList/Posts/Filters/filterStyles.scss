@@ -1,7 +1,6 @@
 /* This is to be able to style the name of the filter;*/
 
-
-.filters-styles {
+.filter-style {
   width: 8rem ;
   padding: 0.5rem;
   margin: 1rem;
@@ -15,21 +14,24 @@
     background-color: darken(#00B5AD, 10%);
   }
 }
-.C { 
+
+.global-container { 
   display : flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 1rem;
-
+  margin-bottom: 2rem;
 }
-.level-title{
+
+.filter-title{
   margin-left: 4rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.2rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.2rem;
   font-size: 1.2rem;
 }
 
 /* This is to be able to position the buttons; */
-.level-container {
+.filters-container {
   margin-left: 6rem;
 }
 
@@ -46,7 +48,6 @@
  /* This is to be able to style the buttons;*/
 .cat label {
   float: left; 
-  line-height: 1em;
   width: 10rem; 
   height: 3rem;
   
@@ -57,14 +58,12 @@
   text-align: center;
   padding: 1em 0;
   display: block;
-  font-size: 1em;
 }
 
 /* This is to be able to style the checkbox;*/
 .cat label input {
-  position: absolute;
   display: none;
-  color: #fff !important;
+  color: #fff;
 }
 
  /* selects all of the text within the input element and changes the color of the text */

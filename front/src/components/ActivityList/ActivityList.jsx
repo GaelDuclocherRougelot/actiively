@@ -9,7 +9,7 @@ function ActivityList({
 }) {
   // Hook created to manage parametres's filters:
   const [filtersSelect, setFiltersSelect] = useState('');
-  
+
   // function to manage filter's object
   const handleChoseGender = (Filter) => {
     setFiltersSelect(Filter);

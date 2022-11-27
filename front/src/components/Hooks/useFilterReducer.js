@@ -194,7 +194,17 @@ function filterReducer(oldState, action) {
       return oldState;
   }
 }
+ // creation action generateur
+export function getActionValue(name, value) {
+  return {
+    type: 'SET_VALUE',
+    payload: {
+      name,
+      value,
+    },
 
+  };
+}
 
 function useFilterReducer() {
   const [Filter, filterDispatch] = useReducer(filterReducer, FilterInitial);
