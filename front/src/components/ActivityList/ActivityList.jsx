@@ -1,20 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Filters from './Posts/Filters/Filters';
 import PostsList from './Posts/Posts/PostsList';
 import './activityListStyles.css';
+import FiltersContext from '../../contexts/FiltersContext';
 
 function ActivityList({
   results,
 }) {
-  // Hook created to manage parametres's filters:
-  const [filtersSelect, setFiltersSelect] = useState('');
-
-  // function to manage filter's object
-  const handleChoseGender = (Filter) => {
-    setFiltersSelect(Filter);
-  };
-
+  const { filtersSelect } = useContext(FiltersContext);
+ 
   // function to mange array for props:
   const arr = results;
   const day1 = filtersSelect.monday;
@@ -82,9 +77,7 @@ function ActivityList({
   return (
     <div>
       <div className="container-activity">
-        <Filters
-          filtersChoice={handleChoseGender}
-        />
+        <Filters />
         <PostsList
           results={result}
         />
