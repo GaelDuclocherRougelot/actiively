@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import useFilterReducer, { getActionValue } from '../../../Hooks/useFilterReducer';
 import FiltersContext from '../../../../contexts/FiltersContext';
 import './filterStyles.scss';
