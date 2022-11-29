@@ -18,7 +18,7 @@ const FilterInitial = {
 
 function filterReducer(oldState, action) {
   switch (action.type) {
-    case 'SET_VALUE': {
+    case 'SET_VALUE':
       if (action.payload.name === 'monday') {
         let monday = (action.payload.value);
         if (monday) {
@@ -189,12 +189,13 @@ function filterReducer(oldState, action) {
           men,
         };
       }
-    }
-    default:
+      break;
+    default: {
       return oldState;
+    }
   }
 }
- // creation action generateur
+// creation action generateur
 export function getActionValue(name, value) {
   return {
     type: 'SET_VALUE',
@@ -202,7 +203,6 @@ export function getActionValue(name, value) {
       name,
       value,
     },
-
   };
 }
 
