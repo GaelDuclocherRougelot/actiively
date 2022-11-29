@@ -10,13 +10,11 @@ function Filters({
   const { Filter, filterDispatch } = useFilterReducer();
   const [hiden, ishiden] = useState('false');
 
- 
-  filtersChoice(Filter)
+  filtersChoice(Filter);
   const handleChangeFilter = () => {
     ishiden(!hiden);
   };
 
- 
   const handleCheckBoxChange = (e) => {
     filterDispatch(getActionValue(e.target.name, e.target.checked));
   };

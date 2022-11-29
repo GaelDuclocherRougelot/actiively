@@ -14,7 +14,7 @@ module.exports = {
                 json_build_object('email', o.contact_email,'name', o.name, 'phone_number', o.phone_number, 'organism_description', o.description) as organism_infos 
             FROM activity a
                 JOIN day d ON pk_activity = code_activity
-                JOIN organism o ON pk_organism = o.email
+                JOIN organism o ON pk_organism = o.code_organism
             WHERE code_activity = ($1)
             LIMIT 1
         `, [id]);
@@ -30,7 +30,7 @@ module.exports = {
         const result = await client.query(`
             SELECT a.code_activity, a.name as activity_name, o.name as organism_name, a.zip_code, a.city, d.name as day, a.price, a.price_type, a.gender, a.level, a.image_url from "activity" a
             JOIN day d ON pk_activity = code_activity
-            JOIN organism o ON pk_organism = o.email
+            JOIN organism o ON pk_organism = o.code_organism
             WHERE a.name SIMILAR TO ($1)
             AND a.zip_code SIMILAR TO ($2)
         `, [q.keyword, q.zip_code]);
@@ -57,59 +57,59 @@ module.exports = {
      * @param {number} activity id
      * @param {string} email
      */
-        async deleteActivityByPk(id, email) {
+        async deleteActivityByPk(id, code_organism) {
             await client.query(`
                 DELETE FROM "activity" CASCADE
                 WHERE code_activity = $1
                 AND pk_organism = $2
-            `, [id, email]);
+            `, [id, code_organism]);
         },
      /** Remove all activities / day related by email, from one organism
      * @param {string} email
      */
-        async deleteAllActivities(email) {
+        async deleteAllActivities(code_organism) {
             await client.query(`
                 DELETE FROM "activity" CASCADE
                 WHERE pk_organism = $1
-            `, [email]);
+            `, [code_organism]);
         },
      /** Find all activities by organism
      * @param {string} email of the organism
      */
-        async findActivitiesByOrganism(email) {
+        async findActivitiesByOrganism(code_organism) {
             const result = await client.query(`
                 SELECT 
                     a.code_activity, a.name, a.address, a.zip_code, a.city, d.name as day, d.start_time, d.end_time, a.price, a.price_type, a.gender, a.level, a.description, a.image_url,
                     json_build_object('email', o.contact_email,'name', o.name, 'phone_number', o.phone_number, 'organism_description', o.description) as organism_infos 
                 FROM activity a
                     JOIN day d ON pk_activity = code_activity
-                    JOIN organism o ON pk_organism = o.email
-                WHERE o.email = ($1)
-            `, [email]);
+                    JOIN organism o ON pk_organism = o.code_organism
+                WHERE o.code_organism = ($1)
+            `, [code_organism]);
             return result.rows;
         },
      /** Find one activity by code_activity / email
       * @param {number} id
      * @param {string} email of the organism
      */
-        async findActivityByOrganism(id,email) {
+        async findActivityByOrganism(id, code_organism) {
             const result = await client.query(`
                 SELECT 
                     a.code_activity, a.name, a.address, a.zip_code, a.city, d.name as day, d.start_time, d.end_time, a.price, a.price_type, a.gender, a.level, a.description, a.image_url,
                     json_build_object('email', o.contact_email,'name', o.name, 'phone_number', o.phone_number, 'organism_description', o.description) as organism_infos 
                 FROM activity a
                     JOIN day d ON pk_activity = code_activity
-                    JOIN organism o ON pk_organism = o.email
-                WHERE o.email = $2
+                    JOIN organism o ON pk_organism = o.code_organism
+                WHERE o.code_organism = $2
                 AND a.code_activity = $1
-            `, [id, email]);
+            `, [id, code_organism]);
             return result.rows;
         },
          /** Create one activity by organism
         * @param {object} activity
         * @param {string} email
         */
-        async createActivity(activity, email) {
+        async createActivity(activity, code_organism) {
             const activityQuery = await client.query(`
                 INSERT INTO "activity"
                     ("name", 
@@ -137,7 +137,7 @@ module.exports = {
                 activity.gender,
                 activity.level,
                 activity.image_url,
-                email
+                code_organism
             ]);
     
             return activityQuery.rows[0];

@@ -189,12 +189,13 @@ function filterReducer(oldState, action) {
           men,
         };
       }
+      break;
     }
     default:
       return oldState;
   }
 }
- // creation action generateur
+// creation action generateur
 export function getActionValue(name, value) {
   return {
     type: 'SET_VALUE',

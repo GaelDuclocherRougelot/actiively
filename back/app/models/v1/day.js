@@ -31,7 +31,7 @@ module.exports = {
      * @param {number} pk_activity id of the activity
      * @param {string} email of the organism
      */
-    async deleteDay(pk_activity, email) {
+    async deleteDay(pk_activity, email) { //TODO: change email by code_organism
         await client.query(`
             DELETE FROM "day"
             USING activity

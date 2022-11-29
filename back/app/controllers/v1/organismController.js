@@ -45,17 +45,13 @@ module.exports = {
         
 
         try {
-            const organism = await organismDatamapper.findOneOrganism(email);
+            const organism = await organismDatamapper.findOrganismInfosForLogin(email);
             const dbPassword = organism.password;
 
             await bcrypt.compare(password, dbPassword)
             .then((match) => {
                 if(match){
                     const accessToken = createTokens(organism);
-                    // res.cookie("access_token", accessToken, {
-                    //     maxAge: 300000,
-                    //     httpOnly: true
-                    // });
                     res.json({
                         authenticated: true,
                         token: accessToken,
@@ -77,7 +73,7 @@ module.exports = {
      * @param {*} res 
      */
     async profile(req, res) {
-        const organism = await organismDatamapper.findOneOrganism(req.decodedToken.email);
+        const organism = await organismDatamapper.findOneOrganism(req.decodedToken.id);
 
         res.json({message: 'PROFILE', connected: req.authenticated, user: organism});
     },
@@ -89,7 +85,7 @@ module.exports = {
     async updateProfile(req, res) {
         const organismProfil = req.body;
         try {
-            await organismDatamapper.updateProfile(organismProfil, req.decodedToken.email);
+            await organismDatamapper.updateProfile(organismProfil, req.decodedToken.id);
             res.json({message: 'Profile Updated'});
             
         } catch (err) {
@@ -103,7 +99,7 @@ module.exports = {
      * @param {*} res 
      */
     async deleteProfile(req, res) {
-        const currOrganism = req.decodedToken.email;
+        const currOrganism = req.decodedToken.id; //TODO: done
         try {
             await activityDatamapper.deleteAllActivities(currOrganism);
             await organismDatamapper.deleteProfile(currOrganism);

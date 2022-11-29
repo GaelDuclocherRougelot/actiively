@@ -35,7 +35,6 @@ function App() {
   const navigate = useNavigate();
 
   // Search request
-  
 
   const postData = async () => {
     if (!keyword.zip_code && !keyword.keyword) {
