@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import Filters from './Posts/Filters/Filters';
 import PostsList from './Posts/Posts/PostsList';
-import './activityListStyles.css';
 import FiltersContext from '../../contexts/FiltersContext';
+import SearchContext from '../../contexts/SearchContext';
+import './activityListStyles.css';
 
 function ActivityList({
-  results,
 }) {
   const { filtersSelect } = useContext(FiltersContext);
- 
+  const { results } = useContext(SearchContext);
+
   // function to mange array for props:
   const arr = results;
   const day1 = filtersSelect.monday;
@@ -85,20 +85,5 @@ function ActivityList({
     </div>
   );
 }
-
-ActivityList.propTypes = {
-  results: PropTypes.arrayOf(PropTypes.shape({
-    activity_name: PropTypes.string.isRequired,
-    city: PropTypes.string.isRequired,
-    day: PropTypes.string.isRequired,
-    gender: PropTypes.string.isRequired,
-    image_url: PropTypes.string.isRequired,
-    level: PropTypes.string.isRequired,
-    organism_name: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    price_type: PropTypes.string.isRequired,
-    zip_code: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
-};
 
 export default React.memo(ActivityList);
