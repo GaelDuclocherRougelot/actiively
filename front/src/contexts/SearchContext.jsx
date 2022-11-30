@@ -47,7 +47,7 @@ export function SearchContextProvider({ children }) {
 
   const handleSearch = (e, state) => {
     e.preventDefault();
-    const act = `${state.keyword}%`;
+    const act = `%${state.keyword}%`;
     const key = `${state.zip_code}%`;
     if (key === '%') {
       swal('Oops! Veuillez saisir un code postal (entre 2 et 5 chiffres)');
