@@ -14,7 +14,7 @@ const createTokens = (organism) => {
 /**
  * Check if token is valid
  * @param {*} req headers.authorization
- * @param {*} res 
+ * @param {*} res
  * @param {*} next 
  * @returns decodedToken & next()
  */

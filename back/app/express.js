@@ -10,9 +10,13 @@ require('./helpers/apiDocs')(app);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200
+};
 
-// removing cors for easy access
-app.use(cors(process.env.CODE_LENGTH ?? '*'));
+app.use(cors(corsOptions));
+
 app.use(cookieParser());
 app.use(router);
 
