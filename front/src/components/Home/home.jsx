@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import SearchContext from '../../contexts/SearchContext';
 import Home from '../../images/Home.svg';
 import './homeStyle.scss';
@@ -8,6 +8,7 @@ function HomePage() {
   // Hook created to manage settings search:
   const [state, setState] = useState({ keyword: '', zip_code: '' });
   const { handleSearch } = useContext(SearchContext);
+
 
   // Local's parametres
   const handleChange = (e) => {
@@ -22,6 +23,7 @@ function HomePage() {
     handleSearch(e, state);
   };
 
+  
 
   return (
     <div className="home">

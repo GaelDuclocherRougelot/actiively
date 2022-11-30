@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import useFilterReducer, { getActionValue } from '../../../../Hooks/useFilterReducer';
 import FiltersContext from '../../../../contexts/FiltersContext';
 import './filterStyles.scss';
@@ -7,12 +7,17 @@ import './filterStyles.scss';
 function Filters() {
   const { Filter, filterDispatch } = useFilterReducer();
   const { handleFilter } = useContext(FiltersContext);
-  handleFilter(Filter);
 
   const handleCheckBoxChange = (e) => {
     filterDispatch(getActionValue(e.target.name, e.target.checked));
   };
 
+  useEffect(
+    () => {
+      handleFilter(Filter);
+    },
+    [Filter],
+  );
   const [hiden, ishiden] = useState('false');
   const handleChangeFilter = () => {
     ishiden(!hiden);
