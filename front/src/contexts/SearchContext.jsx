@@ -25,12 +25,14 @@ export function SearchContextProvider({ children }) {
     }
     try {
       await axios.post('http://localhost:3001/api/v1/activity/search', {
-        keyword: search.keyword,
+        keyword: search.keyword.toLowerCase(),
         zip_code: search.zip_code,
       })
 
         .then((res) => {
-          setResults(res.data);
+          const searchResults = res.data;
+          console.log(res.data);
+          setResults(searchResults);
         });
     }
     catch (error) {
