@@ -9,6 +9,7 @@ function HomePage() {
   const [state, setState] = useState({ keyword: '', zip_code: '' });
   const { handleSearch } = useContext(SearchContext);
 
+
   // Local's parametres
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,6 +23,7 @@ function HomePage() {
     handleSearch(e, state);
   };
 
+  
 
   return (
     <div className="home">

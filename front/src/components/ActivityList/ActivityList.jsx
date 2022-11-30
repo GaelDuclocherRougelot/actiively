@@ -5,8 +5,7 @@ import FiltersContext from '../../contexts/FiltersContext';
 import SearchContext from '../../contexts/SearchContext';
 import './activityListStyles.css';
 
-function ActivityList({
-}) {
+function ActivityList() {
   const { filtersSelect } = useContext(FiltersContext);
   const { results } = useContext(SearchContext);
 

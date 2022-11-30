@@ -9,6 +9,7 @@ export default FiltersContext;
 
 export function FiltersContextProvider({ children }) {
   const [filtersSelect, setFilters] = useState([]);
+
   const handleFilter = (Filter) => {
     setFilters(Filter);
   };
