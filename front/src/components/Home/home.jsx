@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import SearchContext from '../../contexts/SearchContext';
 import Home from '../../images/Home.svg';
 import './homeStyle.scss';
