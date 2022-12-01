@@ -21,8 +21,8 @@ module.exports = {
      * @param {*} res 
      * @returns an object containing one activity by the current organism connected
      */
-    async getOneOrganismActivty(req, res){
-            const activity = await activityDatamapper.findActivityByOrganism(req.params.id, req.decodedToken.email);
+    async getOneOrganismActivity(req, res){
+            const activity = await activityDatamapper.findActivityByOrganism(req.params.id, req.decodedToken.id); //TODO: change email by code_organism
             console.log(res.json(activity));
             return res.json(activity);
     },
@@ -42,7 +42,7 @@ module.exports = {
      * @param {*} res 
      */
     async getOrganismActivities(req, res) {
-        const activities = await activityDatamapper.findActivitiesByOrganism(req.decodedToken.email);
+        const activities = await activityDatamapper.findActivitiesByOrganism(req.decodedToken.id);
         try {
             res.json(activities);
         } catch (error) {
@@ -58,8 +58,8 @@ module.exports = {
     async postOneActivity(req, res) {
         try {
             const activityExist = await activityDatamapper.findByName(req.body.name);
-
-            if(activityExist) { // if the activity already exists = error
+            //TODO: Edit the function (removing the if statement below and fix the errors)
+            if(activityExist) {
                 res.json({error: `Activity ${activityExist.name} already exists`});
                 throw new Error(`Activity ${activityExist.name} already exists`);
 
@@ -81,7 +81,7 @@ module.exports = {
                     start_time: req.body.start_time,
                     end_time: req.body.end_time
                 };
-                await activityDatamapper.createActivity(activityWihoutDay, req.decodedToken.email);
+                await activityDatamapper.createActivity(activityWihoutDay, req.decodedToken.id);
                 const currActivity = await activityDatamapper.findByName(req.body.name);
 
                 await dayDatamapper.createDay(day, currActivity.code_activity);
@@ -104,7 +104,7 @@ module.exports = {
 
         try {
             if(activityToDelete){
-                await activityDatamapper.deleteActivityByPk(currActivity, req.decodedToken.email);
+                await activityDatamapper.deleteActivityByPk(currActivity, req.decodedToken.id);
                 res.json({message: `Activity with id (${currActivity}) deleted`}); 
             }else {
                 throw new Error(`Activity with id (${currActivity}) is not exists or already deleted`);
@@ -141,7 +141,7 @@ module.exports = {
             end_time: req.body.end_time
         };
         try {
-            await activityDatamapper.updateActivity(activityToUpdate, req.decodedToken.email, activityId);
+            await activityDatamapper.updateActivity(activityToUpdate, req.decodedToken.id, activityId);
             await dayDatamapper.updateDay(dayToUpdate, activityId);
                 res.json({message: `Activity with id ${activityId} updated`});
         } catch (err) {

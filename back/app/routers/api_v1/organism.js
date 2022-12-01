@@ -224,7 +224,7 @@ router
      * }
      * 
     */
-    .get(validateToken,controllerHandler(activitiesController.getOneOrganismActivty))
+    .get(validateToken,controllerHandler(activitiesController.getOneOrganismActivity))
 
 router
     .route('/activity/:id/delete')
