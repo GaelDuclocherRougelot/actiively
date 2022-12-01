@@ -1,24 +1,27 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import useFilterReducer, { getActionValue } from '../../../Hooks/useFilterReducer';
+import React, { useState, useContext, useEffect } from 'react';
+import useFilterReducer, { getActionValue } from '../../../../Hooks/useFilterReducer';
+import FiltersContext from '../../../../contexts/FiltersContext';
 import './filterStyles.scss';
 
-function Filters({
-  filtersChoice,
-}) {
+function Filters() {
   const { Filter, filterDispatch } = useFilterReducer();
-  const [hiden, ishiden] = useState('false');
-
-  filtersChoice(Filter);
-  const handleChangeFilter = () => {
-    ishiden(!hiden);
-  };
+  const { handleFilter } = useContext(FiltersContext);
 
   const handleCheckBoxChange = (e) => {
     filterDispatch(getActionValue(e.target.name, e.target.checked));
   };
 
+  useEffect(
+    () => {
+      handleFilter(Filter);
+    },
+    [Filter],
+  );
+  const [hiden, ishiden] = useState('false');
+  const handleChangeFilter = () => {
+    ishiden(!hiden);
+  };
   return (
     <div>
       <button
@@ -194,13 +197,5 @@ function Filters({
     </div>
   );
 }
-
-Filters.propTypes = {
-  filtersChoice: PropTypes.func,
-};
-
-Filters.defaultProps = {
-  filtersChoice: '',
-};
 
 export default React.memo(Filters);

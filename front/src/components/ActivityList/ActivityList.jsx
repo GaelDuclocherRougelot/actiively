@@ -1,19 +1,13 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import Filters from './Posts/Filters/Filters';
 import PostsList from './Posts/Posts/PostsList';
+import FiltersContext from '../../contexts/FiltersContext';
+import SearchContext from '../../contexts/SearchContext';
 import './activityListStyles.css';
 
-function ActivityList({
-  results,
-}) {
-  // Hook created to manage parametres's filters:
-  const [filtersSelect, setFiltersSelect] = useState('');
-
-  // function to manage filter's object
-  const handleChoseGender = (Filter) => {
-    setFiltersSelect(Filter);
-  };
+function ActivityList() {
+  const { filtersSelect } = useContext(FiltersContext);
+  const { results } = useContext(SearchContext);
 
   // function to mange array for props:
   const arr = results;
@@ -82,9 +76,7 @@ function ActivityList({
   return (
     <div>
       <div className="container-activity">
-        <Filters
-          filtersChoice={handleChoseGender}
-        />
+        <Filters />
         <PostsList
           results={result}
         />
@@ -92,20 +84,5 @@ function ActivityList({
     </div>
   );
 }
-
-ActivityList.propTypes = {
-  results: PropTypes.arrayOf(PropTypes.shape({
-    activity_name: PropTypes.string.isRequired,
-    city: PropTypes.string.isRequired,
-    day: PropTypes.string.isRequired,
-    gender: PropTypes.string.isRequired,
-    image_url: PropTypes.string.isRequired,
-    level: PropTypes.string.isRequired,
-    organism_name: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    price_type: PropTypes.string.isRequired,
-    zip_code: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
-};
 
 export default React.memo(ActivityList);

@@ -189,10 +189,14 @@ function filterReducer(oldState, action) {
           men,
         };
       }
-      break;
+      return {
+        ...oldState,
+        [action.payload.name]: action.payload.value,
+      };
     }
-    default:
+    default: {
       return oldState;
+    }
   }
 }
 // creation action generateur
@@ -203,7 +207,6 @@ export function getActionValue(name, value) {
       name,
       value,
     },
-
   };
 }
 
