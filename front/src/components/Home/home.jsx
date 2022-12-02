@@ -22,7 +22,6 @@ function HomePage() {
     handleSearch(e, state);
   };
 
-
   return (
     <div className="home">
       <header>

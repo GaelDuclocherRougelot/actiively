@@ -14,21 +14,21 @@
 const debug = require('debug')('SQL:log');
 const { Pool } = require('pg');
 
-const pool = new Pool({
-    host: 'gaelduclocherrougelot-server.eddi.cloud', // or 'localhost' 
-    user: 'actiively', //'actiively' //
-    max: 20,
-    idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 2000,
-  });
-
 // const pool = new Pool({
-//     host: 'localhost',
-//     user: 'actiively',//'actiively', // db user
+//     host: 'gaelduclocherrougelot-server.eddi.cloud', // or 'localhost' 
+//     user: 'actiively', //'actiively' //
 //     max: 20,
 //     idleTimeoutMillis: 30000,
 //     connectionTimeoutMillis: 2000,
 //   });
+
+const pool = new Pool({
+    host: 'db.ngdoxuexjofbnvzjaibo.supabase.co',// 'gaelduclocherrougelot-server.eddi.cloud', // or 'localhost'
+    user: 'postgres',//'actiively', // db user
+    max: 20,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 2000,
+  });
 
 module.exports = {
     // On expose quand même le client original "au cas ou"

@@ -8,20 +8,18 @@ const customApiError = require('../errors/apiErrors');
  * @returns accessToken
  */
 const createTokens = (organism) => {
-    const accessToken = sign({ email: organism.email}, jwtSecret);
+    const accessToken = sign({ id: organism.code_organism }, jwtSecret);
     return accessToken;
 }
 /**
  * Check if token is valid
  * @param {*} req headers.authorization
- * @param {*} res 
+ * @param {*} res
  * @param {*} next 
  * @returns decodedToken & next()
  */
 const validateToken = (req, res, next) => {
-    // console.log('req.headers de validate :', req.headers.authorization)
     const accessToken = req.headers.authorization
-    // const accessToken = req.cookies.access_token
 
     if(!accessToken){
         return res.status(400).json({error: "User not Authenticated."});
