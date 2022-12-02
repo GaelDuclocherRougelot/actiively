@@ -30,9 +30,7 @@ export function SearchContextProvider({ children }) {
       })
 
         .then((res) => {
-          const searchResults = res.data;
-          console.log(res.data);
-          setResults(searchResults);
+          setResults(res.data);
         });
     }
     catch (error) {

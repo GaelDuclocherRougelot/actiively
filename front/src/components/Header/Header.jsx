@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faUser } from '@fortawesome/free-regular-svg-icons';
-import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Burger from '../Burger/Burger';
 import './headerStyles.scss';

@@ -104,7 +104,6 @@ function App() {
             />
             <Route
               path="/organism/activity/:id/edit"
-          // element={<ModifActivity token={token} />}
               element={isLogged ? <ModifActivity token={token} /> : <Navigate replace to="/login" />}
             />
             <Route
