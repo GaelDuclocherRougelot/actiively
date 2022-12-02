@@ -25,7 +25,7 @@ export function SearchContextProvider({ children }) {
     }
     try {
       await axios.post('http://localhost:3001/api/v1/activity/search', {
-        keyword: search.keyword,
+        keyword: search.keyword.toLowerCase(),
         zip_code: search.zip_code,
       })
 
@@ -47,7 +47,7 @@ export function SearchContextProvider({ children }) {
 
   const handleSearch = (e, state) => {
     e.preventDefault();
-    const act = `${state.keyword}%`;
+    const act = `%${state.keyword}%`;
     const key = `${state.zip_code}%`;
     if (key === '%') {
       swal('Oops! Veuillez saisir un code postal (entre 2 et 5 chiffres)');
