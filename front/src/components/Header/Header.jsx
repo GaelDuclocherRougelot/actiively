@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faUser } from '@fortawesome/free-regular-svg-icons';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Burger from '../Burger/Burger';
+import LoginContext from '../../contexts/LoginContext';
+
 import './headerStyles.scss';
 
 function Header({
-  isLogged,
   setIsLogged,
   setToken,
 }) {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+  const { isLogged } = useContext(LoginContext);
 
   const toggleBurger = () => {
     setIsBurgerOpen(!isBurgerOpen);
