@@ -28,17 +28,21 @@ function Login({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Axios request to send email and password to API
     try {
       const response = await axios.post(
         'http://localhost:3001/api/v1/organism/login',
-        JSON.stringify({ email, password }),
         {
-          headers: { 'Content-Type': 'application/json' },
+          email,
+          password,
         },
-        { withCredentials: true },
       );
+
+      // Retrieve token from response
       const { token } = response.data;
 
+      // Error if undefined is returned meaning that we don't have credentials in database
       if (token === undefined) {
         setErrMsg('Vos identifiants n\'existent pas.');
         localStorage.clear();
@@ -46,9 +50,9 @@ function Login({
         return;
       }
 
+      // If OK, set token in props, activate IsLogged and redirect to profile
       setToken(token);
-      const login = true;
-      setIsLogged(login);
+      setIsLogged(true);
       navigate('/organism/profile');
     }
     catch (err) {

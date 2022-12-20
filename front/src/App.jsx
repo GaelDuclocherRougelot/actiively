@@ -24,6 +24,7 @@ function App() {
   const { token, setToken } = useToken();
   const [isLogged, setIsLogged] = useState(false);
 
+  // To maintain login state to true on refresh
   useEffect(
     () => {
       if (token) {
