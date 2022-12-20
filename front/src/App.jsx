@@ -17,7 +17,6 @@ import OrganismActivities from './components/OrganismActivities/OrganismActiviti
 import useToken from './Hooks/useToken';
 import { FiltersContextProvider } from './contexts/FiltersContext';
 import { SearchContextProvider } from './contexts/SearchContext';
-import { LoginContextProvider } from './contexts/LoginContext';
 import './styles/index.scss';
 
 function App() {
@@ -25,6 +24,7 @@ function App() {
   const { token, setToken } = useToken();
   const [isLogged, setIsLogged] = useState(false);
 
+  // To maintain login state to true on refresh
   useEffect(
     () => {
       if (token) {
@@ -35,89 +35,87 @@ function App() {
   );
 
   return (
-    <LoginContextProvider>
-      <div className="App">
-        <Header
-          isLogged={isLogged}
-          setIsLogged={setIsLogged}
-          setToken={setToken}
-        />
-        <SearchContextProvider>
-          <FiltersContextProvider>
-            <Routes>
-              <Route
-                path="/"
-                element={(
-                  <Home />
+    <div className="App">
+      <Header
+        isLogged={isLogged}
+        setIsLogged={setIsLogged}
+        setToken={setToken}
+      />
+      <SearchContextProvider>
+        <FiltersContextProvider>
+          <Routes>
+            <Route
+              path="/"
+              element={(
+                <Home />
           )}
-              />
-              <Route
-                path="/activity"
-                element={(
-                  <ActivityList />
+            />
+            <Route
+              path="/activity"
+              element={(
+                <ActivityList />
           )}
-              />
-              <Route
-                path="/activity/:id"
-                element={(
-                  <Activity />
+            />
+            <Route
+              path="/activity/:id"
+              element={(
+                <Activity />
           )}
-              />
-              <Route
-                path="/register"
-                element={<Registration />}
-              />
-              <Route
-                path="/login"
-                element={(
-                  <Login
-                    setToken={setToken}
-                    setIsLogged={setIsLogged}
-                    isLogged={isLogged}
-                  />
+            />
+            <Route
+              path="/register"
+              element={<Registration />}
+            />
+            <Route
+              path="/login"
+              element={(
+                <Login
+                  setToken={setToken}
+                  setIsLogged={setIsLogged}
+                  isLogged={isLogged}
+                />
           )}
-              />
-              {/* Restricted pages */}
-              <Route
-                path="/organism/profile"
-                element={isLogged ? (
-                  <Profil
-                    token={token}
-                    setToken={setToken}
-                    setIsLogged={setIsLogged}
-                  />
-                ) : <Navigate replace to="/login" />}
-              />
-              <Route
-                path="/organism/profile/edit"
-                element={isLogged ? <ModifProfil token={token} /> : <Navigate replace to="/login" />}
-              />
-              <Route
-                path="/organism/create"
-                element={isLogged ? <CreateActivity token={token} /> : <Navigate replace to="/login" />}
-              />
-              <Route
-                path="/organism/activities"
-                element={isLogged ? <OrganismActivities token={token} /> : <Navigate replace to="/login" />}
-              />
-              <Route
-                path="/organism/activity/:id"
-                element={isLogged ? <Activity token={token} /> : <Navigate replace to="/login" />}
-              />
-              <Route
-                path="/organism/activity/:id/edit"
-                element={isLogged ? <ModifActivity token={token} /> : <Navigate replace to="/login" />}
-              />
-              <Route
-                path="*"
-                element={<NotFound />}
-              />
-            </Routes>
-          </FiltersContextProvider>
-        </SearchContextProvider>
-        <Footer />
-      </div>
-    </LoginContextProvider>
+            />
+            {/* Restricted pages */}
+            <Route
+              path="/organism/profile"
+              element={isLogged ? (
+                <Profil
+                  token={token}
+                  setToken={setToken}
+                  setIsLogged={setIsLogged}
+                />
+              ) : <Navigate replace to="/login" />}
+            />
+            <Route
+              path="/organism/profile/edit"
+              element={isLogged ? <ModifProfil token={token} /> : <Navigate replace to="/login" />}
+            />
+            <Route
+              path="/organism/create"
+              element={isLogged ? <CreateActivity token={token} /> : <Navigate replace to="/login" />}
+            />
+            <Route
+              path="/organism/activities"
+              element={isLogged ? <OrganismActivities token={token} /> : <Navigate replace to="/login" />}
+            />
+            <Route
+              path="/organism/activity/:id"
+              element={isLogged ? <Activity token={token} /> : <Navigate replace to="/login" />}
+            />
+            <Route
+              path="/organism/activity/:id/edit"
+              element={isLogged ? <ModifActivity token={token} /> : <Navigate replace to="/login" />}
+            />
+            <Route
+              path="*"
+              element={<NotFound />}
+            />
+          </Routes>
+        </FiltersContextProvider>
+      </SearchContextProvider>
+      <Footer />
+    </div>
   );
 }
 

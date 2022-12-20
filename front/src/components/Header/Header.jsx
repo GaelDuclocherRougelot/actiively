@@ -1,20 +1,19 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faUser } from '@fortawesome/free-regular-svg-icons';
 import Burger from '../Burger/Burger';
-import LoginContext from '../../contexts/LoginContext';
 
 import './headerStyles.scss';
 
 function Header({
+  isLogged,
   setIsLogged,
   setToken,
 }) {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
-  const { isLogged } = useContext(LoginContext);
 
   const toggleBurger = () => {
     setIsBurgerOpen(!isBurgerOpen);
@@ -61,7 +60,7 @@ function Header({
             {' '}
             {isLogged && (currentPath !== '/organism/profile') && (
             <Link to="/organism/profile" className="appheader-profile">
-              <button type="button" className="appheader-button">Mon profil</button>
+              <button type="button" className="appheader-button" onClick={toggleBurger}>Mon profil</button>
             </Link>
             )}
           </li>
@@ -69,14 +68,14 @@ function Header({
             {' '}
             {isLogged && (currentPath !== '/organism/activities') && (
             <Link to="/organism/activities" className="appheader-profile">
-              <button type="button" className="appheader-button">Mes activités</button>
+              <button type="button" className="appheader-button" onClick={toggleBurger}>Mes activités</button>
             </Link>
             )}
           </li>
           <li>
             {isLogged && (currentPath !== '/organism/create') && (
             <Link to="/organism/create" className="appheader-profile">
-              <button type="button" className="appheader-button">Ajouter une activité</button>
+              <button type="button" className="appheader-button" onClick={toggleBurger}>Ajouter une activité</button>
             </Link>
             )}
           </li>
