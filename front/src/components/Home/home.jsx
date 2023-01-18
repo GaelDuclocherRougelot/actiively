@@ -1,15 +1,15 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useContext } from 'react';
+import SearchContext from '../../contexts/SearchContext';
 import Home from '../../images/Home.svg';
 import './homeStyle.scss';
 
-function HomePage({
-  handle,
-}) {
+function HomePage() {
   // Hook created to manage settings search:
   const [state, setState] = useState({ keyword: '', zip_code: '' });
+  const { handleSearch } = useContext(SearchContext);
 
+  // Local's parametres
   const handleChange = (e) => {
     const { name, value } = e.target;
     setState((prevState) => ({
@@ -17,15 +17,11 @@ function HomePage({
       [name]: value,
     }));
   };
-
-  const handleSubmit = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
-    setState((prevState) => ({
-      ...prevState,
-      keyword: state.keyword,
-      zip_code: state.zip_code,
-    }));
+    handleSearch(e, state);
   };
+
   return (
     <div className="home">
       <header>
@@ -34,7 +30,7 @@ function HomePage({
 
       <section className="form-home">
         <div>
-          <form className="ui large form" onSubmit={handleSubmit} noValidate>
+          <form className="ui large form">
             <div className="equal width fields">
               <div className="field color2">
                 <label>Nom de l&apos;activité</label>
@@ -61,7 +57,7 @@ function HomePage({
             <button
               className="ui color1 button field-submit"
               type="submit"
-              onClick={(e) => handle(e, state)}
+              onClick={handleClick}
             >
               {' '}
               <i className="icon search"> </i>
@@ -79,11 +75,5 @@ function HomePage({
 
   );
 }
-
-HomePage.propTypes = {
-  handle: PropTypes.func.isRequired,
-};
-
-HomePage.defaultProps = {};
 
 export default React.memo(HomePage);

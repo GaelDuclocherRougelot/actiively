@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Post from '../Post/Post';
 import './postsListStyles.css';
 
-function Posts({
-  results,
-}) {
+function Posts({ results }) {
   // Message depends on number of results
   const getMessage = () => {
     if (results.length === 0) {

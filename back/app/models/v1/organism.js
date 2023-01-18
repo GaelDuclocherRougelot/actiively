@@ -22,31 +22,31 @@ module.exports = {
         return organismQuery.rows[0];
     },
     /**
-     * Find one email address
-     * @param {text} email of the organism (connected)
+     * Find one code_organism, password by email
+     * @param {text} email of the organism (want to connected)
      */
-    async findOneEmail(email) {
+    async findOrganismInfosForLogin(email) {
         const organism = await client.query(`
-            SELECT email FROM "organism" WHERE email = $1
+            SELECT code_organism, password FROM "organism" WHERE email = $1
         `,[email]);
-        return organism.rows
+        return organism.rows[0]
     },
     /**
-     * Find one organism by email
-     * @param {object} email of the organism (connected)
+     * Find if one organism is in DB by email
+     * @param {object} id of the organism
      */
-    async findOneOrganism(email) {
+    async findOneOrganism(id) {
         const organism = await client.query(`
-            SELECT * FROM "organism" WHERE email = $1
-        `,[email]);
+            SELECT * FROM "organism" WHERE code_organism = $1
+        `,[id]);
         return organism.rows[0]
     },
     /**
      * Create one organism
      * @param {object} organism
-     * @param {object} emailLogged of the organism (connected)
+     * @param {object} id of the organism (connected)
      */
-    async updateProfile(organism, emailLogged) {
+    async updateProfile(organism, id) {
         await client.query(`
         UPDATE "organism"
         SET email= COALESCE(NULLIF($1,''), email),
@@ -54,20 +54,20 @@ module.exports = {
             description= COALESCE(NULLIF($3,''), description),
             contact_email= COALESCE(NULLIF($4,''), contact_email),
             phone_number= COALESCE(NULLIF($5,''), phone_number)
-        WHERE email = $6
+        WHERE code_organism = $6
     `, [organism.email, 
         organism.name,  
         organism.description, 
         organism.contact_email, 
         organism.phone_number,
-    emailLogged]);
+        id]);
     },
     /** Remove one organism
-     * @param {string} email of the organism (connected)
+     * @param {string} id of the organism (connected)
      */
-    async deleteProfile(email) {
+    async deleteProfile(id) {
         await client.query(`
-        DELETE FROM organism WHERE email = $1;`
-        , [email]);
+        DELETE FROM organism WHERE code_organism = $1;`
+        , [id]);
     }
 }

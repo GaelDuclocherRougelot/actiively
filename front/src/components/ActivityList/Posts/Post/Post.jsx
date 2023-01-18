@@ -38,7 +38,7 @@ function Post({
         )}
         {/* Otherwise redirects to public activity */}
         {currentPath !== '/organism/activities' && (
-        <Link to={`/activity/${code_activity}`} className="imagestyle">
+        <Link to={`/activity/${code_activity}`} className="image_style">
           <img className="image" alt={name} src={image_url} />
         </Link>
         )}
